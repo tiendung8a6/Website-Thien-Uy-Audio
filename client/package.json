@@ -13,9 +13,13 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.5.4",
     "axios": "^0.20.0",
+    "bootstrap": "^5.3.1",
     "firebase": "^7.19.0",
+    "framer-motion": "^4.1.17",
     "lodash": "^4.17.20",
-    "react": "^16.13.1",
+    "mdb-react-ui-kit": "^6.2.0",
+    "react": "^16.14.0",
+    "react-bootstrap": "^2.8.0",
     "react-datepicker": "^3.2.2",
     "react-dom": "^16.13.1",
     "react-image-file-resizer": "^0.3.7",
@@ -51,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }

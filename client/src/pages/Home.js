@@ -5,9 +5,13 @@ import BestSellers from "../components/home/BestSellers";
 import CategoryList from "../components/category/CategoryList";
 import SubList from "../components/sub/SubList";
 
+import Carousel from "../components/Carousel/Carrousel"
+
+
 const Home = () => {
   return (
     <>
+      <Carousel></Carousel>
       <div className="jumbotron text-danger h1 font-weight-bold text-center">
         <Jumbotron text={["Latest Products", "New Arrivals", "Best Sellers"]} />
       </div>
