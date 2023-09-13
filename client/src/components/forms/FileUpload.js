@@ -3,6 +3,7 @@ import Resizer from "react-image-file-resizer";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Avatar, Badge } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
 
 const FileUpload = ({ values, setValues, setLoading }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -104,7 +105,8 @@ const FileUpload = ({ values, setValues, setLoading }) => {
       </div>
       <div className="row">
         <label className="btn btn-primary btn-raised mt-3">
-          Choose File
+        <CloudUploadOutlined /> <br></br>
+           Thêm file
           <input
             type="file"
             multiple

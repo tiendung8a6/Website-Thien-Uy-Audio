@@ -12,7 +12,7 @@ const AdminNav = () => (
 
       <li className="nav-item">
         <Link to="/admin/product" className="nav-link">
-          Product
+          Thêm sản phẩm
         </Link>
       </li>
 
