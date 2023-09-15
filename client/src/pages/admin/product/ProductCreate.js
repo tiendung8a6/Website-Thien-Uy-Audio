@@ -7,6 +7,7 @@ import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
+import { message } from 'antd';
 
 const initialState = {
   title: "",
@@ -56,39 +57,23 @@ const ProductCreate = () => {
   const loadCategories = () =>
     getCategories().then((c) => setValues({ ...values, categories: c.data }));
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   createProduct(values, user.token)
-  //     .then((res) => {
-  //       console.log(res);
-  //       window.alert(`"${res.data.title}" is created`);
-  //       window.location.reload();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       // if (err.response.status === 400) toast.error(err.response.data);
-  //       toast.error(err.response.data.err);
-  //     });
-  // };
-
   const handleSubmit = () => {
     createProduct(values, user.token)
       .then((res) => {
         console.log(res);
-        window.alert(`"${res.data.title}" is created`);
-        window.location.reload();
+        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1.45 , () => {
+          window.location.reload();
+        });
       })
       .catch((err) => {
         console.log(err);
         // if (err.response.status === 400) toast.error(err.response.data);
-        toast.error(err.response.data.err);
+        message.error(err.response.data.err);
       });
   };
-
   const handleChange = (fieldName, value) => {
     setValues({ ...values, [fieldName]: value });
     // console.log(e.target.name, " ----- ", e.target.value);
-
   };
 
   const handleCatagoryChange = (value) => {
