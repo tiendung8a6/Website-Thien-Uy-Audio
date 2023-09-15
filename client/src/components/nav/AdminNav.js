@@ -24,7 +24,7 @@ const AdminNav = () => (
 
       <li className="nav-item">
         <Link to="/admin/category" className="nav-link">
-          Category
+          Quản lý danh mục
         </Link>
       </li>
 

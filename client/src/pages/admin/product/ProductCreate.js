@@ -61,7 +61,7 @@ const ProductCreate = () => {
     createProduct(values, user.token)
       .then((res) => {
         console.log(res);
-        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1.45 , () => {
+        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1.2 , () => {
           window.location.reload();
         });
       })

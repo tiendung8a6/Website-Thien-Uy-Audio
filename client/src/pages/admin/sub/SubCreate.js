@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
+import { message } from 'antd';
 
 const SubCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -30,16 +31,34 @@ const SubCreate = () => {
 
   const loadSubs = () => getSubs().then((s) => setSubs(s.data));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(name);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // console.log(name);
+  //   setLoading(true);
+  //   createSub({ name, parent: category }, user.token)
+  //     .then((res) => {
+  //       // console.log(res)
+  //       setLoading(false);
+  //       setName("");
+  //       toast.success(`"${res.data.name}" is created`);
+  //       loadSubs();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setLoading(false);
+  //       if (err.response.status === 400) toast.error(err.response.data);
+  //     });
+  // };
+
+  const handleSubmit = (values) => {
     setLoading(true);
-    createSub({ name, parent: category }, user.token)
+    createSub({ name: values.name, parent: category }, user.token)
       .then((res) => {
-        // console.log(res)
         setLoading(false);
         setName("");
-        toast.success(`"${res.data.name}" is created`);
+        message.success(`Danh mục con "${res.data.name}" đã được tạo thành công!`, 1.2 , () => {
+          window.location.reload();
+        });
         loadSubs();
       })
       .catch((err) => {
@@ -82,11 +101,11 @@ const SubCreate = () => {
           {loading ? (
             <h4 className="text-danger">Loading..</h4>
           ) : (
-            <h4>Create sub category</h4>
+            <h4>Tạo danh mục con</h4>
           )}
 
           <div className="form-group">
-            <label>Parent category</label>
+            <label>Tên danh mục cha</label>
             <select
               name="category"
               className="form-control"

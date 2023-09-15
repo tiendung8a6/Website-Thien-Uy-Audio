@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { getCategory, updateCategory } from "../../../functions/category";
 import CategoryForm from "../../../components/forms/CategoryForm";
+import { message } from 'antd';
 
 const CategoryUpdate = ({ history, match }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -18,24 +19,23 @@ const CategoryUpdate = ({ history, match }) => {
   const loadCategory = () =>
     getCategory(match.params.slug).then((c) => setName(c.data.name));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(name);
-    setLoading(true);
-    updateCategory(match.params.slug, { name }, user.token)
-      .then((res) => {
-        // console.log(res)
-        setLoading(false);
-        setName("");
-        toast.success(`"${res.data.name}" is updated`);
-        history.push("/admin/category");
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
-      });
-  };
+    const handleSubmit = (values) => {
+      setLoading(true);
+      updateCategory(match.params.slug, { name: values.name }, user.token)
+        .then((res) => {
+          setLoading(false);
+          setName("");
+          message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1.2 , () => {
+            window.location.reload();
+          });
+          history.push("/admin/category");
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          if (err.response.status === 400) toast.error(err.response.data);
+        });
+    };
 
   return (
     <div className="container-fluid">

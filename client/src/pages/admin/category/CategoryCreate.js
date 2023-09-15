@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
+import { Table, Button, Space, Pagination } from 'antd';
+import { message } from 'antd';
+import moment from 'moment';
 
 const CategoryCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -18,8 +21,9 @@ const CategoryCreate = () => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
-  // step 1
   const [keyword, setKeyword] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); //Hiển thị số trang mặc định là...
 
   useEffect(() => {
     loadCategories();
@@ -28,16 +32,15 @@ const CategoryCreate = () => {
   const loadCategories = () =>
     getCategories().then((c) => setCategories(c.data));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(name);
+  const handleSubmit = (values) => {
     setLoading(true);
-    createCategory({ name }, user.token)
+    createCategory({ name: values.name }, user.token)
       .then((res) => {
-        // console.log(res)
         setLoading(false);
         setName("");
-        toast.success(`"${res.data.name}" is created`);
+        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1.2 , () => {
+          window.location.reload();
+        });
         loadCategories();
       })
       .catch((err) => {
@@ -48,8 +51,6 @@ const CategoryCreate = () => {
   };
 
   const handleRemove = async (slug) => {
-    // let answer = window.confirm("Delete?");
-    // console.log(answer, slug);
     if (window.confirm("Delete?")) {
       setLoading(true);
       removeCategory(slug, user.token)
@@ -67,8 +68,14 @@ const CategoryCreate = () => {
     }
   };
 
-  // step 4
-  const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
+  const handlePageChange = (page, pageSize) => {
+    setCurrentPage(page);
+    setItemsPerPage(pageSize);
+  };
+
+  const calculateIndex = (index) => {
+    return (currentPage - 1) * itemsPerPage + index + 1;
+  };
 
   return (
     <div className="container-fluid">
@@ -80,7 +87,7 @@ const CategoryCreate = () => {
           {loading ? (
             <h4 className="text-danger">Loading..</h4>
           ) : (
-            <h4>Create category</h4>
+            <h4>Tạo danh mục</h4>
           )}
 
           <CategoryForm
@@ -89,26 +96,74 @@ const CategoryCreate = () => {
             setName={setName}
           />
 
-          {/* step 2 and step 3 */}
+          <h4 className="text-center mb-8">~~ Danh sách danh mục ~~</h4>
+
           <LocalSearch keyword={keyword} setKeyword={setKeyword} />
 
-          {/* step 5 */}
-          {categories.filter(searched(keyword)).map((c) => (
-            <div className="alert alert-secondary" key={c._id}>
-              {c.name}
-              <span
-                onClick={() => handleRemove(c.slug)}
-                className="btn btn-sm float-right"
-              >
-                <DeleteOutlined className="text-danger" />
-              </span>
-              <Link to={`/admin/category/${c.slug}`}>
-                <span className="btn btn-sm float-right">
-                  <EditOutlined className="text-warning" />
-                </span>
-              </Link>
-            </div>
-          ))}
+          <Table
+            dataSource={categories.filter(c => c.name.toLowerCase().includes(keyword))}
+            columns={[
+              {
+                title: 'STT',
+                key: 'stt',
+                width: 30, // Đặt độ rộng của cột STT
+                render: (text, record, index) => (
+                  <span>{calculateIndex(index)}</span>
+                ),
+              },
+              {
+                title: 'Tên danh mục',
+                dataIndex: 'name',
+                key: 'name',
+                width: 200, // Đặt độ rộng của cột STT
+              },
+              {
+                title: 'Ngày cập nhật', // Tên cột ngày cập nhật
+                dataIndex: 'updatedAt', // Tên trường ngày cập nhật trong dữ liệu
+                key: 'updatedAt', // Khóa của cột
+                width: 150, // Độ rộng của cột
+                render: (text, record) => (
+                  <span>{moment(record.updatedAt).format('DD/MM/YYYY - HH:mm:ss')}</span>
+                ), // Định dạng ngày cập nhật 
+              },
+              {
+                title: 'Chỉnh sửa',
+                key: 'actions',
+                width: 50, // Đặt độ rộng của cột STT
+                render: (text, record) => (
+                  <Space size="middle">
+                    <Link to={`/admin/category/${record.slug}`}>
+                      <Button icon={<EditOutlined />} type="primary">
+                        Edit
+                      </Button>
+                    </Link>
+                    <Button
+                      icon={<DeleteOutlined />}
+                      type="danger"
+                      onClick={() => handleRemove(record.slug)}
+                    >
+                      Delete
+                    </Button>
+                  </Space>
+                ),
+              },
+            ]}
+            rowKey={(record) => record._id}
+            pagination={{
+              current: currentPage,
+              pageSize: itemsPerPage,
+              total: categories.length,
+              showSizeChanger: true,
+              showTotal: (total, range) =>
+                `${range[0]}-${range[1]} of ${total} items`,
+              onChange: handlePageChange,
+              pageSizeOptions: ['10', '15', '20', '25'],
+              showQuickJumper: true, // Cho phép nhập trực tiếp số trang cần đến
+              showSizeChanger: true, // Cho phép thay đổi số lượng mục trên mỗi trang
+              pageSizeOptions: ['10', '15', '20', '25'],
+              position: ["bottomCenter"], // Đặt vị trí của Pagination
+            }}
+          />
         </div>
       </div>
     </div>
