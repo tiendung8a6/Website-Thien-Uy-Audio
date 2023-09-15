@@ -1,5 +1,4 @@
 import React from "react";
-// import { Select } from "antd";   
 import { Button, Form, Input, Select } from 'antd';
 
 const { Option } = Select;
@@ -236,7 +235,7 @@ const ProductCreateForm = ({
       <br />
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" className="ant-btn ant-btn-primary ant-btn-lg ant-btn-hover">
           Lưu
         </Button>
       </Form.Item>
