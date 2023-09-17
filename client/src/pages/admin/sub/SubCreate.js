@@ -199,7 +199,10 @@ const SubCreate = () => {
                 render: (text, record) => (
                   <Space size="middle">
                     <Link to={`/admin/sub/${record.slug}`}>
-                      <Button icon={<EditOutlined />} type="primary">
+                      <Button
+                        icon={<EditOutlined />}
+                        type="primary"
+                        className='d-flex align-items-center '>
                         Sửa
                       </Button>
                     </Link>
@@ -214,7 +217,7 @@ const SubCreate = () => {
                       <Button
                         icon={<DeleteOutlined />}
                         type="danger"
-                      >
+                        className='d-flex align-items-center '>
                         Xóa
                       </Button>
                     </Popconfirm>
