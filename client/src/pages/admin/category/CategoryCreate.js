@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
-import { Table, Button, Space, Pagination } from 'antd';
+import { Table, Button, Space, Pagination, Popconfirm } from 'antd';
 import { message } from 'antd';
 import moment from 'moment';
 
@@ -38,7 +38,7 @@ const CategoryCreate = () => {
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1.2 , () => {
+        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1.2, () => {
           window.location.reload();
         });
         loadCategories();
@@ -50,22 +50,24 @@ const CategoryCreate = () => {
       });
   };
 
-  const handleRemove = async (slug) => {
-    if (window.confirm("Delete?")) {
-      setLoading(true);
-      removeCategory(slug, user.token)
-        .then((res) => {
+  const handleConfirmDelete = async (slug) => {
+    setLoading(true);
+    removeCategory(slug, user.token)
+      .then((res) => {
+        setLoading(false);
+        message.error(`Danh mục "${res.data.name}" đã được xóa thành công!`);
+        loadCategories();
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
           setLoading(false);
-          toast.error(`${res.data.name} deleted`);
-          loadCategories();
-        })
-        .catch((err) => {
-          if (err.response.status === 400) {
-            setLoading(false);
-            toast.error(err.response.data);
-          }
-        });
-    }
+          toast.error(err.response.data);
+        }
+      });
+  };
+
+  const handleCancelDelete = () => {
+    message.error('Xóa thất bại');
   };
 
   const handlePageChange = (page, pageSize) => {
@@ -99,7 +101,7 @@ const CategoryCreate = () => {
           <h4 className="text-center mb-8">~~ Danh sách danh mục ~~</h4>
 
           <LocalSearch keyword={keyword} setKeyword={setKeyword} />
-
+          {/* step 5 */}
           <Table
             dataSource={categories.filter(c => c.name.toLowerCase().includes(keyword))}
             columns={[
@@ -134,16 +136,24 @@ const CategoryCreate = () => {
                   <Space size="middle">
                     <Link to={`/admin/category/${record.slug}`}>
                       <Button icon={<EditOutlined />} type="primary">
-                        Edit
+                        Sửa
                       </Button>
                     </Link>
-                    <Button
-                      icon={<DeleteOutlined />}
-                      type="danger"
-                      onClick={() => handleRemove(record.slug)}
+                    <Popconfirm
+                      title="Bạn có chắc muốn xóa danh mục này!"
+                      // description="Are you sure to delete this task?"
+                      onConfirm={() => handleConfirmDelete(record.slug)}
+                      onCancel={handleCancelDelete}
+                      okText="Yes"
+                      cancelText="No"
                     >
-                      Delete
-                    </Button>
+                      <Button
+                        icon={<DeleteOutlined />}
+                        type="danger"
+                      >
+                        Xóa
+                      </Button>
+                    </Popconfirm>
                   </Space>
                 ),
               },
@@ -157,10 +167,9 @@ const CategoryCreate = () => {
               showTotal: (total, range) =>
                 `${range[0]}-${range[1]} of ${total} items`,
               onChange: handlePageChange,
-              pageSizeOptions: ['10', '15', '20', '25'],
+              pageSizeOptions: ['10', '20', '30', '50', '100'],
               showQuickJumper: true, // Cho phép nhập trực tiếp số trang cần đến
               showSizeChanger: true, // Cho phép thay đổi số lượng mục trên mỗi trang
-              pageSizeOptions: ['10', '15', '20', '25'],
               position: ["bottomCenter"], // Đặt vị trí của Pagination
             }}
           />

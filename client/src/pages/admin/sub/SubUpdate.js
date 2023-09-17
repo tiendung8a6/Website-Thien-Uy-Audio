@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
+import { message, Form, Select, } from 'antd';
 
 const SubUpdate = ({ match, history }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -32,7 +33,7 @@ const SubUpdate = ({ match, history }) => {
     });
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     // console.log(name);
     setLoading(true);
     updateSub(match.params.slug, { name, parent }, user.token)
@@ -40,7 +41,7 @@ const SubUpdate = ({ match, history }) => {
         // console.log(res)
         setLoading(false);
         setName("");
-        toast.success(`"${res.data.name}" is updated`);
+        message.success(`Danh mục con "${res.data.name}" đã được cập nhật thành công!`);
         history.push("/admin/sub");
       })
       .catch((err) => {
@@ -49,7 +50,15 @@ const SubUpdate = ({ match, history }) => {
         if (err.response.status === 400) toast.error(err.response.data);
       });
   };
+  const { Option } = Select;
 
+  const onFinish = async (values) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
   return (
     <div className="container-fluid">
       <div className="row">
@@ -60,25 +69,53 @@ const SubUpdate = ({ match, history }) => {
           {loading ? (
             <h4 className="text-danger">Loading..</h4>
           ) : (
-            <h4>Update sub category</h4>
+            <h4>Chỉnh sửa danh mục con</h4>
           )}
 
-          <div className="form-group">
-            <label>Parent category</label>
-            <select
+
+          <Form
+            name="basic"
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
+            style={{
+              maxWidth: 600,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
+          </Form>
+
+          <Form.Item
+            label="Danh mục cha"
+            name="category"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng chọn danh mục cha từ danh sách!",
+              },
+            ]}
+          >
+            <Select
               name="category"
               className="form-control"
-              onChange={(e) => setParent(e.target.value)}
+              // onChange={(e) => setParent(e.target.value)}
+              onChange={(value) => setParent(value)} // Use 'value' directly
+
+              placeholder="Vui lòng chọn danh mục từ danh sách"
             >
-              <option>Please select</option>
+              <Option>Vui lòng chọn</Option>
               {categories.length > 0 &&
                 categories.map((c) => (
-                  <option key={c._id} value={c._id} selected={c._id === parent}>
+                  <Option key={c._id} value={c._id} selected={c._id === parent}>
                     {c.name}
-                  </option>
+                  </Option>
                 ))}
-            </select>
-          </div>
+            </Select>
+          </Form.Item>
 
           <CategoryForm
             handleSubmit={handleSubmit}
