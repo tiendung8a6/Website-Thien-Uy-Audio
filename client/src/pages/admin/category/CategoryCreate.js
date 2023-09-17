@@ -135,7 +135,10 @@ const CategoryCreate = () => {
                 render: (text, record) => (
                   <Space size="middle">
                     <Link to={`/admin/category/${record.slug}`}>
-                      <Button icon={<EditOutlined />} type="primary">
+                      <Button
+                        icon={<EditOutlined />}
+                        type="primary"
+                        className='d-flex align-items-center '>
                         Sửa
                       </Button>
                     </Link>
@@ -150,7 +153,7 @@ const CategoryCreate = () => {
                       <Button
                         icon={<DeleteOutlined />}
                         type="danger"
-                      >
+                        className='d-flex align-items-center'>
                         Xóa
                       </Button>
                     </Popconfirm>
