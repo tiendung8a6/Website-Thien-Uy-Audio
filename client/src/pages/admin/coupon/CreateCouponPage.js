@@ -13,9 +13,9 @@ import AdminNav from "../../../components/nav/AdminNav";
 
 const CreateCouponPage = () => {
   const [name, setName] = useState("");
-  const [expiry, setExpiry] = useState("");
+  const [expiry, setExpiry] = useState(new Date()); // Initialize with the current date
   const [discount, setDiscount] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
   const [coupons, setCoupons] = useState([]);
 
   // redux
@@ -30,17 +30,28 @@ const CreateCouponPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    // console.table(name, expiry, discount);
+
+    // Check if the expiry date is not less than today's date
+    const currentDate = new Date();
+    if (expiry < currentDate) {
+      setLoading(false);
+      return toast.error("Expiry date cannot be in the past");
+    }
+
     createCoupon({ name, expiry, discount }, user.token)
       .then((res) => {
         setLoading(false);
         loadAllCoupons(); // load all coupons
         setName("");
         setDiscount("");
-        setExpiry("");
-        toast.success(`"${res.data.name}" is created`);
+        setExpiry(new Date()); // Reset to current date
+        toast.success(`Name coupon: "${res.data.name}" is created`);
       })
-      .catch((err) => console.log("create coupon err", err));
+      .catch((err) => {
+        setLoading(false);
+        console.log("create coupon err", err);
+        toast.error("Coupon creation failed");
+      });
   };
 
   const handleRemove = (couponId) => {
@@ -52,7 +63,11 @@ const CreateCouponPage = () => {
           setLoading(false);
           toast.error(`Coupon "${res.data.name}" deleted`);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+          toast.error("Coupon deletion failed");
+        });
     }
   };
 
@@ -98,8 +113,8 @@ const CreateCouponPage = () => {
               <br />
               <DatePicker
                 className="form-control"
-                selected={new Date()}
-                value={expiry}
+                selected={expiry}
+                minDate={new Date()} // Set minimum date to today's date
                 onChange={(date) => setExpiry(date)}
                 required
               />

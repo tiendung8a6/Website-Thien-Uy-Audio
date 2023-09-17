@@ -1,5 +1,5 @@
 import React from "react";
-import { Select } from "antd";
+import { Button, Form, Input, Select } from 'antd';
 
 const { Option } = Select;
 
@@ -28,130 +28,218 @@ const ProductCreateForm = ({
     color,
     brand,
   } = values;
+  const onFinish = async () => {
+    await handleSubmit(); 
+    console.log('Success:', values);
+  };
 
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Title</label>
-        <input
-          type="text"
-          name="title"
-          className="form-control"
+    <Form
+      name="basic"
+      labelCol={{
+        span: 8,
+      }}
+      wrapperCol={{
+        span: 16,
+      }}
+      style={{
+        maxWidth: 600,
+      }}
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item
+        label="Tên sản phẩm"
+        name="title"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập tên sản phẩm!",
+          },
+        ]}
+      >
+        <Input
           value={title}
-          onChange={handleChange}
+          onChange={(e) => handleChange('title', e.target.value)}
         />
-      </div>
+      </Form.Item>
 
-      <div className="form-group">
-        <label>Description</label>
-        <input
-          type="text"
-          name="description"
-          className="form-control"
+
+      <Form.Item
+        label="Mô tả cho sản phẩm"
+        name="description"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập mô tả cho sản phẩm!",
+          },
+        ]}
+      >
+        <Input
           value={description}
-          onChange={handleChange}
+          onChange={(e) => handleChange('description', e.target.value)}
         />
-      </div>
+      </Form.Item>
 
-      <div className="form-group">
-        <label>Price</label>
-        <input
+
+      <Form.Item
+        label="Giá tiền"
+        name="price"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập giá tiền!",
+          },
+        ]}
+      >
+        <Input
           type="number"
-          name="price"
-          className="form-control"
           value={price}
-          onChange={handleChange}
+          onChange={(e) => handleChange('price', e.target.value)}
         />
-      </div>
+      </Form.Item>
 
-      <div className="form-group">
-        <label>Shipping</label>
-        <select
-          name="shipping"
-          className="form-control"
-          onChange={handleChange}
-        >
-          <option>Please select</option>
-          <option value="No">No</option>
-          <option value="Yes">Yes</option>
-        </select>
-      </div>
 
-      <div className="form-group">
-        <label>Quantity</label>
-        <input
+      <Form.Item
+        label="Giao hàng"
+        name="shipping"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng chọn trạng thái!",
+          },
+        ]}
+      >
+        <Select onChange={(value) => handleChange('shipping', value)} value={shipping} placeholder="Vui lòng chọn trạng thái">
+          <Option value="" disabled > Vui lòng chọn</Option>
+          <Option value="No">Không</Option>
+          <Option value="Yes">Có</Option>
+        </Select>
+      </Form.Item>
+
+
+      <Form.Item
+        label="Số lượng"
+        name="quantity"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập số lượng!",
+          },
+        ]}
+      >
+        <Input
           type="number"
-          name="quantity"
-          className="form-control"
           value={quantity}
-          onChange={handleChange}
+          onChange={(e) => handleChange('quantity', e.target.value)}
         />
-      </div>
+      </Form.Item>
 
-      <div className="form-group">
-        <label>Color</label>
-        <select name="color" className="form-control" onChange={handleChange}>
-          <option>Please select</option>
+
+      <Form.Item
+        label="Màu sắc"
+        name="color"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng chọn chọn màu sắc!",
+          },
+        ]}
+      >
+        <Select onChange={(value) => handleChange('color', value)} value={color} placeholder="Vui lòng chọn màu sắc">
+          <Option value="" disabled >Vui lòng chọn</Option>
           {colors.map((c) => (
-            <option key={c} value={c}>
+            <Option key={c} value={c}>
               {c}
-            </option>
+            </Option>
           ))}
-        </select>
-      </div>
+        </Select>
+      </Form.Item>
 
-      <div className="form-group">
-        <label>Brand</label>
-        <select name="brand" className="form-control" onChange={handleChange}>
-          <option>Please select</option>
+
+      <Form.Item
+        label="Thương hiệu"
+        name="brand"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng chọn chọn thương hiệu!",
+          },
+        ]}
+      >
+        <Select onChange={(value) => handleChange('brand', value)} value={brand} placeholder="Vui lòng chọn thương hiệu">
+          <Option value="" disabled >Vui lòng chọn</Option>
           {brands.map((b) => (
-            <option key={b} value={b}>
+            <Option key={b} value={b}>
               {b}
-            </option>
+            </Option>
           ))}
-        </select>
-      </div>
+        </Select>
+      </Form.Item>
 
-      <div className="form-group">
-        <label>Category</label>
-        <select
-          name="category"
-          className="form-control"
-          onChange={handleCatagoryChange}
+
+      <Form.Item
+        label="Danh mục"
+        name="category"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng chọn chọn danh mục!",
+          },
+        ]}
+      >
+        <Select
+          onChange={(value) => handleCatagoryChange(value)}
+          value={category}
+          placeholder="Vui lòng chọn danh mục"
         >
-          <option>Please select</option>
+          <Option value="" disabled >Vui lòng chọn</Option>
           {categories.length > 0 &&
             categories.map((c) => (
-              <option key={c._id} value={c._id}>
+              <Option key={c._id} value={c._id}>
                 {c.name}
-              </option>
+              </Option>
             ))}
-        </select>
-      </div>
+        </Select>
+      </Form.Item>
 
       {showSub && (
         <div>
-          <label>Sub Categories</label>
-          <Select
-            mode="multiple"
-            style={{ width: "100%" }}
-            placeholder="Please select"
-            value={subs}
-            onChange={(value) => setValues({ ...values, subs: value })}
+          <Form.Item
+            label="Danh mục con"
+            name="subs"
           >
-            {subOptions.length &&
-              subOptions.map((s) => (
-                <Option key={s._id} value={s._id}>
-                  {s.name}
-                </Option>
-              ))}
-          </Select>
+            <Select
+              mode="multiple"
+              style={{ width: "100%" }}
+              placeholder="Vui lòng chọn danh mục"
+              value={subs}
+              onChange={(value) => setValues({ ...values, subs: value })}
+            >
+              {subOptions.length &&
+                subOptions.map((s) => (
+                  <Option key={s._id} value={s._id}>
+                    {s.name}
+                  </Option>
+                ))}
+            </Select>
+          </Form.Item>
         </div>
       )}
-
       <br />
-      <button className="btn btn-outline-info">Save</button>
-    </form>
+
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit" className="ant-btn ant-btn-primary ant-btn-lg ant-btn-hover">
+          Lưu
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 
