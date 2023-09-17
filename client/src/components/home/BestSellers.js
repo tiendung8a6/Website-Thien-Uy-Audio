@@ -4,6 +4,9 @@ import ProductCard from "../cards/ProductCard";
 import LoadingCard from "../cards/LoadingCard";
 import { Pagination } from "antd";
 
+// import Pagination from '@mui/material/Pagination';
+// import Stack from '@mui/material/Stack';
+
 const BestSellers = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -44,7 +47,8 @@ const BestSellers = () => {
       </div>
 
       <div className="row">
-        <nav className="col-md-4 offset-md-4 text-center pt-5 p-3">
+        <nav className="col-md-4 offset-md-4 d-flex justify-content-center pt-5 p-3">
+          {/* <Pagination count={Math.ceil(productsCount / 3)} page={page} variant="outlined" color="secondary" onChange={(value) => setPage(value)} /> */}
           <Pagination
             current={page}
             total={(productsCount / 3) * 10}
