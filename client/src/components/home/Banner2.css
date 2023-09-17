@@ -1,0 +1,22 @@
+@media (max-width: 969px) {
+
+    /* Thay đổi giá trị marginTop cho màn hình điện thoại */
+    .custom-row {
+        margin-top: 15px;
+    }
+
+    .huhu {
+        margin-top: 15px;
+
+    }
+}
+
+@media (min-width: 978px) and (max-width: 990px) {
+
+    /* Thay đổi giá trị marginTop cho màn hình điện thoại */
+    .custom-row {
+        margin-top: 15px;
+    }
+
+
+}
