@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getCategories } from "../../../functions/category";
 import { createSub, getSub, removeSub, getSubs } from "../../../functions/sub";
 import { Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, ShoppingOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
 import { message, Button, Form, Input, Select, Space, Table, Popconfirm } from 'antd';
@@ -88,7 +88,9 @@ const SubCreate = () => {
   };
 
   const { Option } = Select;
+
   const onFinish = async (values) => {
+    await handleSubmit(values);
     console.log('Success:', values);
   };
 
@@ -115,19 +117,17 @@ const SubCreate = () => {
           <Form
             name="basic"
             labelCol={{
-              span: 8,
+              span: 0,
             }}
             wrapperCol={{
-              span: 16,
+              span: 240,
             }}
             style={{
-              maxWidth: 600,
+              maxWidth: 2000,
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-          </Form>
-
           <Form.Item
             label="Danh mục cha"
             name="category"
@@ -154,11 +154,33 @@ const SubCreate = () => {
             </Select>
           </Form.Item>
 
-          <CategoryForm
-            handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
-          />
+          <Form.Item
+            label="Tên danh mục"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập tên danh mục!'
+              },
+            ]}
+          >
+            <Input
+              type="text"
+              autoFocus
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              prefix={<ShoppingOutlined />}
+            />
+          </Form.Item>
+
+          <Form.Item
+            wrapperCol={{ offset: 2, span: 10 }}
+          >
+            <Button type="primary" htmlType="submit" className="ml-2">
+              Lưu lại
+            </Button>
+          </Form.Item>
+          </Form>
 
           <h4 className="text-center mb-8">~~ Danh sách danh mục con ~~</h4>
 
