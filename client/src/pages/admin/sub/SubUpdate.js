@@ -5,10 +5,8 @@ import { useSelector } from "react-redux";
 import { getCategories } from "../../../functions/category";
 import { updateSub, getSub } from "../../../functions/sub";
 import { Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import CategoryForm from "../../../components/forms/CategoryForm";
-import LocalSearch from "../../../components/forms/LocalSearch";
-import { message, Form, Select, } from 'antd';
+import { ShoppingOutlined } from "@ant-design/icons";
+import { message, Form, Select, Input, Button } from 'antd';
 
 const SubUpdate = ({ match, history }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -53,12 +51,14 @@ const SubUpdate = ({ match, history }) => {
   const { Option } = Select;
 
   const onFinish = async (values) => {
+    await handleSubmit();
     console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -72,56 +72,74 @@ const SubUpdate = ({ match, history }) => {
             <h4>Chỉnh sửa danh mục con</h4>
           )}
 
-
           <Form
             name="basic"
             labelCol={{
-              span: 8,
+              span: 0,
             }}
             wrapperCol={{
-              span: 16,
+              span: 240,
             }}
             style={{
-              maxWidth: 600,
+              maxWidth: 2000,
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-          </Form>
 
-          <Form.Item
-            label="Danh mục cha"
-            name="category"
-            rules={[
-              {
-                required: true,
-                message: "Vui lòng chọn danh mục cha từ danh sách!",
-              },
-            ]}
-          >
-            <Select
+            <Form.Item
+              label="Danh mục cha"
               name="category"
-              className="form-control"
-              // onChange={(e) => setParent(e.target.value)}
-              onChange={(value) => setParent(value)} // Use 'value' directly
-
-              placeholder="Vui lòng chọn danh mục từ danh sách"
+              rules={[
+                {
+                  required: true,
+                  message: "Vui lòng chọn danh mục cha từ danh sách!",
+                },
+              ]}
             >
-              <Option>Vui lòng chọn</Option>
-              {categories.length > 0 &&
-                categories.map((c) => (
-                  <Option key={c._id} value={c._id} selected={c._id === parent}>
-                    {c.name}
-                  </Option>
-                ))}
-            </Select>
-          </Form.Item>
+              <Select
+                name="category"
+                className="form-control"
+                onChange={(value) => setParent(value)} // Use 'value' directly
+                placeholder="Vui lòng chọn danh mục từ danh sách"
+              >
+                <Option value="" disabled >Vui lòng chọn</Option>
+                {categories.length > 0 &&
+                  categories.map((c) => (
+                    <Option key={c._id} value={c._id} selected={c._id === parent}>
+                      {c.name}
+                    </Option>
+                  ))}
+              </Select>
+            </Form.Item>
 
-          <CategoryForm
-            handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
-          />
+            <Form.Item
+              label="Tên danh mục"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Vui lòng nhập tên danh mục!'
+                },
+              ]}
+            >
+              <Input
+                type="text"
+                autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                prefix={<ShoppingOutlined />}
+              />
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{ offset: 2, span: 10 }}
+            >
+              <Button type="primary" htmlType="submit" className="ml-2">
+                Lưu lại
+              </Button>
+            </Form.Item>
+          </Form>
         </div>
       </div>
     </div>
