@@ -1,122 +1,107 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
+import React from "react";
+import Slider from "react-slick";
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import './RegisterNew.css'
+export default function SimpleSlider() {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1300,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                },
 
-const images = [
-    {
-        url: '/static/images/buttons/breakfast.jpg',
-        title: 'Breakfast',
-        width: '40%',
-    },
-    {
-        url: '/static/images/buttons/burgers.jpg',
-        title: 'Burgers',
-        width: '30%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '30%',
-    },
-];
+            },
 
-const ImageButton = styled(ButtonBase)(({ theme }) => ({
-    position: 'relative',
-    height: 200,
-    [theme.breakpoints.down('sm')]: {
-        width: '100% !important', // Overrides inline-style
-        height: 100,
-    },
-    '&:hover, &.Mui-focusVisible': {
-        zIndex: 1,
-        '& .MuiImageBackdrop-root': {
-            opacity: 0.15,
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                },
+
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
+    };
+
+    const imageLogoBard = [
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
         },
-        '& .MuiImageMarked-root': {
-            opacity: 0,
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
         },
-        '& .MuiTypography-root': {
-            border: '4px solid currentColor',
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
         },
-    },
-}));
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
+        },
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
+        },
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
+        },
+        {
+            image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
+            name: 'Sam Sung',
+        }
 
-const ImageSrc = styled('span')({
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center 40%',
-});
-
-const Image = styled('span')(({ theme }) => ({
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: theme.palette.common.white,
-}));
-
-const ImageBackdrop = styled('span')(({ theme }) => ({
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundColor: theme.palette.common.black,
-    opacity: 0.4,
-    transition: theme.transitions.create('opacity'),
-}));
-
-const ImageMarked = styled('span')(({ theme }) => ({
-    height: 3,
-    width: 18,
-    backgroundColor: theme.palette.common.white,
-    position: 'absolute',
-    bottom: -2,
-    left: 'calc(50% - 9px)',
-    transition: theme.transitions.create('opacity'),
-}));
-
-export default function ButtonBaseDemo() {
+    ]
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-            {images.map((image) => (
-                <ImageButton
-                    focusRipple
-                    key={image.title}
-                    style={{
-                        width: image.width,
-                    }}
-                >
-                    <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-                    <ImageBackdrop className="MuiImageBackdrop-root" />
-                    <Image>
-                        <Typography
-                            component="span"
-                            variant="subtitle1"
-                            color="inherit"
-                            sx={{
-                                position: 'relative',
-                                p: 4,
-                                pt: 2,
-                                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                            }}
-                        >
-                            {image.title}
-                            <ImageMarked className="MuiImageMarked-root" />
-                        </Typography>
-                    </Image>
-                </ImageButton>
+        <Slider {...settings} autoplay pauseOnFocus className="d-flex " style={{ margin: '30px' }}>
+            {imageLogoBard.map(el => (
+                <div className="d-flex justify-content-center mb-2" style={{ width: '100%' }} key={el.name}>
+                    <Card sx={{}} style={{ width: '300px' }}>
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                height="140"
+                                image={el.image}
+                                alt="green iguana"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div" className="d-flex justify-content-center">
+                                    {el.name}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+
+                    </Card>
+                </div>
             ))}
-        </Box>
+        </Slider>
     );
 }
