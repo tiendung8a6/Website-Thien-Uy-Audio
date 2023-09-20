@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import HeartOutlined from '@mui/icons-material/FavoriteBorder';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -29,6 +30,13 @@ import { showAverage } from "../../functions/rating";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 
+import { addToWishlist } from "../../functions/user";
+
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import AlertTitle from '@mui/material/AlertTitle';
 const { Meta } = Card;
 
 const ExpandMore = styled((props) => {
@@ -83,6 +91,38 @@ const ProductCard = ({ product }) => {
     }
   };
 
+  let history = useHistory();
+  // const handleAddToWishlist = (e) => {
+  //   e.preventDefault();
+  //   addToWishlist(product._id, user.token).then((res) => {
+  //     console.log("ADDED TO WISHLIST", res.data);
+  //     toast.success("Added to wishlist");
+  //     history.push("/user/wishlist");
+  //   });
+  // };
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault();
+    try {
+      addToWishlist(product._id, user.token).then((res) => {
+        console.log("ADDED TO WISHLIST", res.data);
+        toast.success("Added to wishlist");
+        history.push("/user/wishlist");
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        // yêu cầu đăng nhập
+        window.alert("Vui Long đăng nhập");
+        // Có thể thêm chuyển hướng đến trang đăng nhập ở đây
+      } else {
+        // Xử lý lỗi khác nếu cần
+        // window.alert("Vui Long đăng nhập");
+        setErrorMessage("Qúy khách vui lòng đăng nhập");
+
+      }
+    }
+  };
+  const [errorMessage, setErrorMessage] = useState(null);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -93,7 +133,20 @@ const ProductCard = ({ product }) => {
   return (
     <>
 
+      {errorMessage && (
+        <div style={{ position: 'relative' }}>
+          <Stack sx={{ width: '100%' }} spacing={2} style={{ position: 'fixed', bottom: '10px', left: '10px', width: '30%', zIndex: '10' }}>
+            <Alert severity="error" >
+              <AlertTitle>Lỗi</AlertTitle>
+              {errorMessage}
+              <br />
+              <Link to='/login'>Đăng nhập ngay </Link>
+            </Alert>
+          </Stack>
 
+
+        </div>
+      )}
       <Card sx={{ Width: 300 }}>
         <CardHeader
           avatar={
@@ -126,8 +179,11 @@ const ProductCard = ({ product }) => {
             <br />
             {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(price)}
             {/* {`${price}`}vnđ */}
-            <br></br>
-            <span className='d-flex justify-content-start'>{product && product.ratings && product.ratings.length > 0 ? showAverage(product) : <span className='mb-4'> Chưa có  giá</span>}</span>
+
+            <span className='d-flex justify-content-start'>
+              {product && product.ratings && product.ratings.length > 0 ? showAverage(product) :
+                <p className='mb-4'> Chưa có  giá</p>}
+            </span>
 
           </Typography>
         </CardContent>
@@ -135,32 +191,40 @@ const ProductCard = ({ product }) => {
         <CardActions disableSpacing>
 
           <Container>
-            <Row className='d-flex justify-content-center' xs={3} md={1} lg={3}>
+            <Row className='d-flex justify-content-center' xs={3} md={1} lg={4} >
 
               <Col>
                 <Link to={`/product/${slug}`}>
                   <VisibilityOutlinedIcon className='d-flex m-auto' />
-                  <span style={{ color: '#333' }} className='d-flex justify-content-center'> Xem Sản Phẩm</span>
+                  <span style={{ color: '#333' }} className='d-flex justify-content-center'> </span>
                 </Link>
               </Col>
+
+
 
               <Col md="auto">
                 <a onClick={handleAddToCart} disabled={product.quantity < 1}>
                   <ShoppingCartOutlinedIcon className="text-danger d-flex m-auto" />
                   <span style={{ color: '#333' }} className='d-flex justify-content-center'>
-                    {product.quantity < 1 ? "Hết hàng" : "Add to Cart"}
+                    {product.quantity < 1 ? "Hết hàng" : ""}
                   </span>
 
                 </a>
               </Col>
+              <Col>
+                <a onClick={handleAddToWishlist}>
+                  <HeartOutlined className="text-info text-primary d-flex m-auto" />
+                </a>,
+              </Col>
 
-              <Col lg="2">
+              <Col lg="2" style={{ marginTop: '-7px', }}>
                 <ExpandMore
                   expand={expanded}
                   onClick={handleExpandClick}
                   aria-expanded={expanded}
                   aria-label="show more"
-                  className='d-flex justify-content-center'
+                  className='d-flex justify-content-center mx-auto'
+
                 >
                   <ExpandMoreIcon />
                 </ExpandMore>
