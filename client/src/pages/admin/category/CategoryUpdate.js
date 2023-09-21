@@ -25,7 +25,7 @@ const CategoryUpdate = ({ history, match }) => {
         .then((res) => {
           setLoading(false);
           setName("");
-          message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1.2 , () => {
+          message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1 , () => {
             window.location.reload();
           });
           history.push("/admin/category");

@@ -38,7 +38,7 @@ const CategoryCreate = () => {
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1.2, () => {
+        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
           window.location.reload();
         });
         loadCategories();
@@ -55,7 +55,7 @@ const CategoryCreate = () => {
     removeCategory(slug, user.token)
       .then((res) => {
         setLoading(false);
-        message.error(`Danh mục "${res.data.name}" đã được xóa thành công!`);
+        message.success(`Danh mục "${res.data.name}" đã được xóa thành công!`);
         loadCategories();
       })
       .catch((err) => {
