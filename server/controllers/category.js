@@ -43,14 +43,29 @@ exports.update = async (req, res) => {
   }
 };
 
+// exports.remove = async (req, res) => {
+//   try {
+//     const deleted = await Category.findOneAndDelete({ slug: req.params.slug });
+//     res.json(deleted);
+//   } catch (err) {
+//     res.status(400).send("Category delete failed");
+//   }
+// };
+
+//update code -> add delete products
 exports.remove = async (req, res) => {
   try {
+    const category = await Category.findOne({ slug: req.params.slug });
+    await Product.deleteMany({ category });
+
     const deleted = await Category.findOneAndDelete({ slug: req.params.slug });
+
     res.json(deleted);
   } catch (err) {
     res.status(400).send("Category delete failed");
   }
 };
+
 
 exports.getSubs = (req, res) => {
   Sub.find({ parent: req.params._id }).exec((err, subs) => {

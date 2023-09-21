@@ -47,7 +47,7 @@ const SubCreate = () => {
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục con "${res.data.name}" đã được tạo thành công!`, 1.2, () => {
+        message.success(`Danh mục con "${res.data.name}" đã được tạo thành công!`, 1, () => {
           window.location.reload();
         });
         loadSubs();
@@ -64,7 +64,7 @@ const SubCreate = () => {
     removeSub(slug, user.token)
       .then((res) => {
         setLoading(false);
-        message.error(`Danh mục con "${res.data.name}" đã được xóa thành công!`);
+        message.success(`Danh mục con "${res.data.name}" đã được xóa thành công!`);
         loadSubs();
       })
       .catch((err) => {
