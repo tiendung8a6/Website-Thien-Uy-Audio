@@ -36,7 +36,7 @@ const AdminNav = () => (
 
       <li className="nav-item">
         <Link to="/admin/coupon" className="nav-link">
-          Coupon
+          Quản lý mã giảm giá
         </Link>
       </li>
 
