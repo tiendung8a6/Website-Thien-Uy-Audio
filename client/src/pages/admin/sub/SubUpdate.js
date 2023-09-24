@@ -6,7 +6,7 @@ import { getCategories } from "../../../functions/category";
 import { updateSub, getSub } from "../../../functions/sub";
 import { Link } from "react-router-dom";
 import { ShoppingOutlined } from "@ant-design/icons";
-import { message, Form, Select, Input, Button } from 'antd';
+import { message, Form, Select, Input, Button, notification } from 'antd';
 
 const SubUpdate = ({ match, history }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -45,7 +45,12 @@ const SubUpdate = ({ match, history }) => {
       .catch((err) => {
         console.log(err);
         setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
+        if (err.response.status === 400)
+          notification.error({
+            message: "Chỉnh sửa danh mục con thất bại!",
+            description:
+              'Lỗi dự đoán: Danh mục con đã tồn tại, Tên danh mục con quá ngắn hoặc quá dài (Từ 4 đến 35 ký tự).',
+          });
       });
   };
   const { Option } = Select;

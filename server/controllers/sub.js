@@ -8,7 +8,7 @@ exports.create = async (req, res) => {
     res.json(await new Sub({ name, parent, slug: slugify(name) }).save());
   } catch (err) {
     console.log("SUB CREATE ERR ----->", err);
-    res.status(400).send("Create sub failed");
+    res.status(400).send("Tạo danh mục con thất bại!");
   }
 };
 
@@ -37,7 +37,7 @@ exports.update = async (req, res) => {
     );
     res.json(updated);
   } catch (err) {
-    res.status(400).send("Sub update failed");
+    res.status(400).send("Chỉnh sửa danh mục con thất bại!");
   }
 };
 

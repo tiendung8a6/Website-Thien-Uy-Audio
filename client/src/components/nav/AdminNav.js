@@ -42,7 +42,7 @@ const AdminNav = () => (
 
       <li className="nav-item">
         <Link to="/user/password" className="nav-link">
-          Password
+          Đổi mật khẩu
         </Link>
       </li>
     </ul>
