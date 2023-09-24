@@ -7,7 +7,7 @@ import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 const initialState = {
   title: "",
@@ -68,7 +68,12 @@ const ProductCreate = () => {
       .catch((err) => {
         console.log(err);
         // if (err.response.status === 400) toast.error(err.response.data);
-        message.error(err.response.data.err);
+        // message.error(err.response.data.err);
+        notification.error({
+          message: "Thêm mới sản phẩm thất bại!",
+          description:
+            'Lỗi dự đoán: Sản phẩm đã tồn tại.',
+        });
       });
   };
   const handleChange = (fieldName, value) => {

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined, ShoppingOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
-import { message, Button, Form, Input, Select, Space, Table, Popconfirm } from 'antd';
+import { message, Button, Form, Input, Select, Space, Table, Popconfirm, notification } from 'antd';
 import moment from 'moment';
 
 const SubCreate = () => {
@@ -55,7 +55,12 @@ const SubCreate = () => {
       .catch((err) => {
         console.log(err);
         setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
+        if (err.response.status === 400)
+          notification.error({
+            message: "Tạo danh mục con thất bại!",
+            description:
+              'Lỗi dự đoán: Danh mục con đã tồn tại, Tên danh mục con quá ngắn hoặc quá dài (Từ 4 đến 35 ký tự).',
+          });
       });
   };
 
@@ -128,58 +133,58 @@ const SubCreate = () => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-          <Form.Item
-            label="Danh mục cha"
-            name="category"
-            rules={[
-              {
-                required: true,
-                message: "Vui lòng chọn danh mục cha từ danh sách!",
-              },
-            ]}
-          >
-            <Select
+            <Form.Item
+              label="Danh mục cha"
               name="category"
-              className="form-control"
-              onChange={(value) => setCategory(value)} // Use 'value' directly
-              placeholder="Vui lòng chọn danh mục từ danh sách"
+              rules={[
+                {
+                  required: true,
+                  message: "Vui lòng chọn danh mục cha từ danh sách!",
+                },
+              ]}
             >
-              <Option value="" disabled >Vui lòng chọn</Option>
-              {categories.length > 0 &&
-                categories.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
-            </Select>
-          </Form.Item>
+              <Select
+                name="category"
+                className="form-control"
+                onChange={(value) => setCategory(value)} // Use 'value' directly
+                placeholder="Vui lòng chọn danh mục từ danh sách"
+              >
+                <Option value="" disabled >Vui lòng chọn</Option>
+                {categories.length > 0 &&
+                  categories.map((c) => (
+                    <Option key={c._id} value={c._id}>
+                      {c.name}
+                    </Option>
+                  ))}
+              </Select>
+            </Form.Item>
 
-          <Form.Item
-            label="Tên danh mục"
-            name="name"
-            rules={[
-              {
-                required: true,
-                message: 'Vui lòng nhập tên danh mục!'
-              },
-            ]}
-          >
-            <Input
-              type="text"
-              autoFocus
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              prefix={<ShoppingOutlined />}
-            />
-          </Form.Item>
+            <Form.Item
+              label="Tên danh mục"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Vui lòng nhập tên danh mục!'
+                },
+              ]}
+            >
+              <Input
+                type="text"
+                autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                prefix={<ShoppingOutlined />}
+              />
+            </Form.Item>
 
-          <Form.Item
-            wrapperCol={{ offset: 2, span: 10 }}
-          >
-            <Button type="primary" htmlType="submit" className="ml-2">
-              Lưu lại
-            </Button>
-          </Form.Item>
+            <Form.Item
+              wrapperCol={{ offset: 2, span: 10 }}
+            >
+              <Button type="primary" htmlType="submit" className="ml-2">
+                Lưu lại
+              </Button>
+            </Form.Item>
           </Form>
 
           <h4 className="text-center mb-8">~~ Danh sách danh mục con ~~</h4>
