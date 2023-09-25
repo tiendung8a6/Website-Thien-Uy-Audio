@@ -5,8 +5,8 @@ const couponSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      trim: true,
-      unique: true,
+      trim: true, //Cắt khoảng thắng
+      unique: true, //Duy nhất
       uppercase: true,
       // required: "Name is required",
       minlength: [4, "Too short"],
