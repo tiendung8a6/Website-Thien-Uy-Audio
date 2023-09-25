@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
     slug: {
       type: String,
       unique: true,
-      lowercase: true,
+      lowercase: true, //chuyển thành chữ thường
       index: true,
     },
     description: {
@@ -57,7 +57,8 @@ const productSchema = new mongoose.Schema(
     },
     brand: {
       type: String,
-      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      // enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      ref: "Brand",
     },
     ratings: [
       {

@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 
-const categorySchema = new mongoose.Schema(
+const brandSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      trim: true, //Cắt khoảng trắng
       required: "Name is required",
       minlength: [4, "Too short"],
-      maxlength: [40, "Too long"],
+      maxlength: [35, "Too long"],
     },
     slug: {
       type: String,
@@ -19,4 +18,4 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Category", categorySchema);
+module.exports = mongoose.model("Brand", brandSchema);
