@@ -7,6 +7,8 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { currentUser } from "./functions/auth";
 import { LoadingOutlined } from "@ant-design/icons";
+import './App.css'
+import Footer from "./components/footer/Footer";
 
 // import Login from "./pages/auth/Login";
 // import Register from "./pages/auth/Register";
@@ -152,6 +154,7 @@ const App = () => {
         <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
         <UserRoute exact path="/payment" component={Payment} />
       </Switch>
+      <Footer></Footer>
     </Suspense>
   );
 };

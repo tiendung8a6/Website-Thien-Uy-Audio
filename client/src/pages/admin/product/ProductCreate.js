@@ -7,16 +7,17 @@ import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
+import { message, notification } from 'antd';
 
 const initialState = {
-  title: "Macbook Pro",
-  description: "This is the best Apple product",
-  price: "45000",
+  title: "",
+  description: "",
+  price: "",
   categories: [],
   category: "",
   subs: [],
-  shipping: "Yes",
-  quantity: "50",
+  shipping: "",
+  quantity: "",
   images: [
     // {
     //   public_id: "jwrzeubemmypod99e8lz",
@@ -36,8 +37,8 @@ const initialState = {
   ],
   colors: ["Black", "Brown", "Silver", "White", "Blue"],
   brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
-  color: "White",
-  brand: "Apple",
+  color: "",
+  brand: "",
 };
 
 const ProductCreate = () => {
@@ -56,32 +57,35 @@ const ProductCreate = () => {
   const loadCategories = () =>
     getCategories().then((c) => setValues({ ...values, categories: c.data }));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     createProduct(values, user.token)
       .then((res) => {
         console.log(res);
-        window.alert(`"${res.data.title}" is created`);
-        window.location.reload();
+        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1 , () => {
+          window.location.reload();
+        });
       })
       .catch((err) => {
         console.log(err);
         // if (err.response.status === 400) toast.error(err.response.data);
-        toast.error(err.response.data.err);
+        // message.error(err.response.data.err);
+        notification.error({
+          message: "Thêm mới sản phẩm thất bại!",
+          description:
+            'Lỗi dự đoán: Sản phẩm đã tồn tại.',
+        });
       });
   };
-
-  const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+  const handleChange = (fieldName, value) => {
+    setValues({ ...values, [fieldName]: value });
     // console.log(e.target.name, " ----- ", e.target.value);
   };
 
-  const handleCatagoryChange = (e) => {
-    e.preventDefault();
-    console.log("CLICKED CATEGORY", e.target.value);
-    setValues({ ...values, subs: [], category: e.target.value });
-    getCategorySubs(e.target.value).then((res) => {
-      console.log("SUB OPTIONS ON CATGORY CLICK", res);
+  const handleCatagoryChange = (value) => {
+    console.log("SELECTED CATEGORY", value);
+    setValues({ ...values, subs: [], category: value });
+    getCategorySubs(value).then((res) => {
+      console.log("SUB OPTIONS ON CATEGORY CLICK", res);
       setSubOptions(res.data);
     });
     setShowSub(true);
@@ -98,7 +102,7 @@ const ProductCreate = () => {
           {loading ? (
             <LoadingOutlined className="text-danger h1" />
           ) : (
-            <h4>Product create</h4>
+            <h4>Thêm mới sản phẩm</h4>
           )}
           <hr />
 
