@@ -11,6 +11,7 @@ import RatingModal from "../modal/RatingModal";
 import { showAverage } from "../../functions/rating";
 import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
+// 
 import { addToWishlist } from "../../functions/user";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";

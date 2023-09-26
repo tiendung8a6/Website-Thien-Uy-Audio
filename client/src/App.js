@@ -49,6 +49,7 @@ const SideDrawer = lazy(() => import("./components/drawer/SideDrawer"));
 
 const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const FormContact = lazy(() => import("./components/FormContact/FromContact"));
 const History = lazy(() => import("./pages/user/History"));
 const UserRoute = lazy(() => import("./components/routes/UserRoute"));
 const AdminRoute = lazy(() => import("./components/routes/AdminRoute"));
@@ -132,9 +133,13 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
+
+        <Route exact path="/sendcontact" component={FormContact} />
+        
         <UserRoute exact path="/user/history" component={History} />
         <UserRoute exact path="/user/password" component={Password} />
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
+
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
         <AdminRoute exact path="/admin/category/:slug" component={CategoryUpdate}/>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ButtonHome from './ButtonHome/ButtonHome.jsx';
 import './Banner2.css'
 
 const Banner2 = () => {
@@ -31,7 +32,7 @@ const Banner2 = () => {
                                         <div className="carousel-caption ">
                                             <h5>First slide label</h5>
                                             <p>Some representative placeholder content for the first slide.</p>
-                                            <button type="button" class="btn btn-outline-primary" >Primary</button>
+                                            <Link to="#" > <ButtonHome>Mua Ngay</ButtonHome></Link>
 
                                         </div>
                                     </div>
@@ -66,30 +67,35 @@ const Banner2 = () => {
                 </Col>
                 <Col className=' custom-row' >
                     <Row xs={2} md={4} lg={2} style={{ marginTop: '-15px', }}>
-                        <Col style={{ paddingTop: '15px' }}>
+                        {/* <Col style={{ paddingTop: '15px' }}>
                             <div id="carouselExample" className="carousel slide">
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
                                         <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
                                     </div>
                                     <div className="carousel-caption " style={{ backgroundcolor: 'rgba(66, 161, 165, 0.1)' }}>
-                                        <button classname="huhu">Mua ngay</button>
+                                        <Link to="#" > <ButtonHome>Mua Ngay</ButtonHome></Link>
                                     </div>
                                 </div>
                             </div>
 
+                        </Col> */}
+                        <Col style={{ paddingTop: '15px' }}>
+                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
+
                         </Col>
 
                         <Col style={{ paddingTop: '15px' }}>
-                            <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." />
+                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
+
                         </Col>
 
                         <Col style={{ paddingTop: '15px' }}>
-                            <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100 " alt="..." />
+                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
                         </Col>
 
                         <Col style={{ paddingTop: '15px' }}>
-                            <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100 " alt="..." />
+                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
                         </Col>
 
                     </Row>
