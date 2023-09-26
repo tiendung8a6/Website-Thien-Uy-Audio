@@ -13,7 +13,7 @@ import { red, blue } from '@mui/material/colors';
 
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 // import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
@@ -37,6 +37,13 @@ import { useHistory } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import AlertTitle from '@mui/material/AlertTitle';
+
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+
 const { Meta } = Card;
 
 const ExpandMore = styled((props) => {
@@ -52,6 +59,7 @@ const ExpandMore = styled((props) => {
 
 const ProductCard = ({ product }) => {
   const [tooltip, setTooltip] = useState("Click to add");
+  const [value, setValue] = React.useState(0);
 
   // redux
   const { user, cart } = useSelector((state) => ({ ...state }));
@@ -147,6 +155,8 @@ const ProductCard = ({ product }) => {
 
         </div>
       )}
+
+
       <Card sx={{ Width: 300 }}>
         <CardHeader
           avatar={
@@ -189,51 +199,22 @@ const ProductCard = ({ product }) => {
         </CardContent>
         <hr />
         <CardActions disableSpacing>
+          <BottomNavigation
+            showLabels
+            // value={value}
+            // // onChange={(event, newValue) => {
+            // //   setValue(newValue);
 
-          <Container>
-            <Row className='d-flex justify-content-center' xs={3} md={1} lg={4} >
+            // // }}
+            style={{ width: '100%', }}
+          >
+            <BottomNavigationAction component={Link} to={`/product/${slug}`} label="Recents" icon={<VisibilityOutlinedIcon />} />
 
-              <Col>
-                <Link to={`/product/${slug}`}>
-                  <VisibilityOutlinedIcon className='d-flex m-auto' />
-                  <span style={{ color: '#333' }} className='d-flex justify-content-center'> </span>
-                </Link>
-              </Col>
-
-
-
-              <Col md="auto">
-                <a onClick={handleAddToCart} disabled={product.quantity < 1}>
-                  <ShoppingCartOutlinedIcon className="text-danger d-flex m-auto" />
-                  <span style={{ color: '#333' }} className='d-flex justify-content-center'>
-                    {product.quantity < 1 ? "Hết hàng" : ""}
-                  </span>
-
-                </a>
-              </Col>
-              <Col>
-                <a onClick={handleAddToWishlist}>
-                  <HeartOutlined className="text-info text-primary d-flex m-auto" />
-                </a>,
-              </Col>
-
-              <Col lg="2" style={{ marginTop: '-7px', }}>
-                <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                  className='d-flex justify-content-center mx-auto'
-
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </Col>
-            </Row>
-          </Container>
-
-
-
+            <BottomNavigationAction component={Link} onClick={handleAddToCart} label={product.quantity < 1 ? "Hết hàng" : "Còn hàng"} icon={<ShoppingCartOutlinedIcon />} />
+            <BottomNavigationAction component={Link} onClick={handleAddToWishlist} label="Lưu" icon={<HeartOutlined />} />
+            <BottomNavigationAction component={Link} onClick={handleExpandClick}
+              expand={expanded} aria-expanded={expanded} naria-label="show more" label="Thêm" icon={<ExpandCircleDownIcon fontSize="medium" />} />
+          </BottomNavigation>
 
 
 

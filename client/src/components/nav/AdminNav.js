@@ -1,52 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 
-const AdminNav = () => (
-  <nav>
-    <ul className="nav flex-column">
-      <li className="nav-item">
-        <Link to="/admin/dashboard" className="nav-link">
-          Dashboard
-        </Link>
-      </li>
+import DraftsIcon from '@mui/icons-material/Drafts';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import ListIcon from '@mui/icons-material/List';
+import CategoryIcon from '@mui/icons-material/Category';
+import ClassIcon from '@mui/icons-material/Class';
+import MoneyIcon from '@mui/icons-material/Money';
+import PasswordIcon from '@mui/icons-material/Password';
 
-      <li className="nav-item">
-        <Link to="/admin/product" className="nav-link">
-          Thêm sản phẩm
-        </Link>
-      </li>
+import './header.css';
+const AdminNav = () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-      <li className="nav-item">
-        <Link to="/admin/products" className="nav-link">
-          Danh sách sản phẩm
-        </Link>
-      </li>
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+  const [open, setOpen] = React.useState(true);
 
-      <li className="nav-item">
-        <Link to="/admin/category" className="nav-link">
-          Quản lý danh mục
-        </Link>
-      </li>
+  const handleClick = () => {
+    setOpen(!open);
+  };
+  const navItems = [
+    { id: 0, text: "Dashboard", path: "/admin/dashboard", icon: <DashboardIcon /> },
+    { id: 1, text: "Thêm sản phẩm", path: "/admin/product", icon: <AddBoxIcon /> },
+    { id: 2, text: "Danh sách sản phẩm", path: "/admin/products", icon: <ListIcon /> },
+    { id: 3, text: "Quản lý danh mục", path: "/admin/category", icon: <CategoryIcon /> },
+    { id: 4, text: "Quản lý danh mục con", path: "/admin/sub", icon: <ClassIcon /> },
+    { id: 5, text: "Quản lý Coupon", path: "/admin/coupon", icon: <MoneyIcon /> },
+    { id: 6, text: "Password", path: "/user/password", icon: <PasswordIcon /> },
+  ];
 
-      <li className="nav-item">
-        <Link to="/admin/sub" className="nav-link">
-          Quản lý danh mục con
-        </Link>
-      </li>
+  return (
+    <Box sx={{ width: '100%', maxWidth: 260, bgcolor: '', color: 'text.primary' }} >
+      <List component="nav" aria-label="main mailbox folders " >
+        {navItems.map((item, index) => (
+          <ListItemButton
+            component={Link}
+            to={item.path}
+            key={index}
+            className='my-4  '
+            //style={{
+            //  backgroundColor: selectedIndex === index ? '#007bff' : 'initial',
+            // color: selectedIndex === index ? '#fff' : 'initial',
+            // }}
+            onClick={(event) => handleListItemClick(event, index)}
+          >
+            <ListItemIcon>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItemButton>
 
-      <li className="nav-item">
-        <Link to="/admin/coupon" className="nav-link">
-          Coupon
-        </Link>
-      </li>
+        ))}
 
-      <li className="nav-item">
-        <Link to="/user/password" className="nav-link">
-          Password
-        </Link>
-      </li>
-    </ul>
-  </nav>
-);
+
+      </List>
+
+    </Box>
+  );
+}
 
 export default AdminNav;
