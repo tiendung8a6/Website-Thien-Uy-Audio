@@ -16,6 +16,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import ClassIcon from '@mui/icons-material/Class';
 import MoneyIcon from '@mui/icons-material/Money';
 import PasswordIcon from '@mui/icons-material/Password';
+import LocalOfferSharpIcon from '@mui/icons-material/LocalOfferSharp';
 
 import './header.css';
 const AdminNav = () => {
@@ -35,8 +36,9 @@ const AdminNav = () => {
     { id: 2, text: "Danh sách sản phẩm", path: "/admin/products", icon: <ListIcon /> },
     { id: 3, text: "Quản lý danh mục", path: "/admin/category", icon: <CategoryIcon /> },
     { id: 4, text: "Quản lý danh mục con", path: "/admin/sub", icon: <ClassIcon /> },
-    { id: 5, text: "Quản lý Coupon", path: "/admin/coupon", icon: <MoneyIcon /> },
-    { id: 6, text: "Password", path: "/user/password", icon: <PasswordIcon /> },
+    { id: 5, text: "Quản lý thương hiệu", path: "/admin/brand", icon: <LocalOfferSharpIcon /> }, 
+    { id: 6, text: "Quản lý Coupon", path: "/admin/coupon", icon: <MoneyIcon /> },
+    { id: 7, text: "Password", path: "/user/password", icon: <PasswordIcon /> },
   ];
 
   return (

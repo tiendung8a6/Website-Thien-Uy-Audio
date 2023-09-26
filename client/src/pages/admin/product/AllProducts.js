@@ -80,7 +80,7 @@ const AllProducts = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <AdminNav />
         </div>
         <div className="col">
