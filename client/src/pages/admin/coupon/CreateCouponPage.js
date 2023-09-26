@@ -285,7 +285,7 @@ const CreateCouponPage = () => {
             </Form.Item>
 
             <Form.Item
-              wrapperCol={{ offset: 2, span: 10 }}
+              wrapperCol={{ offset: 3, span: 10 }}
             >
               <Button type="primary" htmlType="submit" className="ml-2">
                 Lưu lại

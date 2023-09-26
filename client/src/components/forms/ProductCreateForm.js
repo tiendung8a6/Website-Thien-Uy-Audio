@@ -10,6 +10,7 @@ const ProductCreateForm = ({
   values,
   handleCatagoryChange,
   handleBrandChange,
+  handleColorChange,
   subOptions,
   showSub,
 }) => {
@@ -153,13 +154,17 @@ const ProductCreateForm = ({
           },
         ]}
       >
-        <Select onChange={(value) => handleChange('color', value)} value={color} placeholder="Vui lòng chọn màu sắc">
+        <Select
+          onChange={(value) => handleColorChange(value)}
+          value={color}
+          placeholder="Vui lòng chọn màu sắc">
           <Option value="" disabled >Vui lòng chọn</Option>
-          {colors.map((c) => (
-            <Option key={c} value={c}>
-              {c}
-            </Option>
-          ))}
+          {colors.length > 0 &&
+            colors.map((cl) => (
+              <Option key={cl._id} value={cl._id}>
+                {cl.name}
+              </Option>
+            ))}
         </Select>
       </Form.Item>
 

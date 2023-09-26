@@ -4,6 +4,7 @@ const colorSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      unique: true,
       required: "Name is required",
       minlength: [1, "Too short"],
       maxlength: [35, "Too long"],

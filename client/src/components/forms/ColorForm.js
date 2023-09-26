@@ -2,19 +2,19 @@ import React from "react";
 import { Form, Input, Button } from "antd";
 import { ShoppingOutlined } from '@ant-design/icons';
 
-const CategoryForm = ({ handleSubmit, name, setName }) => (
+const ColorForm = ({ handleSubmit, name, setName }) => (
   <Form
     name="basic"
-    labelCol={{ span: 3 }}
-    wrapperCol={{ span: 500}}
-    style={{ maxWidth: 4000 }}
+    labelCol={{ span: 2 }}
+    wrapperCol={{ span: 304 }}
+    style={{ maxWidth: 2000 }}
     onFinish={handleSubmit}>
     <Form.Item
-      label="Tên danh mục"
+      label="Tên màu"
       name="name"
       rules={[{
         required: true,
-        message: 'Vui lòng nhập tên danh mục!'
+        message: 'Vui lòng nhập tên màu!'
       }]}>
       <Input
         type="text"
@@ -26,7 +26,7 @@ const CategoryForm = ({ handleSubmit, name, setName }) => (
     </Form.Item>
 
     <Form.Item
-      wrapperCol={{ offset: 3, span: 10 }}
+      wrapperCol={{ offset: 2, span: 10 }}
     >
       <Button type="primary" htmlType="submit" className="ml-2">
         Lưu lại
@@ -35,4 +35,4 @@ const CategoryForm = ({ handleSubmit, name, setName }) => (
   </Form>
 );
 
-export default CategoryForm;
+export default ColorForm;

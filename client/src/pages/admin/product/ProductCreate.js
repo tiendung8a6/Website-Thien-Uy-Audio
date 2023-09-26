@@ -6,6 +6,7 @@ import { createProduct } from "../../../functions/product";
 import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
 import { getBrands } from "../../../functions/brand";
+import { getColors } from "../../../functions/color";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
 import { message, notification } from 'antd';
@@ -36,7 +37,7 @@ const initialState = {
     //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480913/ho6wnp7sugyemnmtoogf.jpg",
     // },
   ],
-  colors: ["Black", "Brown", "Silver", "White", "Blue"],
+  colors: [],
   brands: [],
   brand: "",
   color: "",
@@ -53,16 +54,17 @@ const ProductCreate = () => {
 
   useEffect(() => {
     // Load cả danh mục và thương hiệu cùng lúc
-    Promise.all([getCategories(), getBrands()])
-      .then(([categoriesResponse, brandsResponse]) => {
+    Promise.all([getCategories(), getBrands(), getColors()])
+      .then(([categoriesResponse, brandsResponse, colorsResponse]) => {
         setValues({
           ...values,
           categories: categoriesResponse.data,
           brands: brandsResponse.data,
+          colors: colorsResponse.data,
         });
       })
       .catch((error) => {
-        console.error("Error loading categories and brands: ", error);
+        console.error("Error loading categories, brands, colors : ", error);
       });
   }, []);
 
@@ -72,14 +74,20 @@ const ProductCreate = () => {
   const loadBrands = () =>
     getBrands().then((b) => setValues({ ...values, brands: b.data }));
 
+    const loadColors = () =>
+    getColors().then((cl) => setValues({ ...values, colors: cl.data }));
+
+
     const handleSubmit = () => {
       // Trước khi tạo sản phẩm, tìm tên thương hiệu dựa trên id thương hiệu đã chọn
       const selectedBrand = values.brands.find((b) => b._id === values.brand);
-    
+      const selectedColor = values.colors.find((cl) => cl._id === values.color);
+
       // Tạo một object mới với trường brand là name của thương hiệu đã chọn
       const updatedValues = {
         ...values,
         brand: selectedBrand ? selectedBrand.name : "",
+        color: selectedColor ? selectedColor.name : "",
       };
     
       createProduct(updatedValues, user.token)
@@ -118,6 +126,11 @@ const ProductCreate = () => {
     setValues({ ...values, brand: value });
   };
 
+  const handleColorChange = (value) => {
+    console.log("SELECTED COLOR", value);
+    setValues({ ...values, color: value });
+  };
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -150,6 +163,7 @@ const ProductCreate = () => {
             values={values}
             handleCatagoryChange={handleCatagoryChange}
             handleBrandChange={handleBrandChange}
+            handleColorChange={handleColorChange}
             subOptions={subOptions}
             showSub={showSub}
           />

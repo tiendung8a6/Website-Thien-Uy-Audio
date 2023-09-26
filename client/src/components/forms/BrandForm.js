@@ -5,8 +5,8 @@ import { ShoppingOutlined } from '@ant-design/icons';
 const BrandForm = ({ handleSubmit, name, setName }) => (
   <Form
     name="basic"
-    labelCol={{ span: 100 }}
-    wrapperCol={{ span: 160 }}
+    labelCol={{ span: 3 }}
+    wrapperCol={{ span: 204 }}
     style={{ maxWidth: 2000 }}
     onFinish={handleSubmit}>
     <Form.Item
@@ -26,7 +26,7 @@ const BrandForm = ({ handleSubmit, name, setName }) => (
     </Form.Item>
 
     <Form.Item
-      wrapperCol={{ offset: 2, span: 10 }}
+      wrapperCol={{ offset: 3 , span: 16 }}
     >
       <Button type="primary" htmlType="submit" className="ml-2">
         Lưu lại
