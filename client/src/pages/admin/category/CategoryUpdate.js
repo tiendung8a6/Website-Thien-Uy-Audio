@@ -19,23 +19,23 @@ const CategoryUpdate = ({ history, match }) => {
   const loadCategory = () =>
     getCategory(match.params.slug).then((c) => setName(c.data.name));
 
-    const handleSubmit = (values) => {
-      setLoading(true);
-      updateCategory(match.params.slug, { name: values.name }, user.token)
-        .then((res) => {
-          setLoading(false);
-          setName("");
-          message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1.2 , () => {
-            window.location.reload();
-          });
-          history.push("/admin/category");
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-          if (err.response.status === 400) toast.error(err.response.data);
+  const handleSubmit = (values) => {
+    setLoading(true);
+    updateCategory(match.params.slug, { name: values.name }, user.token)
+      .then((res) => {
+        setLoading(false);
+        setName("");
+        message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1.2, () => {
+          window.location.reload();
         });
-    };
+        history.push("/admin/category");
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        if (err.response.status === 400) toast.error(err.response.data);
+      });
+  };
 
   return (
     <div className="container-fluid">

@@ -60,7 +60,7 @@ const Header = () => {
 
 
   return (
-    <Navbar className="bg-body-tertiary" expand="lg">
+    <Navbar className="shadow-lg p-3  bg-body rounded   p-3 mb-1 " expand="lg">
       <Container className="" style={{ fontSize: '18px', fontWeight: '900' }}>
         <Navbar.Brand as={Link} to="/">Navbar with text</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -77,9 +77,9 @@ const Header = () => {
             </Nav.Link>
 
 
-            <NavDropdown title="Danh mục" id="basic-nav-dropdown">
+            <NavDropdown title="Danh mục" id="basic-nav-dropdown" >
               {categories.map((c) => (
-                <NavDropdown.Item key={c._id} onClick={() => handleCategoryClick(c.slug)}>
+                <NavDropdown.Item key={c._id} onClick={() => handleCategoryClick(c.slug)} >
                   {c.name}
                 </NavDropdown.Item>
               ))}
@@ -102,7 +102,7 @@ const Header = () => {
               <ShoppingCartOutlined />
 
               <Badge count={cart.length} offset={[9, 0]} >
-                <span style={{ fontSize: '18px', }}>Card</span>
+                <span style={{ fontSize: '18px', }}>Cart</span>
               </Badge>
             </Nav.Link>
 

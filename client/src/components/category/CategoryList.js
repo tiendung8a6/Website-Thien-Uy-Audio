@@ -72,7 +72,7 @@ const CategoryList = () => {
     //   </div>
     // ));
     <>
-      <Slider {...settings} autoplay pauseOnFocus className="d-flex " style={{ margin: '30px' }}>
+      <Slider {...settings} autoplay pauseOnFocus className="d-flex " style={{ margin: '30px', color: 'black' }}>
         {categories.map((c) => (
           <div className="d-flex justify-content-center mb-2" style={{ width: '100%' }} key={c._id}>
             <Card sx={{}} style={{ width: '300px' }}>
@@ -86,7 +86,7 @@ const CategoryList = () => {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div" className="d-flex justify-content-center">
-                    <Link to={`/category/${c.slug}`}>{c.name}</Link>
+                    <Link to={`/category/${c.slug}`} style={{ color: 'black' }}>{c.name}</Link>
                   </Typography>
                 </CardContent>
               </CardActionArea>
