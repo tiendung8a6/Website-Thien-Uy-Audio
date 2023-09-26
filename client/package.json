@@ -19,7 +19,6 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.24.14",
-    
     "axios": "^0.20.0",
     "firebase": "^7.19.0",
     "lodash": "^4.17.20",
