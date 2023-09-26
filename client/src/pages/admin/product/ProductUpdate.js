@@ -117,11 +117,11 @@ const ProductUpdate = ({ match, history }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <AdminNav />
         </div>
 
-        <div className="col-md-10">
+        <div className="col">
           {loading ? (
             <LoadingOutlined className="text-danger h1" />
           ) : (
