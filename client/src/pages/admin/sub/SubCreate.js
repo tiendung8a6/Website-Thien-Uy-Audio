@@ -122,13 +122,13 @@ const SubCreate = () => {
           <Form
             name="basic"
             labelCol={{
-              span: 0,
+              span: 3,
             }}
             wrapperCol={{
-              span: 240,
+              span: 40,
             }}
             style={{
-              maxWidth: 2000,
+              maxWidth: 1200,
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -179,7 +179,7 @@ const SubCreate = () => {
             </Form.Item>
 
             <Form.Item
-              wrapperCol={{ offset: 2, span: 10 }}
+              wrapperCol={{ offset: 3, span: 10 }}
             >
               <Button type="primary" htmlType="submit" className="ml-2">
                 Lưu lại

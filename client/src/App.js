@@ -68,6 +68,12 @@ const BrandCreate = lazy(() =>
 const BrandUpdate = lazy(() =>
   import("./pages/admin/brand/BrandUpdate")
 );
+const ColorCreate = lazy(() =>
+  import("./pages/admin/color/ColorCreate")
+);
+const ColorUpdate = lazy(() =>
+  import("./pages/admin/color/ColorUpdate")
+);
 const SubCreate = lazy(() => import("./pages/admin/sub/SubCreate"));
 const SubUpdate = lazy(() => import("./pages/admin/sub/SubUpdate"));
 const ProductCreate = lazy(() => import("./pages/admin/product/ProductCreate"));
@@ -145,6 +151,8 @@ const App = () => {
         <AdminRoute exact path="/admin/category/:slug" component={CategoryUpdate}/>
         <AdminRoute exact path="/admin/brand" component={BrandCreate} />
         <AdminRoute exact path="/admin/brand/:slug" component={BrandUpdate}/>
+        <AdminRoute exact path="/admin/color" component={ColorCreate} />
+        <AdminRoute exact path="/admin/color/:slug" component={ColorUpdate}/>
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
