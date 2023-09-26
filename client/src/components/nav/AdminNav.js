@@ -23,6 +23,12 @@ const AdminNav = () => (
       </li>
 
       <li className="nav-item">
+        <Link to="/admin/brand" className="nav-link">
+          Quản lý thương hiệu
+        </Link>
+      </li>
+
+      <li className="nav-item">
         <Link to="/admin/category" className="nav-link">
           Quản lý danh mục
         </Link>

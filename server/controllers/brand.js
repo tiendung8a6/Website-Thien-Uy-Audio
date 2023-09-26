@@ -1,3 +1,4 @@
+const brand = require("../models/brand");
 const Brand = require("../models/brand");
 const Product = require("../models/product");
 const slugify = require("slugify");
@@ -22,26 +23,35 @@ exports.read = async (req, res) => {
   });
 };
 
-// exports.update = async (req, res) => {
-//   const { name } = req.body;
-//   try {
-//     const updated = await Brand.findOneAndUpdate(
-//       { slug: req.params.slug },
-//       { name, slug: slugify(name) },
-//       { new: true }
-//     );
-//     res.json(updated);
-//   } catch (err) {
-//     res.status(400).send("Chỉnh sửa danh mục thất bại!");
-//   }
-// };
+exports.update = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const updated = await Brand.findOneAndUpdate(
+      { slug: req.params.slug },
+      { name, slug: slugify(name) },
+      { new: true }
+    );
+    await Product.updateMany(
+      { brand: updated.name }, // Sử dụng updated.name thay vì updated.brand
+      { $unset: { brand: 1 } } // Sử dụng { $unset: { brand: 1 } } để xóa trường brand
+    );
+    res.json(updated);
+  } catch (err) {
+    res.status(400).send("Chỉnh sửa danh mục thất bại!");
+  }
+};
+
 
 exports.remove = async (req, res) => {
   try {
     const deleted = await Brand.findOneAndDelete({ slug: req.params.slug });
+    await Product.updateMany(
+      { brand: deleted.name },
+      { $unset: { brand: "" } }
+    );
     res.json(deleted);
   } catch (err) {
-    res.status(400).send("Tạo thương hiệu thất bại");
+    res.status(400).send("Xóa thương hiệu thất bại");
   }
 };
 

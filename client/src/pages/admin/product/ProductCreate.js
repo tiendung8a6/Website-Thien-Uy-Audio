@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { createProduct } from "../../../functions/product";
 import ProductCreateForm from "../../../components/forms/ProductCreateForm";
 import { getCategories, getCategorySubs } from "../../../functions/category";
+import { getBrands } from "../../../functions/brand";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
 import { message, notification } from 'antd';
@@ -36,9 +37,9 @@ const initialState = {
     // },
   ],
   colors: ["Black", "Brown", "Silver", "White", "Blue"],
-  brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
-  color: "",
+  brands: [],
   brand: "",
+  color: "",
 };
 
 const ProductCreate = () => {
@@ -51,31 +52,52 @@ const ProductCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    loadCategories();
+    // Load cả danh mục và thương hiệu cùng lúc
+    Promise.all([getCategories(), getBrands()])
+      .then(([categoriesResponse, brandsResponse]) => {
+        setValues({
+          ...values,
+          categories: categoriesResponse.data,
+          brands: brandsResponse.data,
+        });
+      })
+      .catch((error) => {
+        console.error("Error loading categories and brands: ", error);
+      });
   }, []);
 
   const loadCategories = () =>
     getCategories().then((c) => setValues({ ...values, categories: c.data }));
 
-  const handleSubmit = () => {
-    createProduct(values, user.token)
-      .then((res) => {
-        console.log(res);
-        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1 , () => {
-          window.location.reload();
+  const loadBrands = () =>
+    getBrands().then((b) => setValues({ ...values, brands: b.data }));
+
+    const handleSubmit = () => {
+      // Trước khi tạo sản phẩm, tìm tên thương hiệu dựa trên id thương hiệu đã chọn
+      const selectedBrand = values.brands.find((b) => b._id === values.brand);
+    
+      // Tạo một object mới với trường brand là name của thương hiệu đã chọn
+      const updatedValues = {
+        ...values,
+        brand: selectedBrand ? selectedBrand.name : "",
+      };
+    
+      createProduct(updatedValues, user.token)
+        .then((res) => {
+          console.log(res);
+          message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1, () => {
+            window.location.reload();
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          notification.error({
+            message: "Thêm mới sản phẩm thất bại!",
+            description: 'Lỗi dự đoán: Sản phẩm đã tồn tại.',
+          });
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        // if (err.response.status === 400) toast.error(err.response.data);
-        // message.error(err.response.data.err);
-        notification.error({
-          message: "Thêm mới sản phẩm thất bại!",
-          description:
-            'Lỗi dự đoán: Sản phẩm đã tồn tại.',
-        });
-      });
-  };
+    };
+    
   const handleChange = (fieldName, value) => {
     setValues({ ...values, [fieldName]: value });
     // console.log(e.target.name, " ----- ", e.target.value);
@@ -89,6 +111,11 @@ const ProductCreate = () => {
       setSubOptions(res.data);
     });
     setShowSub(true);
+  };
+
+  const handleBrandChange = (value) => {
+    console.log("SELECTED BRAND", value);
+    setValues({ ...values, brand: value });
   };
 
   return (
@@ -122,6 +149,7 @@ const ProductCreate = () => {
             setValues={setValues}
             values={values}
             handleCatagoryChange={handleCatagoryChange}
+            handleBrandChange={handleBrandChange}
             subOptions={subOptions}
             showSub={showSub}
           />
