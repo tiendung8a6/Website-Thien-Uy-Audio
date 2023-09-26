@@ -8,7 +8,7 @@ const { authCheck, adminCheck } = require("../middlewares/auth");
 const {
   create,
   read,
-  // update,
+  update,
   remove,
   list,
 } = require("../controllers/brand");
@@ -17,7 +17,7 @@ const {
 router.post("/brand", authCheck, adminCheck, create);
 router.get("/brands", list);
 router.get("/brand/:slug", read);
-// router.put("/category/:slug", authCheck, adminCheck, update);
+router.put("/brand/:slug", authCheck, adminCheck, update);
 router.delete("/brand/:slug", authCheck, adminCheck, remove);
 
 module.exports = router;
