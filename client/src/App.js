@@ -80,6 +80,10 @@ const ProductCreate = lazy(() => import("./pages/admin/product/ProductCreate"));
 const AllProducts = lazy(() => import("./pages/admin/product/AllProducts"));
 const ProductUpdate = lazy(() => import("./pages/admin/product/ProductUpdate"));
 const Product = lazy(() => import("./pages/Product"));
+const BlogCreate = lazy(() => import("./pages/admin/blog/BlogCreate"));
+const AllBlogs = lazy(() => import("./pages/admin/blog/AllBlogs"));
+const BlogUpdate = lazy(() => import("./pages/admin/blog/BlogUpdate"));
+const Blog = lazy(() => import("./pages/Blog"));
 const CategoryHome = lazy(() => import("./pages/category/CategoryHome"));
 const SubHome = lazy(() => import("./pages/sub/SubHome"));
 const Shop = lazy(() => import("./pages/Shop"));
@@ -157,12 +161,14 @@ const App = () => {
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
         <AdminRoute exact path="/admin/products" component={AllProducts} />
-        <AdminRoute
-          exact
-          path="/admin/product/:slug"
-          component={ProductUpdate}
-        />
+        <AdminRoute exact path="/admin/product/:slug" component={ProductUpdate}/>
         <Route exact path="/product/:slug" component={Product} />
+
+
+        <AdminRoute exact path="/admin/blog" component={BlogCreate} />
+        <AdminRoute exact path="/admin/blogs" component={AllBlogs} />
+        <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate}/>
+        <Route exact path="/blog/:slug" component={Blog} />
         <Route exact path="/category/:slug" component={CategoryHome} />
         <Route exact path="/sub/:slug" component={SubHome} />
         <Route exact path="/shop" component={Shop} />

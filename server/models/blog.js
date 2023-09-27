@@ -5,7 +5,7 @@ const blogSchema = new mongoose.Schema(
     title: {
       type: String,
       trim: true,
-      required: true,
+      // required: true,
       text: true,
       unique: true,
     },
@@ -15,7 +15,7 @@ const blogSchema = new mongoose.Schema(
       lowercase: true, //chuyển thành chữ thường
       index: true,
     },
-    image: {
+    images: {
       type: Array,
     },
     content: {
