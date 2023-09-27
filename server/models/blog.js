@@ -9,6 +9,12 @@ const blogSchema = new mongoose.Schema(
       text: true,
       unique: true,
     },
+    slug: {
+      type: String,
+      unique: true,
+      lowercase: true, //chuyển thành chữ thường
+      index: true,
+    },
     image: {
       type: Array,
     },
