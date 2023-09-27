@@ -3,6 +3,7 @@ const slugify = require("slugify");
 
 exports.create = async (req, res) => {
   try {
+    console.log(req.body);
     req.body.slug = slugify(req.body.title);
     const newBlog = await new Blog(req.body).save();
     res.json(newBlog);
