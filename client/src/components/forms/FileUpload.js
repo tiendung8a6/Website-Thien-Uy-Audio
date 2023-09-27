@@ -4,6 +4,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { Avatar, Badge } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
+import Paper from '@mui/material/Paper';
+// import {Input} from "react-bootstrap/"
 
 const FileUpload = ({ values, setValues, setLoading }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -85,30 +87,35 @@ const FileUpload = ({ values, setValues, setLoading }) => {
 
   return (
     <>
-      <div className="row">
+      <div class="d-flex flex-column mt-1">
         {values.images &&
           values.images.map((image) => (
-            <Badge
-              count="X"
-              key={image.public_id}
-              onClick={() => handleImageRemove(image.public_id)}
-              style={{ cursor: "pointer" }}
-            >
-              <Avatar
-                src={image.url}
-                size={100}
-                shape="square"
-                className="ml-3"
-              />
-            </Badge>
+            <Paper elevation={10} className="my-2" style={{ width: '100px', height: "100%" }}  >
+              <Badge
+                count="X"
+                key={image.public_id}
+                onClick={() => handleImageRemove(image.public_id)}
+                style={{ cursor: "pointer" }}
+
+              >
+                <Avatar
+                  src={image.url}
+                  size={100}
+                  shape="square"
+                  className="ml-3"
+                  style={{ width: '100px', height: "100%" }}
+                />
+              </Badge>
+            </Paper>
           ))}
       </div>
-      <div className="row">
+      <div className="row " style={{ maxWidth: '500px', margin: "0 auto" }}>
         <label className="btn btn-primary btn-raised mt-3">
-        <CloudUploadOutlined /> <br></br>
-           Thêm file
+          <CloudUploadOutlined /> <br></br>
+          Thêm file
           <input
             type="file"
+            required
             multiple
             hidden
             accept="images/*"
