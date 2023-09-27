@@ -37,7 +37,7 @@ const CategoryUpdate = ({ history, match }) => {
           notification.error({
             message: "Chỉnh sửa danh mục thất bại!",
             description:
-              'Lỗi dự đoán: Danh đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
           });
       });
   };
@@ -45,7 +45,7 @@ const CategoryUpdate = ({ history, match }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <AdminNav />
         </div>
         <div className="col">

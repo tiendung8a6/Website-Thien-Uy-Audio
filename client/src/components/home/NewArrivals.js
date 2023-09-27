@@ -49,11 +49,12 @@ const NewArrivals = () => {
       <div className="row">
         <nav className="col-md-4 offset-md-4 d-flex justify-content-center pt-5 p-3">
           <Pagination
+            simple
             current={page}
             total={(productsCount / 3) * 10}
             onChange={(value) => setPage(value)}
           />
-          {/* <Pagination count={Math.ceil(productsCount / 3)} current={page} page={page} variant="outlined" color="primary" onChange={(value) => setPage(value)} /> */}
+
         </nav>
       </div>
     </>

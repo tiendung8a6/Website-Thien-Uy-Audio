@@ -8,13 +8,14 @@ const productSchema = new mongoose.Schema(
       trim: true,
       required: true,
       text: true,
+      unique: true,
       // maxlength: 32,
 
     },
     slug: {
       type: String,
       unique: true,
-      lowercase: true,
+      lowercase: true, //chuyển thành chữ thường
       index: true,
     },
     description: {
@@ -53,11 +54,13 @@ const productSchema = new mongoose.Schema(
     },
     color: {
       type: String,
-      enum: ["Black", "Brown", "Silver", "White", "Blue"],
+      // enum: ["Black", "Brown", "Silver", "White", "Blue"],
+      ref: "Color",
     },
     brand: {
       type: String,
-      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      // enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      ref: "Brand",
     },
     ratings: [
       {

@@ -1,8 +1,12 @@
-.ant-dropdown-menu.ant-dropdown-menu-light.ant-dropdown-menu-root.ant-dropdown-menu-vertical {
-    display: flex;
+@media (min-width: 998px) {
+    .dropdown-menu.show {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        width: 600px;
+        height: auto;
+        margin-top: 20px;
+        margin-left: -200%;
+        align-items: center;
 
-}
-
-.nav-link {
-    color: gray;
+    }
 }

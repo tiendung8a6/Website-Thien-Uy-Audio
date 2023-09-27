@@ -6,6 +6,7 @@ const subSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      unique: true,
       required: "Name is required",
       minlength: [4, "Too short"],
       maxlength: [35, "Too long"],

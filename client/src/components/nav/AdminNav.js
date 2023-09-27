@@ -1,52 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 
-const AdminNav = () => (
-  <nav>
-    <ul className="nav flex-column">
-      <li className="nav-item">
-        <Link to="/admin/dashboard" className="nav-link">
-          Dashboard
-        </Link>
-      </li>
+import DraftsIcon from '@mui/icons-material/Drafts';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import ListIcon from '@mui/icons-material/List';
+import CategoryIcon from '@mui/icons-material/Category';
+import ClassIcon from '@mui/icons-material/Class';
+import MoneyIcon from '@mui/icons-material/Money';
+import PasswordIcon from '@mui/icons-material/Password';
+import LocalOfferSharpIcon from '@mui/icons-material/LocalOfferSharp';
+import ColorLensSharpIcon from '@mui/icons-material/ColorLensSharp';
+import NewspaperSharpIcon from '@mui/icons-material/NewspaperSharp';
+import FiberNewSharpIcon from '@mui/icons-material/FiberNewSharp';
 
-      <li className="nav-item">
-        <Link to="/admin/product" className="nav-link">
-          Thêm sản phẩm
-        </Link>
-      </li>
+import './header.css';
+const AdminNav = () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-      <li className="nav-item">
-        <Link to="/admin/products" className="nav-link">
-          Danh sách sản phẩm
-        </Link>
-      </li>
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+  const [open, setOpen] = React.useState(true);
 
-      <li className="nav-item">
-        <Link to="/admin/category" className="nav-link">
-          Quản lý danh mục
-        </Link>
-      </li>
+  const handleClick = () => {
+    setOpen(!open);
+  };
+  const navItems = [
+    { text: "Trang chủ", path: "/admin/dashboard", icon: <DashboardIcon /> },
+    { text: "Thêm sản phẩm", path: "/admin/product", icon: <AddBoxIcon /> },
+    { text: "Danh sách sản phẩm", path: "/admin/products", icon: <ListIcon /> },
+    { text: "Quản lý danh mục", path: "/admin/category", icon: <CategoryIcon /> },
+    { text: "Quản lý danh mục con", path: "/admin/sub", icon: <ClassIcon /> },
+    { text: "Quản lý thương hiệu", path: "/admin/brand", icon: <LocalOfferSharpIcon /> },
+    { text: "Quản lý màu sắc", path: "/admin/color", icon: <ColorLensSharpIcon /> },
+    { text: "Quản lý Coupon", path: "/admin/coupon", icon: <MoneyIcon /> },
+    { text: "Tạo blog", path: "/admin/blog", icon: <FiberNewSharpIcon /> },
+    { text: "Danh sách blog", path: "/admin/blogs", icon: <NewspaperSharpIcon /> },
+    { text: "Đổi mật khẩu", path: "/user/password", icon: <PasswordIcon /> },
 
-      <li className="nav-item">
-        <Link to="/admin/sub" className="nav-link">
-          Quản lý danh mục con
-        </Link>
-      </li>
+  ];
 
-      <li className="nav-item">
-        <Link to="/admin/coupon" className="nav-link">
-          Quản lý mã giảm giá
-        </Link>
-      </li>
+  return (
+    <Box sx={{ width: '100%', maxWidth: 260, bgcolor: '', color: 'text.primary' }} >
+      <List component="nav" aria-label="main mailbox folders " >
+        {navItems.map((item, index) => (
+          <ListItemButton
+            component={Link}
+            to={item.path}
+            key={index}
+            className='my-4  '
+            //style={{
+            //  backgroundColor: selectedIndex === index ? '#007bff' : 'initial',
+            // color: selectedIndex === index ? '#fff' : 'initial',
+            // }}
+            onClick={(event) => handleListItemClick(event, index)}
+          >
+            <ListItemIcon>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItemButton>
 
-      <li className="nav-item">
-        <Link to="/user/password" className="nav-link">
-          Đổi mật khẩu
-        </Link>
-      </li>
-    </ul>
-  </nav>
-);
+        ))}
+
+
+      </List>
+
+    </Box>
+  );
+}
 
 export default AdminNav;

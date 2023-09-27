@@ -5,9 +5,9 @@ import { ShoppingOutlined } from '@ant-design/icons';
 const CategoryForm = ({ handleSubmit, name, setName }) => (
   <Form
     name="basic"
-    labelCol={{ span: 100 }}
-    wrapperCol={{ span: 160 }}
-    style={{ maxWidth: 2000 }}
+    labelCol={{ span: 3 }}
+    wrapperCol={{ span: 500}}
+    style={{ maxWidth: 4000 }}
     onFinish={handleSubmit}>
     <Form.Item
       label="Tên danh mục"
@@ -26,7 +26,7 @@ const CategoryForm = ({ handleSubmit, name, setName }) => (
     </Form.Item>
 
     <Form.Item
-      wrapperCol={{ offset: 2, span: 10 }}
+      wrapperCol={{ offset: 3, span: 10 }}
     >
       <Button type="primary" htmlType="submit" className="ml-2">
         Lưu lại

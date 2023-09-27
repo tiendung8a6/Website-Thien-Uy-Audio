@@ -9,6 +9,8 @@ const ProductCreateForm = ({
   setValues,
   values,
   handleCatagoryChange,
+  handleBrandChange,
+  handleColorChange,
   subOptions,
   showSub,
 }) => {
@@ -29,7 +31,7 @@ const ProductCreateForm = ({
     brand,
   } = values;
   const onFinish = async () => {
-    await handleSubmit(); 
+    await handleSubmit();
     console.log('Success:', values);
   };
 
@@ -152,13 +154,17 @@ const ProductCreateForm = ({
           },
         ]}
       >
-        <Select onChange={(value) => handleChange('color', value)} value={color} placeholder="Vui lòng chọn màu sắc">
+        <Select
+          onChange={(value) => handleColorChange(value)}
+          value={color}
+          placeholder="Vui lòng chọn màu sắc">
           <Option value="" disabled >Vui lòng chọn</Option>
-          {colors.map((c) => (
-            <Option key={c} value={c}>
-              {c}
-            </Option>
-          ))}
+          {colors.length > 0 &&
+            colors.map((cl) => (
+              <Option key={cl._id} value={cl._id}>
+                {cl.name}
+              </Option>
+            ))}
         </Select>
       </Form.Item>
 
@@ -173,13 +179,17 @@ const ProductCreateForm = ({
           },
         ]}
       >
-        <Select onChange={(value) => handleChange('brand', value)} value={brand} placeholder="Vui lòng chọn thương hiệu">
+        <Select
+          onChange={(value) => handleBrandChange(value)}
+          value={brand}
+          placeholder="Vui lòng chọn thương hiệu">
           <Option value="" disabled >Vui lòng chọn</Option>
-          {brands.map((b) => (
-            <Option key={b} value={b}>
-              {b}
-            </Option>
-          ))}
+          {brands.length > 0 &&
+            brands.map((b) => (
+              <Option key={b._id} value={b._id}>
+                {b.name}
+              </Option>
+            ))}
         </Select>
       </Form.Item>
 

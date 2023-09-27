@@ -10,6 +10,7 @@ import CarouselCardCustomer from "../components/CarouselCardCustomer/CarouselCar
 import RegisterNew from '../pages/auth/RegisterNew/RegisterNew'
 import Banner2 from "../components/home/Banner2";
 import Footer from "../components/footer/Footer";
+import SpeedDial from "../components/SpeedDial/SpeedDial";
 const Home = () => {
   return (
     <>
@@ -19,7 +20,6 @@ const Home = () => {
       </div> */}
 
       <Banner2></Banner2>
-      <h6 className="text-center p-3 mt-5 text-primary  "> Những sản phẩm nỗi bật nhất trong bộ sưu tập</h6>
       <h4 className="text-center p-3  mb-5 display-4 jumbotron">
         Sản Phẩm Mới Nhất
       </h4>
@@ -40,7 +40,7 @@ const Home = () => {
       </Watermark> */}
       <CategoryList />
 
-      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
+      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron ">
         Danh Mục Con
       </h4>
       <SubList />
@@ -48,6 +48,7 @@ const Home = () => {
 
       <RegisterNew></RegisterNew>
       <br />
+      <SpeedDial></SpeedDial>
       {/* <Footer></Footer> */}
     </>
   );

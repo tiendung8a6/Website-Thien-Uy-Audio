@@ -5,6 +5,10 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@babel/core": "^7.22.17",
+    "@ckeditor/ckeditor5-build-classic": "^39.0.2",
+    "@ckeditor/ckeditor5-image": "^39.0.2",
+    "@ckeditor/ckeditor5-react": "^6.1.0",
+    "@ckeditor/ckeditor5-upload": "^39.0.2",
     "@david.kucsai/react-pdf-table": "^0.3.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -20,6 +24,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.24.14",
     "axios": "^0.20.0",
+    "ckeditor4-react": "^5.0.0",
     "firebase": "^7.19.0",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
@@ -33,10 +38,12 @@
     "react-responsive-carousel": "^3.2.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
+    "react-slick": "^0.29.0",
     "react-star-ratings": "^2.3.0",
     "react-toastify": "^6.0.8",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
+    "slick-carousel": "^1.8.1",
     "typewriter-effect": "^2.13.1"
   },
   "scripts": {
