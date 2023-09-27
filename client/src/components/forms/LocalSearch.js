@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "antd";
-
+import './search.css'
 const { Search } = Input;
 const LocalSearch = ({ keyword, setKeyword }) => {
   const handleSearchChange = (e) => {
@@ -13,12 +13,10 @@ const LocalSearch = ({ keyword, setKeyword }) => {
       placeholder="Tìm kiếm danh mục"
       value={keyword}
       onChange={handleSearchChange}
-      className="mb-4"
+      className=" d-flex align-items-start"
       size="medium"
       enterButton
-      // style={{
-      //   width: 900,
-      // }}
+
     />
   );
 };

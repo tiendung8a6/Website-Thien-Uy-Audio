@@ -72,32 +72,32 @@ const ProductCreate = () => {
   const loadBrands = () =>
     getBrands().then((b) => setValues({ ...values, brands: b.data }));
 
-    const handleSubmit = () => {
-      // Trước khi tạo sản phẩm, tìm tên thương hiệu dựa trên id thương hiệu đã chọn
-      const selectedBrand = values.brands.find((b) => b._id === values.brand);
-    
-      // Tạo một object mới với trường brand là name của thương hiệu đã chọn
-      const updatedValues = {
-        ...values,
-        brand: selectedBrand ? selectedBrand.name : "",
-      };
-    
-      createProduct(updatedValues, user.token)
-        .then((res) => {
-          console.log(res);
-          message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1, () => {
-            window.location.reload();
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          notification.error({
-            message: "Thêm mới sản phẩm thất bại!",
-            description: 'Lỗi dự đoán: Sản phẩm đã tồn tại.',
-          });
-        });
+  const handleSubmit = () => {
+    // Trước khi tạo sản phẩm, tìm tên thương hiệu dựa trên id thương hiệu đã chọn
+    const selectedBrand = values.brands.find((b) => b._id === values.brand);
+
+    // Tạo một object mới với trường brand là name của thương hiệu đã chọn
+    const updatedValues = {
+      ...values,
+      brand: selectedBrand ? selectedBrand.name : "",
     };
-    
+
+    createProduct(updatedValues, user.token)
+      .then((res) => {
+        console.log(res);
+        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1, () => {
+          window.location.reload();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        notification.error({
+          message: "Thêm mới sản phẩm thất bại!",
+          description: 'Lỗi dự đoán: Sản phẩm đã tồn tại.',
+        });
+      });
+  };
+
   const handleChange = (fieldName, value) => {
     setValues({ ...values, [fieldName]: value });
     // console.log(e.target.name, " ----- ", e.target.value);
@@ -137,6 +137,7 @@ const ProductCreate = () => {
 
           <div className="p-3">
             <FileUpload
+              
               values={values}
               setValues={setValues}
               setLoading={setLoading}
