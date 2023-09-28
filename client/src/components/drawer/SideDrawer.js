@@ -3,6 +3,7 @@ import { Drawer, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import laptop from "../../images/laptop.png";
+import './drawer.css'
 
 const SideDrawer = () => {
   const dispatch = useDispatch();
