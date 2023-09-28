@@ -19,6 +19,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { getCategories } from "../../functions/category";
+import SearchNav from "./Search"
 import './header.css'
 
 const Header = () => {
@@ -97,6 +98,7 @@ const Header = () => {
           </Nav>
 
           <Nav className="">
+            <SearchNav></SearchNav>
 
             <Nav.Link as={Link} to="/cart" onClick={() => setCurrent("cart")} className="d-flex align-items-center" style={{ fontSize: '18px', marginRight: '10px' }}>
               <ShoppingCartOutlined />

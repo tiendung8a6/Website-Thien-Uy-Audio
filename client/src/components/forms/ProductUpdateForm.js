@@ -1,5 +1,7 @@
 import React from "react";
 import { Select } from "antd";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const { Option } = Select;
 
@@ -32,43 +34,82 @@ const ProductUpdateForm = ({
   } = values;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Title</label>
-        <input
+    <form onSubmit={handleSubmit} style={{ maxWidth: '500px', margin: '0 auto ' }}>
+      <InputGroup hasValidation>
+        <InputGroup.Text>Tên sản phẩm</InputGroup.Text>
+        <Form.Control
+          required
+          isValid={title ? true : false} // Set isValid to true if title is empty
+          isInvalid={title ? false : true}
           type="text"
           name="title"
           className="form-control"
           value={title}
           onChange={handleChange}
         />
-      </div>
+        <br />
+        <Form.Control.Feedback type="invalid">
+          Vui lòng nhập tên sản phẩm
+        </Form.Control.Feedback>
 
-      <div className="form-group">
-        <label>Description</label>
-        <input
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+
+      <InputGroup hasValidation>
+        <InputGroup.Text>Mô tả sản phẩm</InputGroup.Text>
+
+        <Form.Control
           type="text"
+          required
+          isValid={description ? true : false}
+          isInvalid={description ? false : true}
           name="description"
           className="form-control"
           value={description}
           onChange={handleChange}
+          as="textarea"
+          style={{ height: '38px' }}
         />
-      </div>
+        <br />
+        <Form.Control.Feedback type="invalid">
+          Vui lòng nhập mô tả sản phẩm
+        </Form.Control.Feedback>
 
-      <div className="form-group">
-        <label>Price</label>
-        <input
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+      <InputGroup hasValidation >
+        <InputGroup.Text>$Giá</InputGroup.Text>
+
+        <Form.Control
           type="number"
+          isValid={price ? true : false}
+          isInvalid={price ? false : true}
           name="price"
           className="form-control"
           value={price}
           onChange={handleChange}
-        />
-      </div>
 
-      <div className="form-group">
-        <label>Shipping</label>
-        <select
+        />
+        <Form.Control.Feedback type="invalid">
+          Vui lòng nhập giá tiền sản phẩm
+        </Form.Control.Feedback>
+
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+      <InputGroup hasValidation >
+        <InputGroup.Text>Giao hàng</InputGroup.Text>
+        <Form.Select
+          isValid={shipping ? true : false}
+          isInvalid={shipping ? false : true}
           value={shipping === "Yes" ? "Yes" : "No"}
           name="shipping"
           className="form-control"
@@ -76,23 +117,44 @@ const ProductUpdateForm = ({
         >
           <option value="No">No</option>
           <option value="Yes">Yes</option>
-        </select>
-      </div>
+        </Form.Select>
 
-      <div className="form-group">
-        <label>Quantity</label>
-        <input
+        <Form.Control.Feedback type="invalid">
+          Vui lòng chọn phương thức giao hàng  sản phẩm
+        </Form.Control.Feedback>
+
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+      <InputGroup hasValidation >
+        <InputGroup.Text>Số lượng</InputGroup.Text>
+
+        <Form.Control
+          isValid={quantity ? true : false}
+          isInvalid={quantity ? false : true}
           type="number"
           name="quantity"
           className="form-control"
           value={quantity}
           onChange={handleChange}
         />
-      </div>
+        <Form.Control.Feedback type="invalid">
+          Vui lòng nhập số lượng sản phẩm
+        </Form.Control.Feedback>
 
-      <div className="form-group">
-        <label>Color</label>
-        <select
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+
+      </InputGroup>
+
+      <InputGroup hasValidation>
+        <InputGroup.Text>Màu sắc</InputGroup.Text>
+        <Form.Select
+          isValid={color ? true : false}
+          isInvalid={color ? false : true}
           value={color}
           name="color"
           className="form-control"
@@ -103,12 +165,24 @@ const ProductUpdateForm = ({
               {c}
             </option>
           ))}
-        </select>
-      </div>
+        </Form.Select>
+        <br></br>
+        <Form.Control.Feedback type="invalid">
+          Vui lòng chọn màu sắc sản phẩm
+        </Form.Control.Feedback>
 
-      <div className="form-group">
-        <label>Brand</label>
-        <select
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+      <InputGroup hasValidation>
+        <InputGroup.Text>Thương hiệu</InputGroup.Text>
+        <Form.Select
+          isValid={brand ? true : false}
+          isInvalid={brand ? false : true}
+
+          type="text"
           value={brand}
           name="brand"
           className="form-control"
@@ -119,12 +193,21 @@ const ProductUpdateForm = ({
               {b}
             </option>
           ))}
-        </select>
-      </div>
+        </Form.Select>
+        <Form.Control.Feedback type="invalid">
+          Vui lòng chọn thương hiệu sản phẩm
+        </Form.Control.Feedback>
 
-      <div className="form-group">
-        <label>Category</label>
-        <select
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+      <InputGroup hasValidation>
+        <InputGroup.Text>Danh mục</InputGroup.Text>
+        <Form.Select
+          isValid={category ? true : false}
+          isInvalid={category ? false : true}
           name="category"
           className="form-control"
           onChange={handleCategoryChange}
@@ -136,14 +219,21 @@ const ProductUpdateForm = ({
                 {c.name}
               </option>
             ))}
-        </select>
-      </div>
+        </Form.Select>
+        <Form.Control.Feedback type="invalid">
+          Vui lòng chọn danh mục sản phẩm
+        </Form.Control.Feedback>
 
-      <div>
-        <label>Sub Categories</label>
-        <Select
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+      </InputGroup>
+
+      <InputGroup hasValidation>
+        <InputGroup.Text>Danh mục con</InputGroup.Text>
+        <Form.Select
           mode="multiple"
-          style={{ width: "100%" }}
+          // style={{ width: "100%" }}
           placeholder="Please select"
           value={arrayOfSubs}
           onChange={(value) => setArrayOfSubs(value)}
@@ -154,11 +244,19 @@ const ProductUpdateForm = ({
                 {s.name}
               </Option>
             ))}
-        </Select>
-      </div>
+        </Form.Select>
+        <Form.Control.Feedback type="invalid">
+          Vui lòng chọn danh mục con sản phẩm
+        </Form.Control.Feedback>
+
+        <Form.Control.Feedback type="valid">
+          Ok được đấy chứ
+        </Form.Control.Feedback>
+
+      </InputGroup>
 
       <br />
-      <button className="btn btn-outline-info">Save</button>
+      <button className="btn btn-outline-info" type="submit">Save</button>
     </form>
   );
 };
