@@ -30,7 +30,8 @@
 
 .CarouselCardCustomer {
   width: var(--carouselWidth);
-  margin: 0 0 0 var(--carouselLeftMargin);
+  /* margin: 0 0 0 var(--carouselLeftMargin); */
+  margin-left: -60px;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -61,7 +62,8 @@
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  width: calc(100% - var(--card-margin) * 2);
+  /* width: calc(100% - var(--card-margin) * 2); */
+  width: 100%;
   justify-content: space-between;
   padding: var(--card-margin);
   z-index: 10;

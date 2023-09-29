@@ -53,6 +53,7 @@ const BestSellers = () => {
             current={page}
             total={(productsCount / 3) * 10}
             onChange={(value) => setPage(value)}
+            simple
           />
         </nav>
       </div>
