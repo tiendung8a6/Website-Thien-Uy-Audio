@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminNav from "../../../components/nav/AdminNav";
 import { toast } from "react-toastify";
+import FileUpload from "../../../components/forms/FileUpload";
 import { useSelector } from "react-redux";
 import {
   createCategory,
@@ -15,10 +16,15 @@ import { Table, Button, Space, Pagination, Popconfirm, notification } from 'antd
 import { message } from 'antd';
 import moment from 'moment';
 
-const CategoryCreate = () => {
-  const { user } = useSelector((state) => ({ ...state }));
+const initialState = {
+  name: "",
+  images: [],
+};
 
-  const [name, setName] = useState("");
+const CategoryCreate = () => {
+  const [values, setValues] = useState(initialState);
+  const { user } = useSelector((state) => ({ ...state }));
+  // const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -32,28 +38,33 @@ const CategoryCreate = () => {
   const loadCategories = () =>
     getCategories().then((c) => setCategories(c.data));
 
-  const handleSubmit = (values) => {
-    setLoading(true);
-    createCategory({ name: values.name }, user.token)
-      .then((res) => {
-        setLoading(false);
-        setName("");
-        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
-          window.location.reload();
-        });
-        loadCategories();
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-        if (err.response.status === 400)
-          notification.error({
-            message: "Tạo danh mục thất bại!",
-            description:
-              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+    const handleSubmit = () => {
+      const updatedValues = {
+        ...values,
+      };
+    
+      console.log(updatedValues); 
+    
+      createCategory(updatedValues, user.token)
+        .then((res) => {
+          console.log(res);
+          message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
+            window.location.reload();
           });
-      });
-  };
+          loadCategories();
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          if (err.response.status === 400)
+            notification.error({
+              message: "Tạo danh mục thất bại!",
+              description:
+                'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+            });
+        });
+    };
+    
 
   const handleConfirmDelete = async (slug) => {
     setLoading(true);
@@ -83,6 +94,10 @@ const CategoryCreate = () => {
   const calculateIndex = (index) => {
     return (currentPage - 1) * itemsPerPage + index + 1;
   };
+  const handleChange = (fieldName, value) => {
+    setValues({ ...values, [fieldName]: value });
+    // console.log(e.target.name, " ----- ", e.target.value);
+  };
 
   return (
     <div className="container-fluid">
@@ -97,10 +112,19 @@ const CategoryCreate = () => {
             <h4>Tạo danh mục</h4>
           )}
 
+          <div className="p-3">
+            <FileUpload
+              values={values}
+              setValues={setValues}
+              setLoading={setLoading}
+            />
+          </div>
+
           <CategoryForm
             handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
+            handleChange={handleChange}
+            setValues={setValues}
+            values={values}
           />
 
           <h4 className="text-center mb-8">~~ Danh sách danh mục ~~</h4>
