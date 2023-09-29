@@ -9,7 +9,11 @@ const ProductUpdateForm = ({
   setValues,
   values,
   handleCategoryChange,
+  handleColorChange,
+  handleBrandChange,
   categories,
+  colors,
+  brands,
   subOptions,
   arrayOfSubs,
   setArrayOfSubs,
@@ -25,8 +29,8 @@ const ProductUpdateForm = ({
     shipping,
     quantity,
     images,
-    colors,
-    brands,
+    // colors,
+    // brands,
     color,
     brand,
   } = values;
@@ -93,32 +97,34 @@ const ProductUpdateForm = ({
       <div className="form-group">
         <label>Color</label>
         <select
-          value={color}
           name="color"
           className="form-control"
-          onChange={handleChange}
+          onChange={handleColorChange}
+          value={values.color}
         >
-          {colors.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
+          {colors.length > 0 &&
+            colors.map((cl) => (
+              <option key={cl._id} value={cl._id}>
+                {cl.name}
+              </option>
+            ))}
         </select>
       </div>
 
       <div className="form-group">
         <label>Brand</label>
         <select
-          value={brand}
           name="brand"
           className="form-control"
-          onChange={handleChange}
+          onChange={handleBrandChange}
+          value={values.brand}
         >
-          {brands.map((b) => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
+          {brands.length > 0 &&
+            brands.map((b) => (
+              <option key={b._id} value={b._id}>
+                {b.name}
+              </option>
+            ))}
         </select>
       </div>
 

@@ -7,6 +7,8 @@ import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
 import ProductUpdateForm from "../../../components/forms/ProductUpdateForm";
+import { getBrands } from "../../../functions/brand";
+import { getColors } from "../../../functions/color";
 
 const initialState = {
   title: "",
@@ -17,8 +19,8 @@ const initialState = {
   shipping: "",
   quantity: "",
   images: [],
-  colors: ["Black", "Brown", "Silver", "White", "Blue"],
-  brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+  colors: [],
+  brands: [],
   color: "",
   brand: "",
 };
@@ -31,7 +33,8 @@ const ProductUpdate = ({ match, history }) => {
   const [arrayOfSubs, setArrayOfSubs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [colors, setColors] = useState([]);
+  const [brands, setBrands] = useState([]);
   const { user } = useSelector((state) => ({ ...state }));
   // router
   const { slug } = match.params;
@@ -39,31 +42,41 @@ const ProductUpdate = ({ match, history }) => {
   useEffect(() => {
     loadProduct();
     loadCategories();
+    loadColors();
+    loadBrands();
   }, []);
 
   const loadProduct = () => {
     getProduct(slug).then((p) => {
-      // console.log("single product", p);
-      // 1 load single proudct
       setValues({ ...values, ...p.data });
-      // 2 load single product category subs
       getCategorySubs(p.data.category._id).then((res) => {
-        setSubOptions(res.data); // on first load, show default subs
+        setSubOptions(res.data); 
       });
-      // 3 prepare array of sub ids to show as default sub values in antd Select
       let arr = [];
       p.data.subs.map((s) => {
         arr.push(s._id);
       });
       console.log("ARR", arr);
-      setArrayOfSubs((prev) => arr); // required for ant design select to work
+      setArrayOfSubs((prev) => arr); 
     });
   };
-
+  
   const loadCategories = () =>
     getCategories().then((c) => {
       console.log("GET CATEGORIES IN UPDATE PRODUCT", c.data);
       setCategories(c.data);
+    });
+
+    const loadColors = () =>
+    getColors().then((cl) => {
+      console.log("GET COLORS IN UPDATE PRODUCT", cl.data);
+      setColors(cl.data);
+    });
+
+    const loadBrands = () =>
+    getBrands().then((b) => {
+      console.log("GET BRANDS IN UPDATE PRODUCT", b.data);
+      setBrands(b.data);
     });
 
   const handleSubmit = (e) => {
@@ -88,30 +101,34 @@ const ProductUpdate = ({ match, history }) => {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    // console.log(e.target.name, " ----- ", e.target.value);
   };
 
   const handleCategoryChange = (e) => {
     e.preventDefault();
     console.log("CLICKED CATEGORY", e.target.value);
     setValues({ ...values, subs: [] });
-
     setSelectedCategory(e.target.value);
-
     getCategorySubs(e.target.value).then((res) => {
       console.log("SUB OPTIONS ON CATGORY CLICK", res);
       setSubOptions(res.data);
     });
-
     console.log("EXISTING CATEGORY values.category", values.category);
-
-    // if user clicks back to the original category
-    // show its sub categories in default
     if (values.category._id === e.target.value) {
       loadProduct();
     }
-    // clear old sub category ids
     setArrayOfSubs([]);
+  };
+
+  const handleColorChange = (e) => {
+    e.preventDefault();
+    const selectedValue = e.target.value;
+    setValues({ ...values, color: selectedValue });
+  };
+  
+  const handleBrandChange = (e) => {
+    e.preventDefault();
+    const selectedValue = e.target.value;
+    setValues({ ...values, brand: selectedValue });
   };
 
   return (
@@ -125,7 +142,7 @@ const ProductUpdate = ({ match, history }) => {
           {loading ? (
             <LoadingOutlined className="text-danger h1" />
           ) : (
-            <h4>Product update</h4>
+            <h4>Chỉnh sửa sản phẩm</h4>
           )}
 
           {/* {JSON.stringify(values)} */}
@@ -143,12 +160,16 @@ const ProductUpdate = ({ match, history }) => {
             handleChange={handleChange}
             setValues={setValues}
             values={values}
-            handleCategoryChange={handleCategoryChange}
-            categories={categories}
             subOptions={subOptions}
             arrayOfSubs={arrayOfSubs}
             setArrayOfSubs={setArrayOfSubs}
+            handleCategoryChange={handleCategoryChange}
             selectedCategory={selectedCategory}
+            categories={categories}
+            handleColorChange={handleColorChange}
+            colors={colors}
+            handleBrandChange={handleBrandChange}
+            brands={brands}
           />
           <hr />
         </div>
