@@ -150,7 +150,6 @@ const ProductCreate = () => {
 
           <div className="p-3">
             <FileUpload
-              
               values={values}
               setValues={setValues}
               setLoading={setLoading}

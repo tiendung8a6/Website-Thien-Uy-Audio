@@ -13,18 +13,18 @@ import Footer from "../components/footer/Footer";
 import SpeedDial from "../components/SpeedDial/SpeedDial";
 import AdProduct from "../components/adProduct/AdProduct";
 
-import ScrollAnimation from 'react-animate-on-scroll';
-import "animate.css/animate.min.css";
+// import ScrollAnimation from 'react-animate-on-scroll';
+// import "animate.css/animate.min.css";
 
 const Home = () => {
   return (
     <>
-      <ScrollAnimation animateIn='wobble'
+      {/* <ScrollAnimation animateIn='wobble'
         initiallyVisible={true}>
         <h1>
           initiallyVisible
         </h1>
-      </ScrollAnimation>
+      </ScrollAnimation> */}
       <Carousel></Carousel>
       {/* <div className="jumbotron text-danger h1 font-weight-bold text-center">
         <Jumbotron text={["Latest Products", "New Arrivals", "Best Sellers"]} />
@@ -37,12 +37,12 @@ const Home = () => {
 
       <NewArrivals />
 
-      <ScrollAnimation animateIn='flipInY'
+      {/* <ScrollAnimation animateIn='flipInY'
         animateOut='flipOutY'>
         <h4 className="text-center p-3 mt-5 mb-5 display-4 ">
           Sản Phẩm Bán Chạy
         </h4>
-      </ScrollAnimation>
+      </ScrollAnimation> */}
 
       <AdProduct />
       <BestSellers />
