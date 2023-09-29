@@ -7,8 +7,6 @@ import { getCategories, getCategorySubs } from "../../../functions/category";
 import FileUpload from "../../../components/forms/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
 import ProductUpdateForm from "../../../components/forms/ProductUpdateForm";
-import { getBrands } from "../../../functions/brand";
-import { getColors } from "../../../functions/color";
 
 const initialState = {
   title: "",
@@ -19,8 +17,8 @@ const initialState = {
   shipping: "",
   quantity: "",
   images: [],
-  colors: [],
-  brands: [],
+  colors: ["Black", "Brown", "Silver", "White", "Blue"],
+  brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
   color: "",
   brand: "",
 };
@@ -45,32 +43,23 @@ const ProductUpdate = ({ match, history }) => {
 
   const loadProduct = () => {
     getProduct(slug).then((p) => {
+      // console.log("single product", p);
+      // 1 load single proudct
       setValues({ ...values, ...p.data });
+      // 2 load single product category subs
       getCategorySubs(p.data.category._id).then((res) => {
-        setSubOptions(res.data);
+        setSubOptions(res.data); // on first load, show default subs
       });
+      // 3 prepare array of sub ids to show as default sub values in antd Select
       let arr = [];
       p.data.subs.map((s) => {
         arr.push(s._id);
       });
-      setArrayOfSubs((prev) => arr);
-      // Truy vấn màu sắc và thương hiệu
-      getColors().then((colors) => {
-        setValues({
-          ...values,
-          colors: colors.data.map((color) => color.name), // Chuyển thành mảng các tên màu sắc
-        });
-      });
-  
-      getBrands().then((brands) => {
-        setValues({
-          ...values,
-          brands: brands.data.map((brand) => brand.name), // Chuyển thành mảng các tên thương hiệu
-        });
-      });
+      console.log("ARR", arr);
+      setArrayOfSubs((prev) => arr); // required for ant design select to work
     });
   };
-  
+
   const loadCategories = () =>
     getCategories().then((c) => {
       console.log("GET CATEGORIES IN UPDATE PRODUCT", c.data);
@@ -136,7 +125,7 @@ const ProductUpdate = ({ match, history }) => {
           {loading ? (
             <LoadingOutlined className="text-danger h1" />
           ) : (
-            <h4 style={{ textAlign: 'center', marginTop: '20px' }}>Product update</h4>
+            <h4>Product update</h4>
           )}
 
           {/* {JSON.stringify(values)} */}
