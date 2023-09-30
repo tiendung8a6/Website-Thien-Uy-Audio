@@ -104,7 +104,7 @@ const ProductUpdateForm = ({
         >
           {colors.length > 0 &&
             colors.map((cl) => (
-              <option key={cl._id} value={cl._id}>
+              <option key={cl.name} value={cl.name}>
                 {cl.name}
               </option>
             ))}
@@ -121,7 +121,7 @@ const ProductUpdateForm = ({
         >
           {brands.length > 0 &&
             brands.map((b) => (
-              <option key={b._id} value={b._id}>
+              <option key={b.name} value={b.name}>
                 {b.name}
               </option>
             ))}
