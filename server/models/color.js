@@ -1,14 +1,13 @@
 const mongoose = require("mongoose");
 
-const categorySchema = new mongoose.Schema(
+const colorSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      trim: true, //Cắt khoảng trắng
       unique: true,
       required: "Name is required",
-      minlength: [4, "Too short"],
-      maxlength: [40, "Too long"],
+      minlength: [1, "Too short"],
+      maxlength: [35, "Too long"],
     },
     slug: {
       type: String,
@@ -20,4 +19,4 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Category", categorySchema);
+module.exports = mongoose.model("Color", colorSchema);

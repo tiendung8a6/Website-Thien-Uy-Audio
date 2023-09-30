@@ -3,65 +3,65 @@ import AdminNav from "../../../components/nav/AdminNav";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import {
-  createCategory,
-  getCategories,
-  removeCategory,
-} from "../../../functions/category";
+  createColor,
+  getColors,
+  removeColor,
+} from "../../../functions/color";
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import CategoryForm from "../../../components/forms/CategoryForm";
+import ColorForm from "../../../components/forms/ColorForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
 import { Table, Button, Space, Pagination, Popconfirm, notification } from 'antd';
 import { message } from 'antd';
 import moment from 'moment';
 
-const CategoryCreate = () => {
+const ColorCreate = () => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState([]);
+  const [colors, setColors] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); //Hiển thị số trang mặc định là...
 
   useEffect(() => {
-    loadCategories();
+    loadColors();
   }, []);
 
-  const loadCategories = () =>
-    getCategories().then((c) => setCategories(c.data));
+  const loadColors = () =>
+    getColors().then((cl) => setColors(cl.data));
 
   const handleSubmit = (values) => {
     setLoading(true);
-    createCategory({ name: values.name }, user.token)
+    createColor({ name: values.name }, user.token)
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
+        message.success(`Màu "${res.data.name}" đã được tạo thành công!`, 1, () => {
           window.location.reload();
         });
-        loadCategories();
+        loadColors();
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
         if (err.response.status === 400)
           notification.error({
-            message: "Tạo danh mục thất bại!",
+            message: "Tạo màu thất bại!",
             description:
-              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+              'Lỗi dự đoán: Màu đã tồn tại, Màu quá ngắn hoặc quá dài (Từ 1 đến 35 ký tự).',
           });
       });
   };
 
   const handleConfirmDelete = async (slug) => {
     setLoading(true);
-    removeCategory(slug, user.token)
+    removeColor(slug, user.token)
       .then((res) => {
         setLoading(false);
-        message.success(`Danh mục "${res.data.name}" đã được xóa thành công!`);
-        loadCategories();
+        message.success(`Màu "${res.data.name}" đã được xóa thành công!`);
+        loadColors();
       })
       .catch((err) => {
         if (err.response.status === 400) {
@@ -94,21 +94,21 @@ const CategoryCreate = () => {
           {loading ? (
             <h4 className="text-danger">Loading..</h4>
           ) : (
-            <h4>Tạo danh mục</h4>
+            <h4>Tạo màu sắc</h4>
           )}
 
-          <CategoryForm
+          <ColorForm
             handleSubmit={handleSubmit}
             name={name}
             setName={setName}
           />
 
-          <h4 className="text-center mb-8">~~ Danh sách danh mục ~~</h4>
+          <h4 className="text-center mb-8">~~ Danh sách màu sắc ~~</h4>
 
           <LocalSearch keyword={keyword} setKeyword={setKeyword} />
           {/* step 5 */}
           <Table
-            dataSource={categories.filter(c => c.name.toLowerCase().includes(keyword))}
+            dataSource={colors.filter(cl => cl.name.toLowerCase().includes(keyword))}
             columns={[
               {
                 title: 'STT',
@@ -119,7 +119,7 @@ const CategoryCreate = () => {
                 ),
               },
               {
-                title: 'Tên danh mục',
+                title: 'Tên màu',
                 dataIndex: 'name',
                 key: 'name',
                 width: 200, // Đặt độ rộng của cột STT
@@ -139,7 +139,7 @@ const CategoryCreate = () => {
                 width: 50, // Đặt độ rộng của cột STT
                 render: (text, record) => (
                   <Space size="middle">
-                    <Link to={`/admin/category/${record.slug}`}>
+                    <Link to={`/admin/color/${record.slug}`}>
                       <Button
                         icon={<EditOutlined />}
                         type="primary"
@@ -148,7 +148,7 @@ const CategoryCreate = () => {
                       </Button>
                     </Link>
                     <Popconfirm
-                      title="Bạn có chắc muốn xóa danh mục này!"
+                      title="Bạn có chắc muốn xóa màu này!"
                       // description="Are you sure to delete this task?"
                       onConfirm={() => handleConfirmDelete(record.slug)}
                       onCancel={handleCancelDelete}
@@ -170,7 +170,7 @@ const CategoryCreate = () => {
             pagination={{
               current: currentPage,
               pageSize: itemsPerPage,
-              total: categories.length,
+              total: colors.length,
               showSizeChanger: true,
               showTotal: (total, range) =>
                 `${range[0]}-${range[1]} of ${total} items`,
@@ -187,4 +187,4 @@ const CategoryCreate = () => {
   );
 };
 
-export default CategoryCreate;
+export default ColorCreate;

@@ -208,10 +208,10 @@ const CreateCouponPage = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <AdminNav />
         </div>
-        <div className="col-md-10">
+        <div className="col">
           {loading ? (
             <h4 className="text-danger">Loading...</h4>
           ) : (
@@ -221,13 +221,13 @@ const CreateCouponPage = () => {
           <Form
             name="basic"
             labelCol={{
-              span: 2,
+              span: 3,
             }}
             wrapperCol={{
-              span: 250,
+              span: 204,
             }}
             style={{
-              maxWidth: 9000,
+              maxWidth: 2000,
             }}
             onFinish={handleSubmit}>
             <Form.Item
@@ -285,7 +285,7 @@ const CreateCouponPage = () => {
             </Form.Item>
 
             <Form.Item
-              wrapperCol={{ offset: 2, span: 10 }}
+              wrapperCol={{ offset: 3, span: 10 }}
             >
               <Button type="primary" htmlType="submit" className="ml-2">
                 Lưu lại

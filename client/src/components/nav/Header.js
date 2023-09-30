@@ -69,11 +69,11 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto d-flex ">
 
-            <Nav.Link to="/" onClick={() => setCurrent("home")} className=" ">
-              Trang chủ
+            <Nav.Link as={Link} to="/" onClick={() => setCurrent("home")} className=" ">
+              Page
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/" onClick={() => setCurrent("home")} className=" ">
+            <Nav.Link as={Link} to="/blog" className=" ">
               Blog
             </Nav.Link>
 
@@ -86,11 +86,11 @@ const Header = () => {
               ))}
             </NavDropdown>
 
-            <Nav.Link as={Link} to="/sendcontact" onClick={() => setCurrent("home")} className=" ">
+            <Nav.Link as={Link} to="/sendcontact" className=" ">
               Liên Hệ
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/" onClick={() => setCurrent("home")} className=" ">
+            <Nav.Link as={Link} to="/" className=" ">
               Page
             </Nav.Link>
 

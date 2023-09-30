@@ -98,7 +98,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               {description && description}
             </TabPane>
             <TabPane tab="More" key="2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              Liên hệ ngay: ................
             </TabPane>
 
           </Tabs>
@@ -145,6 +145,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   </RatingModal>,
                 ]}
               >
+                
                 <ProductListItems product={product} />
               </Card>
             </TableBody>

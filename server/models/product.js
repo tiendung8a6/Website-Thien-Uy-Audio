@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema(
       trim: true,
       required: true,
       text: true,
+      unique: true,
       // maxlength: 32,
 
     },
@@ -53,7 +54,8 @@ const productSchema = new mongoose.Schema(
     },
     color: {
       type: String,
-      enum: ["Black", "Brown", "Silver", "White", "Blue"],
+      // enum: ["Black", "Brown", "Silver", "White", "Blue"],
+      ref: "Color",
     },
     brand: {
       type: String,
