@@ -11,6 +11,7 @@ import { message, notification } from 'antd';
 const initialState = {
   title: "",
   content: "",
+  description: "",
   images: [],
 };
 
@@ -39,9 +40,9 @@ const BlogCreate = () => {
     const updatedValues = {
       ...values,
     };
-  
-    console.log(updatedValues); 
-  
+
+    console.log(updatedValues);
+
     createBlog(updatedValues, user.token)
       .then((res) => {
         console.log(res);
@@ -57,9 +58,7 @@ const BlogCreate = () => {
         });
       });
   };
-  
-  
-    
+
   const handleChange = (fieldName, value) => {
     setValues({ ...values, [fieldName]: value });
     // console.log(e.target.name, " ----- ", e.target.value);
