@@ -26,6 +26,7 @@ const AllBlogs = () => {
     setLoading(true);
     getBlogsByCount(100)
       .then((res) => {
+        console.log(res.data); // Add this line to check the API response
         setBlogs(res.data);
         setLoading(false);
       })
