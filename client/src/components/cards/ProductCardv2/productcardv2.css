@@ -9,12 +9,12 @@
 } */
 
 .card {
-	/* overflow: hidden; */
+	overflow: hidden;
 	margin: 120px auto;
 	width: 320px;
-	height: 400px;
+	height: 430px;
 	background-color: #272d40;
-	border-radius: 15px;
+	/* border-radius: 15px; */
 	padding: 40px 20px;
 	color: white;
 	position: relative;
@@ -39,7 +39,7 @@
 }
 
 .card:hover .card__img {
-	transform: translateY(-120px);
+	transform: translateY(-20px);
 	/* border-radius: 50%; */
 
 
@@ -57,13 +57,13 @@
 
 .card__title {
 	color: var(--primary-color);
-	margin-top: 10px;
+	margin-top: 8px;
 	transition: 0.5s;
 	text-align: center;
 }
 
 .card__price {
-	margin-top: 10px;
+	margin-top: 8px;
 
 	font-weight: 600;
 	font-size: 26px;
@@ -72,14 +72,15 @@
 }
 
 .card:hover .card__title {
-	transform: translateY(-90px);
-	display: flex;
-	align-items: start;
+	transform: translateY(-25px);
+	text-align: center;
+	/* align-items: start; */
+	text-align: center;
 }
 
 .card:hover .card__price {
-	transform: translateY(-80px);
-	display: flex;
+	transform: translateY(-35px);
+	/* display: flex; */
 	justify-content: start;
 }
 
@@ -93,13 +94,17 @@
 }
 
 .card__size {
-	margin-top: 100px;
+	margin-top: 10px;
 }
 
 .card:hover .card__size {
-	margin-top: -80px;
+	margin-top: -50px;
 }
 
+.card:hover .card_description {
+	margin-top: -30px;
+
+}
 
 /* .BottomCard {
 	display: none;

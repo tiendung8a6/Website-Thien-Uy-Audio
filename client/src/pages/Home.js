@@ -41,16 +41,15 @@ const Home = () => {
       <Carousel></Carousel>
 
       <Banner2></Banner2>
-      <ScrollAnimation></ScrollAnimation>
-      <section style={{ marginTop: '-20px' }}>
+
+      <section >
         <div className="container reveal">
-          <h1 className="text-center   mb-5 display-4 jumbotron">
-            Blog đang chú ý
-          </h1>
-          <h4 className="text-center mb-5 "><Link to="/blog"><KeyboardDoubleArrowRightIcon />Tất cả bài Blog</Link> </h4>
+          <h4 className="text-center p-3  mb-5 display-4 jumbotron">
+            Sản Phẩm Mới Nhất
+          </h4>
           <div className="text-container">
-            <div className="text-box">
-              <BlogHome />
+            <div className="text-box " >
+              <NewArrivals />
             </div>
 
           </div>
@@ -69,21 +68,10 @@ const Home = () => {
         </div>
       </section>
 
+      <ScrollAnimation></ScrollAnimation>
 
-      <section >
-        <div className="container reveal">
-          <h4 className="text-center p-3  mb-5 display-4 jumbotron">
-            Sản Phẩm Mới Nhất
-          </h4>
-          <div className="text-container">
-            <div className="text-box">
-              <NewArrivals />
-            </div>
 
-          </div>
-        </div>
-      </section>
-      <br></br>
+
       <section >
         <div className="container reveal">
           <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
@@ -92,6 +80,21 @@ const Home = () => {
           <div className="text-container">
             <div className="text-box">
               <BestSellers />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '-20px' }}>
+        <div className="container reveal">
+          <h1 className="text-center   mb-5 display-4 jumbotron">
+            Blog đang chú ý
+          </h1>
+          <h4 className="text-center mb-5 "><Link to="/blog"><KeyboardDoubleArrowRightIcon />Tất cả bài Blog</Link> </h4>
+          <div className="text-container">
+            <div className="text-box">
+              <BlogHome />
             </div>
 
           </div>
@@ -111,16 +114,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* 
-      <Watermark content="Ant Design">
-        <div style={{ height: 500 }} />
-      </Watermark> */}
 
-
-      {/* <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron ">
-        Danh Mục Con
-      </h4>
-      <SubList /> */}
 
       <section>
         <div className="container reveal">

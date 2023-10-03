@@ -45,7 +45,7 @@ export default function SearchNav() {
     return (
         <React.Fragment>
             <Button onClick={handleClickOpen} >
-                <SearchIcon />Search
+                <SearchIcon />Tìm kiếm
             </Button>
             <Dialog
                 fullWidth={fullWidth}

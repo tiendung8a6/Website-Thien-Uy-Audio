@@ -12,6 +12,7 @@ const SingleBlog = (blog) => {
                 <div className="col">
 
                     <div>
+                        
                         <h2>{title}</h2>
 
                         <p>{content}</p>

@@ -145,7 +145,7 @@ const ProductCard = ({ product }) => {
   const { images, title, description, slug, price } = product;
 
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }} >
 
       {errorMessage && (
         <div style={{ position: 'relative' }}>
@@ -163,7 +163,7 @@ const ProductCard = ({ product }) => {
       )}
 
 
-      <Card sx={{ Width: 300 }} className='cardproduct'>
+      <Card sx={{ width: 350 }} className='cardproduct p-auto' style={{ justifyContent: 'center', }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -177,18 +177,18 @@ const ProductCard = ({ product }) => {
           }
         />
 
-        {/* <CardMedia
+        <CardMedia
           component="img"
-          height="150" // Adjust the height as needed
+          height="full" // Adjust the height as needed
           src={images && images.length ? images[0].url : laptop}
           alt="Product Image"
           style={{ objectFit: "cover" }}
           className="p-1"
-        /> */}
-        <Card>
+        />
+        {/* <Card>
           {images && images.length ? (
             <Carousel showArrows={true} autoPlay infiniteLoop showThumbs={false} className='carousel-style'>
-              {images && images.map((i) => <img src={i.url} key={i.public_id} />)}
+              {images && images.map((i) => <img src={i.url} key={i.public_id} width={300} height={300} />)}
             </Carousel>
           ) : (
             <CardMedia
@@ -200,7 +200,7 @@ const ProductCard = ({ product }) => {
               className="p-1"
             />
           )}
-        </Card>
+        </Card> */}
 
 
 
@@ -256,7 +256,7 @@ const ProductCard = ({ product }) => {
         </Collapse>
       </Card >
       <br></br>
-    </>
+    </div>
   );
 };
 

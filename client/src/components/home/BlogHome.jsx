@@ -86,18 +86,19 @@ const AllBlogs = () => {
                         <h4 className="text-danger">Loading...</h4>
                     ) : (
                         <div>
-                        
-                            
-                            <div className="row ">
+
+
+                            <div className="row mx-auto">
                                 {(currentBlogs.map((blog) => (
-                                    <div key={blog._id} className="col-md-4 pb-3">
-                                        <BlogCardV2 blog={blog} />
+                                    <div key={blog._id} className="col-md-4 pb-3   " >
+                                        <BlogCardV2 blog={blog} className=" " />
                                     </div>
                                 ))
                                 )}
                             </div>
 
                             <Pagination
+                                simple
                                 current={currentPage}
                                 total={filteredBlogs.length}
                                 pageSize={blogsPerPage}

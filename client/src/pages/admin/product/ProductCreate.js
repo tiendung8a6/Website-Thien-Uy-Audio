@@ -20,23 +20,7 @@ const initialState = {
   subs: [],
   shipping: "",
   quantity: "",
-  images: [
-    // {
-    //   public_id: "jwrzeubemmypod99e8lz",
-    //   url:
-    //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480909/jwrzeubemmypod99e8lz.jpg",
-    // },
-    // {
-    //   public_id: "j7uerlvhog1eic0oyize",
-    //   url:
-    //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480912/j7uerlvhog1eic0oyize.jpg",
-    // },
-    // {
-    //   public_id: "ho6wnp7sugyemnmtoogf",
-    //   url:
-    //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480913/ho6wnp7sugyemnmtoogf.jpg",
-    // },
-  ],
+  images: [],
   colors: [],
   brands: [],
   brand: "",
@@ -150,7 +134,6 @@ const ProductCreate = () => {
 
           <div className="p-3">
             <FileUpload
-              
               values={values}
               setValues={setValues}
               setLoading={setLoading}

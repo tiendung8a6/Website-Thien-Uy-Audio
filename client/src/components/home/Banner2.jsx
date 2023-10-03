@@ -16,7 +16,7 @@ const Banner2 = () => {
 
 
         <Container>
-            <Row xs={1} md={1} lg={2} className='mt-5'>
+            <Row xs={1} md={1} lg={2} className='mt-5 mb-5 '>
                 <Col>
                     <Row  >
                         <Col>
