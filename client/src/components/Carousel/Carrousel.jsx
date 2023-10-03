@@ -3,8 +3,8 @@ import Jumbotron from "../../components/cards/Jumbotron"
 
 import Banner1 from "../ImgBanner/Banner1.png"
 import Banner2 from "../ImgBanner/Banner2.png"
-import Banner3 from "../ImgBanner/Banner3.png"
-import Banner4 from "../ImgBanner/Banner4.png"
+// import Banner3 from "../ImgBanner/Banner3.png"
+// import Banner4 from "../ImgBanner/Banner4.png"
 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval={10000}>
-                        <img src={Banner3} className="d-block w-100" alt="..." />
+                        <img src={Banner1} className="d-block w-100" alt="..." />
                         <div className="carousel-caption d-none d-md-block">
                             <div className="jumbotron text-primary h1 font-weight-bold text-center">
                                 {/* <Jumbotron text={["Latest Products", "New Arrivals", "Best Sellers"]} /> */}
@@ -28,7 +28,7 @@ const App = () => {
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval={2000}>
-                        <img src={Banner4} className="d-block w-100" alt="..." />
+                        <img src={Banner2} className="d-block w-100" alt="..." />
                         <div className="carousel-caption d-none d-md-block">
 
                         </div>
