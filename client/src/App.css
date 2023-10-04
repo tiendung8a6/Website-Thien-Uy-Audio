@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Nunito&display=swap');
+
+body {
+    overflow-x: hidden;
+    font-family: 'Dancing Script', cursive;
+
+    font-family: 'Nunito', sans-serif;
+
+}

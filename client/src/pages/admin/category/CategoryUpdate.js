@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { getCategory, updateCategory } from "../../../functions/category";
 import CategoryForm from "../../../components/forms/CategoryForm";
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 const CategoryUpdate = ({ history, match }) => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -19,23 +19,28 @@ const CategoryUpdate = ({ history, match }) => {
   const loadCategory = () =>
     getCategory(match.params.slug).then((c) => setName(c.data.name));
 
-    const handleSubmit = (values) => {
-      setLoading(true);
-      updateCategory(match.params.slug, { name: values.name }, user.token)
-        .then((res) => {
-          setLoading(false);
-          setName("");
-          message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1.2 , () => {
-            window.location.reload();
-          });
-          history.push("/admin/category");
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-          if (err.response.status === 400) toast.error(err.response.data);
+  const handleSubmit = (values) => {
+    setLoading(true);
+    updateCategory(match.params.slug, { name: values.name }, user.token)
+      .then((res) => {
+        setLoading(false);
+        setName("");
+        message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1, () => {
+          window.location.reload();
         });
-    };
+        history.push("/admin/category");
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        if (err.response.status === 400)
+          notification.error({
+            message: "Chỉnh sửa danh mục thất bại!",
+            description:
+              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+          });
+      });
+  };
 
   return (
     <div className="container-fluid">

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
-import { Table, Button, Space, Pagination, Popconfirm } from 'antd';
+import { Table, Button, Space, Pagination, Popconfirm, notification } from 'antd';
 import { message } from 'antd';
 import moment from 'moment';
 
@@ -38,7 +38,7 @@ const CategoryCreate = () => {
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1.2, () => {
+        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
           window.location.reload();
         });
         loadCategories();
@@ -46,7 +46,12 @@ const CategoryCreate = () => {
       .catch((err) => {
         console.log(err);
         setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
+        if (err.response.status === 400)
+          notification.error({
+            message: "Tạo danh mục thất bại!",
+            description:
+              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+          });
       });
   };
 
@@ -55,7 +60,7 @@ const CategoryCreate = () => {
     removeCategory(slug, user.token)
       .then((res) => {
         setLoading(false);
-        message.error(`Danh mục "${res.data.name}" đã được xóa thành công!`);
+        message.success(`Danh mục "${res.data.name}" đã được xóa thành công!`);
         loadCategories();
       })
       .catch((err) => {
@@ -135,7 +140,10 @@ const CategoryCreate = () => {
                 render: (text, record) => (
                   <Space size="middle">
                     <Link to={`/admin/category/${record.slug}`}>
-                      <Button icon={<EditOutlined />} type="primary">
+                      <Button
+                        icon={<EditOutlined />}
+                        type="primary"
+                        className='d-flex align-items-center '>
                         Sửa
                       </Button>
                     </Link>
@@ -150,7 +158,7 @@ const CategoryCreate = () => {
                       <Button
                         icon={<DeleteOutlined />}
                         type="danger"
-                      >
+                        className='d-flex align-items-center'>
                         Xóa
                       </Button>
                     </Popconfirm>

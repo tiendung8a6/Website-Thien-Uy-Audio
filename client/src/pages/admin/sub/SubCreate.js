@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import { getCategories } from "../../../functions/category";
 import { createSub, getSub, removeSub, getSubs } from "../../../functions/sub";
 import { Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, ShoppingOutlined } from "@ant-design/icons";
 import CategoryForm from "../../../components/forms/CategoryForm";
 import LocalSearch from "../../../components/forms/LocalSearch";
-import { message, Button, Form, Input, Select, Space, Table, Popconfirm } from 'antd';
+import { message, Button, Form, Input, Select, Space, Table, Popconfirm, notification } from 'antd';
 import moment from 'moment';
 
 const SubCreate = () => {
@@ -47,7 +47,7 @@ const SubCreate = () => {
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục con "${res.data.name}" đã được tạo thành công!`, 1.2, () => {
+        message.success(`Danh mục con "${res.data.name}" đã được tạo thành công!`, 1, () => {
           window.location.reload();
         });
         loadSubs();
@@ -55,7 +55,12 @@ const SubCreate = () => {
       .catch((err) => {
         console.log(err);
         setLoading(false);
-        if (err.response.status === 400) toast.error(err.response.data);
+        if (err.response.status === 400)
+          notification.error({
+            message: "Tạo danh mục con thất bại!",
+            description:
+              'Lỗi dự đoán: Danh mục con đã tồn tại, Tên danh mục con quá ngắn hoặc quá dài (Từ 4 đến 35 ký tự).',
+          });
       });
   };
 
@@ -64,7 +69,7 @@ const SubCreate = () => {
     removeSub(slug, user.token)
       .then((res) => {
         setLoading(false);
-        message.error(`Danh mục con "${res.data.name}" đã được xóa thành công!`);
+        message.success(`Danh mục con "${res.data.name}" đã được xóa thành công!`);
         loadSubs();
       })
       .catch((err) => {
@@ -88,7 +93,9 @@ const SubCreate = () => {
   };
 
   const { Option } = Select;
+
   const onFinish = async (values) => {
+    await handleSubmit(values);
     console.log('Success:', values);
   };
 
@@ -115,50 +122,70 @@ const SubCreate = () => {
           <Form
             name="basic"
             labelCol={{
-              span: 8,
+              span: 0,
             }}
             wrapperCol={{
-              span: 16,
+              span: 240,
             }}
             style={{
-              maxWidth: 600,
+              maxWidth: 2000,
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >
-          </Form>
-
-          <Form.Item
-            label="Danh mục cha"
-            name="category"
-            rules={[
-              {
-                required: true,
-                message: "Vui lòng chọn danh mục cha từ danh sách!",
-              },
-            ]}
-          >
-            <Select
+            <Form.Item
+              label="Danh mục cha"
               name="category"
-              className="form-control"
-              onChange={(value) => setCategory(value)} // Use 'value' directly
-              placeholder="Vui lòng chọn danh mục từ danh sách"
+              rules={[
+                {
+                  required: true,
+                  message: "Vui lòng chọn danh mục cha từ danh sách!",
+                },
+              ]}
             >
-              <Option value="" disabled >Vui lòng chọn</Option>
-              {categories.length > 0 &&
-                categories.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
-            </Select>
-          </Form.Item>
+              <Select
+                name="category"
+                className="form-control"
+                onChange={(value) => setCategory(value)} // Use 'value' directly
+                placeholder="Vui lòng chọn danh mục từ danh sách"
+              >
+                <Option value="" disabled >Vui lòng chọn</Option>
+                {categories.length > 0 &&
+                  categories.map((c) => (
+                    <Option key={c._id} value={c._id}>
+                      {c.name}
+                    </Option>
+                  ))}
+              </Select>
+            </Form.Item>
 
-          <CategoryForm
-            handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
-          />
+            <Form.Item
+              label="Tên danh mục"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Vui lòng nhập tên danh mục!'
+                },
+              ]}
+            >
+              <Input
+                type="text"
+                autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                prefix={<ShoppingOutlined />}
+              />
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{ offset: 2, span: 10 }}
+            >
+              <Button type="primary" htmlType="submit" className="ml-2">
+                Lưu lại
+              </Button>
+            </Form.Item>
+          </Form>
 
           <h4 className="text-center mb-8">~~ Danh sách danh mục con ~~</h4>
 
@@ -199,7 +226,10 @@ const SubCreate = () => {
                 render: (text, record) => (
                   <Space size="middle">
                     <Link to={`/admin/sub/${record.slug}`}>
-                      <Button icon={<EditOutlined />} type="primary">
+                      <Button
+                        icon={<EditOutlined />}
+                        type="primary"
+                        className='d-flex align-items-center '>
                         Sửa
                       </Button>
                     </Link>
@@ -214,7 +244,7 @@ const SubCreate = () => {
                       <Button
                         icon={<DeleteOutlined />}
                         type="danger"
-                      >
+                        className='d-flex align-items-center '>
                         Xóa
                       </Button>
                     </Popconfirm>

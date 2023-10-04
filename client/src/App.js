@@ -7,6 +7,8 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { currentUser } from "./functions/auth";
 import { LoadingOutlined } from "@ant-design/icons";
+import './App.css'
+import Footer from "./components/footer/Footer";
 
 // import Login from "./pages/auth/Login";
 // import Register from "./pages/auth/Register";
@@ -47,6 +49,7 @@ const SideDrawer = lazy(() => import("./components/drawer/SideDrawer"));
 
 const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const FormContact = lazy(() => import("./components/FormContact/FromContact"));
 const History = lazy(() => import("./pages/user/History"));
 const UserRoute = lazy(() => import("./components/routes/UserRoute"));
 const AdminRoute = lazy(() => import("./components/routes/AdminRoute"));
@@ -58,6 +61,12 @@ const CategoryCreate = lazy(() =>
 );
 const CategoryUpdate = lazy(() =>
   import("./pages/admin/category/CategoryUpdate")
+);
+const BrandCreate = lazy(() =>
+  import("./pages/admin/brand/BrandCreate")
+);
+const BrandUpdate = lazy(() =>
+  import("./pages/admin/brand/BrandUpdate")
 );
 const SubCreate = lazy(() => import("./pages/admin/sub/SubCreate"));
 const SubUpdate = lazy(() => import("./pages/admin/sub/SubUpdate"));
@@ -124,16 +133,18 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
+
+        <Route exact path="/sendcontact" component={FormContact} />
+        
         <UserRoute exact path="/user/history" component={History} />
         <UserRoute exact path="/user/password" component={Password} />
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
+
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
-        <AdminRoute
-          exact
-          path="/admin/category/:slug"
-          component={CategoryUpdate}
-        />
+        <AdminRoute exact path="/admin/category/:slug" component={CategoryUpdate}/>
+        <AdminRoute exact path="/admin/brand" component={BrandCreate} />
+        <AdminRoute exact path="/admin/brand/:slug" component={BrandUpdate}/>
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
@@ -152,6 +163,7 @@ const App = () => {
         <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
         <UserRoute exact path="/payment" component={Payment} />
       </Switch>
+      {/* <Footer></Footer> */}
     </Suspense>
   );
 };

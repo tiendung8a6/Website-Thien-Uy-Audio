@@ -14,6 +14,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToWishlist } from "../../functions/user";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const { TabPane } = Tabs;
 
@@ -74,61 +81,80 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
   return (
     <>
-      <div className="col-md-7">
-        {images && images.length ? (
-          <Carousel showArrows={true} autoPlay infiniteLoop>
-            {images && images.map((i) => <img src={i.url} key={i.public_id} />)}
-          </Carousel>
-        ) : (
-          <Card cover={<img src={Laptop} className="mb-3 card-image" />}></Card>
-        )}
+      <div className="col-md-7" >
+        <Paper >
+          {images && images.length ? (
+            <Carousel showArrows={true} autoPlay infiniteLoop>
+              {images && images.map((i) => <img src={i.url} key={i.public_id} />)}
+            </Carousel>
+          ) : (
+            <Card cover={<img src={Laptop} className="mb-3 card-image" />}></Card>
+          )}
+        </Paper>
+        <Paper style={{ height: '200px', marginTop: '10px' }}>
+          <Tabs type="card" >
 
-        <Tabs type="card">
-          <TabPane tab="Description" key="1">
-            {description && description}
-          </TabPane>
-          <TabPane tab="More" key="2">
-            Call use on xxxx xxx xxx to learn more about this product.
-          </TabPane>
-        </Tabs>
+            <TabPane tab="Description" key="1">
+              {description && description}
+            </TabPane>
+            <TabPane tab="More" key="2">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            </TabPane>
+
+          </Tabs>
+        </Paper >
       </div>
 
-      <div className="col-md-5">
-        <h1 className="bg-info p-3">{title}</h1>
+      <Paper className="col-md-5" elevation={3}>
+        <TableContainer >
+          <Table sx={{ minWidth: 500 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell><h1 style={{ textAlign: 'center' }}>{title}</h1></TableCell>
 
-        {product && product.ratings && product.ratings.length > 0 ? (
-          showAverage(product)
-        ) : (
-          <div className="text-center pt-1 pb-3">No rating yet</div>
-        )}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {product && product.ratings && product.ratings.length > 0 ? (
+                showAverage(product)
+              ) : (
+                <div className="text-center pt-1 pb-3">Chưa có đánh giá</div>
+              )}
 
-        <Card
-          actions={[
-            <Tooltip placement="top" title={tooltip}>
-              <a onClick={handleAddToCart} disabled={product.quantity < 1}>
-                <ShoppingCartOutlined className="text-danger" />
-                <br />
-                {product.quantity < 1 ? "Out of Stock" : "Add To Cart"}
-              </a>
-            </Tooltip>,
-            <a onClick={handleAddToWishlist}>
-              <HeartOutlined className="text-info" /> <br /> Add to Wishlist
-            </a>,
-            <RatingModal>
-              <StarRating
-                name={_id}
-                numberOfStars={5}
-                rating={star}
-                changeRating={onStarClick}
-                isSelectable={true}
-                starRatedColor="red"
-              />
-            </RatingModal>,
-          ]}
-        >
-          <ProductListItems product={product} />
-        </Card>
-      </div>
+              <Card style={{ marginBottom: '10px' }}
+                actions={[
+                  <Tooltip placement="top" title={tooltip}>
+                    <a onClick={handleAddToCart} disabled={product.quantity < 1}>
+                      <ShoppingCartOutlined className="text-danger" />
+                      <br />
+                      {product.quantity < 1 ? "Out of Stock" : "Add To Cart"}
+                    </a>
+                  </Tooltip>,
+                  <a onClick={handleAddToWishlist}>
+                    <HeartOutlined className="text-info" /> <br /> Add to Wishlist
+                  </a>,
+                  <RatingModal>
+                    <StarRating
+                      name={_id}
+                      numberOfStars={5}
+                      rating={star}
+                      changeRating={onStarClick}
+                      isSelectable={true}
+                      starRatedColor="red"
+                    />
+                  </RatingModal>,
+                ]}
+              >
+                <ProductListItems product={product} />
+              </Card>
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+
+
+
+      </Paper>
     </>
   );
 };

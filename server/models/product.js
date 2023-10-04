@@ -7,26 +7,27 @@ const productSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      maxlength: 32,
       text: true,
+      // maxlength: 32,
+
     },
     slug: {
       type: String,
       unique: true,
-      lowercase: true,
+      lowercase: true, //chuyển thành chữ thường
       index: true,
     },
     description: {
       type: String,
       required: true,
-      maxlength: 2000,
+      // maxlength: 2000,
       text: true,
     },
     price: {
       type: Number,
       required: true,
       trim: true,
-      maxlength: 32,
+      // maxlength: 32,
     },
     category: {
       type: ObjectId,
@@ -56,7 +57,8 @@ const productSchema = new mongoose.Schema(
     },
     brand: {
       type: String,
-      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      // enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+      ref: "Brand",
     },
     ratings: [
       {

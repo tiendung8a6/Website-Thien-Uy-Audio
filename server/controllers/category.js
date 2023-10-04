@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
     res.json(await new Category({ name, slug: slugify(name) }).save());
   } catch (err) {
     // console.log(err);
-    res.status(400).send("Create category failed");
+    res.status(400).send("Tạo danh mục thất bại");
   }
 };
 
@@ -20,7 +20,6 @@ exports.list = async (req, res) =>
 
 exports.read = async (req, res) => {
   let category = await Category.findOne({ slug: req.params.slug }).exec();
-  // res.json(category);
   const products = await Product.find({ category }).populate("category").exec();
 
   res.json({
@@ -39,18 +38,33 @@ exports.update = async (req, res) => {
     );
     res.json(updated);
   } catch (err) {
-    res.status(400).send("Category update failed");
+    res.status(400).send("Chỉnh sửa danh mục thất bại!");
   }
 };
 
+// exports.remove = async (req, res) => {
+//   try {
+//     const deleted = await Category.findOneAndDelete({ slug: req.params.slug });
+//     res.json(deleted);
+//   } catch (err) {
+//     res.status(400).send("Category delete failed");
+//   }
+// };
+
+//update code -> add delete products
 exports.remove = async (req, res) => {
   try {
+    const category = await Category.findOne({ slug: req.params.slug });
+    await Product.deleteMany({ category });
+
     const deleted = await Category.findOneAndDelete({ slug: req.params.slug });
+
     res.json(deleted);
   } catch (err) {
     res.status(400).send("Category delete failed");
   }
 };
+
 
 exports.getSubs = (req, res) => {
   Sub.find({ parent: req.params._id }).exec((err, subs) => {

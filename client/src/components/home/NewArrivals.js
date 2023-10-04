@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getProducts, getProductsCount } from "../../functions/product";
-import ProductCard from "../cards/ProductCard";
+import ProductCardv2 from "../cards/ProductCardv2/ProductCardv2";
 import LoadingCard from "../cards/LoadingCard";
 import { Pagination } from "antd";
+
+// import Pagination from '@mui/material/Pagination';
+// import Stack from '@mui/material/Stack';
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
@@ -36,7 +39,7 @@ const NewArrivals = () => {
           <div className="row">
             {products.map((product) => (
               <div key={product._id} className="col-md-4">
-                <ProductCard product={product} />
+                <ProductCardv2 product={product} />
               </div>
             ))}
           </div>
@@ -44,12 +47,14 @@ const NewArrivals = () => {
       </div>
 
       <div className="row">
-        <nav className="col-md-4 offset-md-4 text-center pt-5 p-3">
+        <nav className="col-md-4 offset-md-4 d-flex justify-content-center pt-5 p-3">
           <Pagination
+            simple
             current={page}
             total={(productsCount / 3) * 10}
             onChange={(value) => setPage(value)}
           />
+
         </nav>
       </div>
     </>
