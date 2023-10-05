@@ -146,15 +146,15 @@ const ProductCard = ({ product }) => {
 							<div className="text-center pt-1 pb-3">No rating yet</div>
 						)}
 					</div>
-					<Meta
+					<Meta className="card_description"
 						description={
 							<Typography
 								sx={{
-									color: 'white', // Change this to your desired color
-									fontSize: '16px', // Add other styling properties as needed
+									color: 'white',
+									fontSize: '16px',
 								}}
 							>
-								{description && `${description.substring(0, 60)}..... `}
+								{description && `${description.substring(0, 20)}..... `}
 								<Link to={`/product/${slug}`} style={{ color: 'white' }}> xem thêm</Link>
 							</Typography>
 						}
@@ -165,7 +165,7 @@ const ProductCard = ({ product }) => {
 						<BottomNavigation
 							showLabels
 
-							style={{ width: '100%', backgroundColor: '#272d40', marginTop: '20px' }}
+							style={{ width: '100%', backgroundColor: "transparent", marginTop: '20px' }}
 						>
 							<BottomNavigationAction component={Link} to={`/product/${slug}`} label="Xem" icon={<VisibilityOutlinedIcon className='hover_ProductCardIconv2'
 							/>} />
