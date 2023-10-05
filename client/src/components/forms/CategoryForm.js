@@ -1,46 +1,14 @@
 import React from "react";
-import { Button, Form, Input } from 'antd';
+import { Form, Input, Button } from "antd";
 import { ShoppingOutlined } from '@ant-design/icons';
 
-const CategoryForm = ({
-  handleSubmit,
-  handleChange,
-  values,
-}) => {
-  // destructure
-  const {
-    name,
-    images,
-  } = values;
-
-  const onFinish = async () => {
-    await handleSubmit();
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
-  return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 3,
-      }}
-      wrapperCol={{
-        span: 600,
-      }}
-      style={{
-        maxWidth: 9000,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-
+const CategoryForm = ({ handleSubmit, name, setName }) => (
+  <Form
+    name="basic"
+    labelCol={{ span: 3 }}
+    wrapperCol={{ span: 500}}
+    style={{ maxWidth: 4000 }}
+    onFinish={handleSubmit}>
     <Form.Item
       label="Tên danh mục"
       name="name"
@@ -52,18 +20,19 @@ const CategoryForm = ({
         type="text"
         autoFocus
         value={name}
-        onChange={(e) => handleChange('name', e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         prefix={<ShoppingOutlined />}
       />
     </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 3, span: 16 }}>
-        <Button type="primary" htmlType="submit" className="ant-btn ant-btn-primary ant-btn-lg ant-btn-hover">
-          Lưu
-        </Button>
-      </Form.Item>
-    </Form>
-  );
-};
+    <Form.Item
+      wrapperCol={{ offset: 3, span: 10 }}
+    >
+      <Button type="primary" htmlType="submit" className="ml-2">
+        Lưu lại
+      </Button>
+    </Form.Item>
+  </Form>
+);
 
 export default CategoryForm;
