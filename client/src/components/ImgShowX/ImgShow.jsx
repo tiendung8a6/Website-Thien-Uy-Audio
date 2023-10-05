@@ -1,22 +1,10 @@
 import React, { useEffect } from "react";
 import './imgshowx.css'
-import { Swiper, SwiperSlide } from "swiper";
-const ImgShowX = () => {
-    const swiper = new Swiper('.swiper-container', {
-        direction: 'vertical',
-        mousewheel: {},
-        effect: 'cube',
-        keyboard: {
-            enabled: true,
-            onlyInViewport: false
-        }
-    });
 
-    useEffect(() => {
-        return () => {
-            swiper.destroy();
-        };
-    }, [swiper]);
+const ImgShowX = () => {
+
+
+
     return (
         <>
 

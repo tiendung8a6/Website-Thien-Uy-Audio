@@ -2,42 +2,42 @@ import React, { useState, useEffect } from "react";
 import AdminNav from "../../../components/nav/AdminNav";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { getCategory, updateCategory } from "../../../functions/category";
-import CategoryForm from "../../../components/forms/CategoryForm";
+import { getColor, updateColor } from "../../../functions/color";
+import ColorForm from "../../../components/forms/ColorForm";
 import { message, notification } from 'antd';
 
-const CategoryUpdate = ({ history, match }) => {
+const ColorUpdate = ({ history, match }) => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    loadCategory();
+    loadColor();
   }, []);
 
-  const loadCategory = () =>
-    getCategory(match.params.slug).then((c) => setName(c.data.name));
+  const loadColor = () =>
+    getColor(match.params.slug).then((cl) => setName(cl.data.name));
 
   const handleSubmit = (values) => {
     setLoading(true);
-    updateCategory(match.params.slug, { name: values.name }, user.token)
+    updateColor(match.params.slug, { name: values.name }, user.token)
       .then((res) => {
         setLoading(false);
         setName("");
-        message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1, () => {
+        message.success(`Màu "${res.data.name}" đã được cập nhật thành công!`, 1, () => {
           window.location.reload();
         });
-        history.push("/admin/category");
+        history.push("/admin/color");
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
         if (err.response.status === 400)
           notification.error({
-            message: "Chỉnh sửa danh mục thất bại!",
+            message: "Chỉnh sửa màu thất bại!",
             description:
-              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+              'Lỗi dự đoán: Màu đã tồn tại, Màu quá ngắn hoặc quá dài (Từ 1 đến 35 ký tự).',
           });
       });
   };
@@ -52,10 +52,10 @@ const CategoryUpdate = ({ history, match }) => {
           {loading ? (
             <h4 className="text-danger">Loading..</h4>
           ) : (
-            <h4>Chỉnh sửa danh mục</h4>
+            <h4>Chỉnh sửa màu sắc</h4>
           )}
 
-          <CategoryForm
+          <ColorForm
             handleSubmit={handleSubmit}
             name={name}
             setName={setName}
@@ -68,4 +68,4 @@ const CategoryUpdate = ({ history, match }) => {
   );
 };
 
-export default CategoryUpdate;
+export default ColorUpdate;

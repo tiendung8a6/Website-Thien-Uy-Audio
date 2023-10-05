@@ -1,4 +1,3 @@
-const brand = require("../models/brand");
 const Brand = require("../models/brand");
 const Product = require("../models/product");
 const slugify = require("slugify");
@@ -26,21 +25,24 @@ exports.read = async (req, res) => {
 exports.update = async (req, res) => {
   const { name } = req.body;
   try {
+    const brandToUpdate = await Brand.findOne({ slug: req.params.slug }).exec();
+    if (!brandToUpdate) {
+      return res.status(404).send("Không tìm thấy thương hiệu");
+    }
     const updated = await Brand.findOneAndUpdate(
       { slug: req.params.slug },
       { name, slug: slugify(name) },
       { new: true }
     );
     await Product.updateMany(
-      { brand: updated.name }, // Sử dụng updated.name thay vì updated.brand
-      { $unset: { brand: 1 } } // Sử dụng { $unset: { brand: 1 } } để xóa trường brand
+      { brand: brandToUpdate.name }, 
+      { $set: { brand: name } } 
     );
     res.json(updated);
   } catch (err) {
     res.status(400).send("Chỉnh sửa danh mục thất bại!");
   }
 };
-
 
 exports.remove = async (req, res) => {
   try {

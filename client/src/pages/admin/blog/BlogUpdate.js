@@ -125,7 +125,7 @@ const ProductUpdate = ({ match, history }) => {
           {loading ? (
             <LoadingOutlined className="text-danger h1" />
           ) : (
-            <h4 style={{ textAlign: 'center', marginTop: '20px' }}>Product update</h4>
+            <h4>Product update</h4>
           )}
 
           {/* {JSON.stringify(values)} */}
