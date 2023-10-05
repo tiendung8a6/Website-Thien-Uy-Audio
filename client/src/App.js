@@ -177,7 +177,7 @@ const App = () => {
         <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />
         <UserRoute exact path="/payment" component={Payment} />
       </Switch>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </Suspense>
   );
 };

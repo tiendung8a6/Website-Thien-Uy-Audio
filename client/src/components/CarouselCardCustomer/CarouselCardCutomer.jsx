@@ -95,7 +95,7 @@ const CarouselCardCustomer = () => {
 
   return (
     <div>
-      <h1 className='uppercase text-[35px] font-semibold text-[#1a3760] text-center mt-10 font-serif '> Customer's feedback</h1>
+      {/* <h1 className='uppercase text-[35px] font-semibold text-[#1a3760] text-center mt-10 font-serif '> Customer's feedback</h1> */}
       <div className="carouselwrapper module-wrapper">
         <div className="ui">
           <button onClick={() => setMoveClass("next")} className="prev">
