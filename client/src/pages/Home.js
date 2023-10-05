@@ -37,7 +37,16 @@ const Home = () => {
   window.addEventListener("scroll", reveal);
   return (
     <>
+<<<<<<<<< Temporary merge branch 1
 
+=========
+      {/* <ScrollAnimation animateIn='wobble'
+        initiallyVisible={true}>
+        <h1>
+          initiallyVisible
+        </h1>
+      </ScrollAnimation> */}
+>>>>>>>>> Temporary merge branch 2
       <Carousel></Carousel>
 
       <Banner2></Banner2>
@@ -55,6 +64,15 @@ const Home = () => {
           </div>
         </div>
       </section>
+=========
+      {/* <ScrollAnimation animateIn='flipInY'
+        animateOut='flipOutY'>
+        <h4 className="text-center p-3 mt-5 mb-5 display-4 ">
+          Sản Phẩm Bán Chạy
+        </h4>
+      </ScrollAnimation> */}
+>>>>>>>>> Temporary merge branch 2
+
 
       <section style={{ marginTop: '20px' }}>
         <div className="container reveal">

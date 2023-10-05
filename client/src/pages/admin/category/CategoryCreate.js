@@ -38,33 +38,33 @@ const CategoryCreate = () => {
   const loadCategories = () =>
     getCategories().then((c) => setCategories(c.data));
 
-    const handleSubmit = () => {
-      const updatedValues = {
-        ...values,
-      };
-    
-      console.log(updatedValues); 
-    
-      createCategory(updatedValues, user.token)
-        .then((res) => {
-          console.log(res);
-          message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
-            window.location.reload();
-          });
-          loadCategories();
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-          if (err.response.status === 400)
-            notification.error({
-              message: "Tạo danh mục thất bại!",
-              description:
-                'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
-            });
-        });
+  const handleSubmit = () => {
+    const updatedValues = {
+      ...values,
     };
-    
+
+    console.log(updatedValues);
+
+    createCategory(updatedValues, user.token)
+      .then((res) => {
+        console.log(res);
+        message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
+          window.location.reload();
+        });
+        loadCategories();
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        if (err.response.status === 400)
+          notification.error({
+            message: "Tạo danh mục thất bại!",
+            description:
+              'Lỗi dự đoán: Danh mục đã tồn tại, Tên danh mục quá ngắn hoặc quá dài (Từ 4 đến 40 ký tự).',
+          });
+      });
+  };
+
 
   const handleConfirmDelete = async (slug) => {
     setLoading(true);
@@ -140,6 +140,21 @@ const CategoryCreate = () => {
                 width: 30, // Đặt độ rộng của cột STT
                 render: (text, record, index) => (
                   <span>{calculateIndex(index)}</span>
+                ),
+              },
+              {
+                title: 'Hình ảnh',
+                dataIndex: 'images',
+                key: 'images',
+                width: 50, // Đặt độ rộng của cột hình ảnh
+                render: (images) => (
+                  <div>
+                    {images.map((image, index) => (
+                      <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+                        <img src={image.url} alt={image.public_id} style={{ width: '50px', height: '50px' }} />
+                      </div>
+                    ))}
+                  </div>
                 ),
               },
               {

@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 const AdminBlogCard = ({ blog, handleRemove }) => {
   // destructure
-  const { title, content, images, slug } = blog;
+  const { title, content, images, slug, description, createdAt } = blog;
 
   return (
     <Card
@@ -33,6 +33,7 @@ const AdminBlogCard = ({ blog, handleRemove }) => {
         title={title}
         content={content}
       // content={`${content && content.substring(0, 40)}...`}
+        description={`${description && description.substring(0, 40)}...`}
       />
     </Card>
   );
