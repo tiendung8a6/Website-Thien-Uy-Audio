@@ -13,9 +13,6 @@ import Footer from "../components/footer/Footer";
 import SpeedDial from "../components/SpeedDial/SpeedDial";
 import ScrollAnimation from "../components/ScrollAnimatiion/ScrollAnimation";
 import ImgShowX from "../components/ImgShowX/ImgShow"
-import BlogHome from "../components/home/BlogHome";
-import { Link } from 'react-router-dom'
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import './Home.css'
 const Home = () => {
   function reveal() {
@@ -37,43 +34,22 @@ const Home = () => {
   window.addEventListener("scroll", reveal);
   return (
     <>
-
-      {/* <ScrollAnimation animateIn='wobble'
+      <ScrollAnimation animateIn='wobble'
         initiallyVisible={true}>
         <h1>
           initiallyVisible
         </h1>
-      </ScrollAnimation> */}
+      </ScrollAnimation>
       <Carousel></Carousel>
 
       <Banner2></Banner2>
+      <ScrollAnimation></ScrollAnimation>
 
-      <section >
+      <section>
         <div className="container reveal">
           <h4 className="text-center p-3  mb-5 display-4 jumbotron">
             Sản Phẩm Mới Nhất
           </h4>
-          <div className="text-container">
-            <div className="text-box " >
-              <NewArrivals />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* <ScrollAnimation animateIn='flipInY'
-        animateOut='flipOutY'>
-        <h4 className="text-center p-3 mt-5 mb-5 display-4 ">
-          Sản Phẩm Bán Chạy
-        </h4>
-      </ScrollAnimation> */}
-
-
-
-      <section style={{ marginTop: '20px' }}>
-        <div className="container reveal">
-
           <div className="text-container">
             <div className="text-box">
               <ImgShowX></ImgShowX>
@@ -83,11 +59,22 @@ const Home = () => {
         </div>
       </section>
 
-      <ScrollAnimation></ScrollAnimation>
 
+      <section>
+        <div className="container reveal">
+          <h4 className="text-center p-3  mb-5 display-4 jumbotron">
+            Sản Phẩm Mới Nhất
+          </h4>
+          <div className="text-container">
+            <div className="text-box">
+              <NewArrivals />
+            </div>
 
+          </div>
+        </div>
+      </section>
 
-      <section >
+      <section>
         <div className="container reveal">
           <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
             Sản Phẩm Bán Chạy
@@ -101,22 +88,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ marginTop: '-20px' }}>
-        <div className="container reveal">
-          <h1 className="text-center   mb-5 display-4 jumbotron">
-            Blog đang chú ý
-          </h1>
-          <h4 className="text-center mb-5 "><Link to="/blog"><KeyboardDoubleArrowRightIcon />Tất cả bài Blog</Link> </h4>
-          <div className="text-container">
-            <div className="text-box">
-              <BlogHome />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <section >
+      <section style={{ marginTop: '-100px' }}>
         <div className="container reveal">
           <h4 className="text-center   mb-5 display-4 jumbotron">
             Danh Mục Sản Phẩm
@@ -129,7 +101,16 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* 
+      <Watermark content="Ant Design">
+        <div style={{ height: 500 }} />
+      </Watermark> */}
 
+
+      <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron ">
+        Danh Mục Con
+      </h4>
+      <SubList />
 
       <section>
         <div className="container reveal">
@@ -145,7 +126,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section >
+      <section>
         <div className="container reveal">
           <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
             Phản hồi khách hàng
