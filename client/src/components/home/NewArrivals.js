@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getProducts, getProductsCount } from "../../functions/product";
-import ProductCard from "../cards/ProductCard";
+import ProductCardv2 from "../cards/ProductCardv2/ProductCardv2";
 import LoadingCard from "../cards/LoadingCard";
 import { Pagination } from "antd";
 
@@ -39,7 +39,7 @@ const NewArrivals = () => {
           <div className="row">
             {products.map((product) => (
               <div key={product._id} className="col-md-4">
-                <ProductCard product={product} />
+                <ProductCardv2 product={product} />
               </div>
             ))}
           </div>
