@@ -34,7 +34,12 @@ const Home = () => {
   window.addEventListener("scroll", reveal);
   return (
     <>
-
+      <ScrollAnimation animateIn='wobble'
+        initiallyVisible={true}>
+        <h1>
+          initiallyVisible
+        </h1>
+      </ScrollAnimation>
       <Carousel></Carousel>
 
       <Banner2></Banner2>

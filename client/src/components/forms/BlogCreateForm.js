@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+
 const BlogCreateForm = ({
   handleSubmit,
   handleChange,
@@ -12,8 +13,11 @@ const BlogCreateForm = ({
   const {
     title,
     content,
+    description,
     images,
   } = values;
+
+  const { TextArea } = Input;
 
   const onFinish = async () => {
     await handleSubmit();
@@ -60,6 +64,23 @@ const BlogCreateForm = ({
         <Input
           value={title}
           onChange={(e) => handleChange('title', e.target.value)}
+        />
+      </Form.Item>
+
+      <Form.Item
+        label="Mô tả ngắn"
+        name="description"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập mô tả ngắn!",
+          },
+        ]}
+      >
+        <TextArea
+          rows={3}
+          value={description}
+          onChange={(e) => handleChange('description', e.target.value)}
         />
       </Form.Item>
 

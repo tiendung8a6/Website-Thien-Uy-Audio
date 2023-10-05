@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import './imgshowx.css'
-
 const ImgShowX = () => {
-
-
-
     return (
         <>
 

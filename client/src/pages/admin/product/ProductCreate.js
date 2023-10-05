@@ -20,23 +20,7 @@ const initialState = {
   subs: [],
   shipping: "",
   quantity: "",
-  images: [
-    // {
-    //   public_id: "jwrzeubemmypod99e8lz",
-    //   url:
-    //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480909/jwrzeubemmypod99e8lz.jpg",
-    // },
-    // {
-    //   public_id: "j7uerlvhog1eic0oyize",
-    //   url:
-    //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480912/j7uerlvhog1eic0oyize.jpg",
-    // },
-    // {
-    //   public_id: "ho6wnp7sugyemnmtoogf",
-    //   url:
-    //     "https://res.cloudinary.com/dcqjrwaoi/image/upload/v1599480913/ho6wnp7sugyemnmtoogf.jpg",
-    // },
-  ],
+  images: [],
   colors: [],
   brands: [],
   brand: "",
@@ -78,32 +62,34 @@ const ProductCreate = () => {
     getColors().then((cl) => setValues({ ...values, colors: cl.data }));
 
 
-  const handleSubmit = () => {
-    // Trước khi tạo sản phẩm, tìm tên thương hiệu dựa trên id thương hiệu đã chọn
-    const selectedBrand = values.brands.find((b) => b._id === values.brand);
+    const handleSubmit = () => {
+      // Trước khi tạo sản phẩm, tìm tên thương hiệu dựa trên id thương hiệu đã chọn
+      const selectedBrand = values.brands.find((b) => b._id === values.brand);
+      const selectedColor = values.colors.find((cl) => cl._id === values.color);
 
-    // Tạo một object mới với trường brand là name của thương hiệu đã chọn
-    const updatedValues = {
-      ...values,
-      brand: selectedBrand ? selectedBrand.name : "",
+      // Tạo một object mới với trường brand là name của thương hiệu đã chọn
+      const updatedValues = {
+        ...values,
+        brand: selectedBrand ? selectedBrand.name : "",
+        color: selectedColor ? selectedColor.name : "",
+      };
+    
+      createProduct(updatedValues, user.token)
+        .then((res) => {
+          console.log(res);
+          message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1, () => {
+            window.location.reload();
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          notification.error({
+            message: "Thêm mới sản phẩm thất bại!",
+            description: 'Lỗi dự đoán: Sản phẩm đã tồn tại.',
+          });
+        });
     };
-
-    createProduct(updatedValues, user.token)
-      .then((res) => {
-        console.log(res);
-        message.success(`Sản phẩm "${res.data.title}" đã được tạo thành công!`, 1, () => {
-          window.location.reload();
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        notification.error({
-          message: "Thêm mới sản phẩm thất bại!",
-          description: 'Lỗi dự đoán: Sản phẩm đã tồn tại.',
-        });
-      });
-  };
-
+    
   const handleChange = (fieldName, value) => {
     setValues({ ...values, [fieldName]: value });
     // console.log(e.target.name, " ----- ", e.target.value);
@@ -148,7 +134,6 @@ const ProductCreate = () => {
 
           <div className="p-3">
             <FileUpload
-              
               values={values}
               setValues={setValues}
               setLoading={setLoading}

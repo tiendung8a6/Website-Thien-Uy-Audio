@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AdminNav from "../../../components/nav/AdminNav";
-import { getProductsByCount } from "../../../functions/product";
-import AdminProductCard from "../../../components/cards/AdminProductCard";
-import { removeProduct } from "../../../functions/product";
+import { getBlogsByCount } from "../../../functions/blog";
+import AdminBlogCard from "../../../components/cards/AdminBlogCard";
+import { removeBlog } from "../../../functions/blog";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Pagination, Input, Result, Button } from 'antd';
@@ -10,23 +10,24 @@ import { ShoppingCartOutlined } from '@ant-design/icons';
 
 const { Search } = Input;
 
-const AllProducts = () => {
-  const [products, setProducts] = useState([]);
+const AllBlogs = () => {
+  const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(6); // Số sản phẩm trên mỗi trang
+  const [blogsPerPage, setBlogsPerPage] = useState(6); // Số sản phẩm trên mỗi trang
   const [searchKeyword, setSearchKeyword] = useState(""); // State để lưu từ khoá tìm kiếm
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    loadAllProducts();
+    loadAllBlogs();
   }, []);
 
-  const loadAllProducts = () => {
+  const loadAllBlogs = () => {
     setLoading(true);
-    getProductsByCount(100)
+    getBlogsByCount(100)
       .then((res) => {
-        setProducts(res.data);
+        console.log(res.data); // Add this line to check the API response
+        setBlogs(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -37,9 +38,9 @@ const AllProducts = () => {
 
   const handleRemove = (slug) => {
     if (window.confirm("Delete?")) {
-      removeProduct(slug, user.token)
+      removeBlog(slug, user.token)
         .then((res) => {
-          loadAllProducts();
+          loadAllBlogs();
           toast.error(`${res.data.title} is deleted`);
         })
         .catch((err) => {
@@ -54,7 +55,7 @@ const AllProducts = () => {
   };
 
   const handlePageSizeChange = (current, size) => {
-    setProductsPerPage(size);
+    setBlogsPerPage(size);
     setCurrentPage(1); // Reset trang về trang đầu khi thay đổi số lượng sản phẩm trên mỗi trang
   };
 
@@ -64,18 +65,17 @@ const AllProducts = () => {
 
   const handleResetSearch = () => {
     setSearchKeyword(""); // Xóa dữ liệu trong khung tìm kiếm
-    loadAllProducts();
+    loadAllBlogs();
   };
 
-
   // Lọc sản phẩm dựa trên từ khoá tìm kiếm
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  const filteredBlogs = blogs.filter((blog) =>
+    blog.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
   return (
     <div className="container-fluid">
@@ -88,31 +88,31 @@ const AllProducts = () => {
             <h4 className="text-danger">Loading...</h4>
           ) : (
             <div>
-              <h4>Danh sách sản phẩm</h4>
+              <h4>Danh sách blog</h4>
               <div className="d-flex  align-items-center">
-                <p style={{ fontSize: '16px', marginTop: '15px' }} > <span style={{ fontSize: '18px', marginRight: '3px' }}> <ShoppingCartOutlined /> </span>Tổng số sản phẩm: <span style={{ fontWeight: 700, marginLeft: '2px' }}>{filteredProducts.length}</span></p>
+                <p style={{ fontSize: '16px', marginTop: '15px' }} > <span style={{ fontSize: '18px', marginRight: '3px' }}> <ShoppingCartOutlined /> </span>Tổng số bài blog: <span style={{ fontWeight: 700, marginLeft: '2px' }}>{filteredBlogs.length}</span></p>
                 <Search
-                  placeholder="Tìm kiếm sản phẩm"
+                  placeholder="Tìm kiếm blog"
                   onChange={(e) => handleSearch(e.target.value)}
                   style={{ width: 230, marginLeft: '23px' }}
                   enterButton
                 />
               </div>
               <div className="row">
-                {currentProducts.length === 0 ? (
+                {currentBlogs.length === 0 ? (
                   <div className="col">
                     <Result
                       status="404"
-                      title="Không tìm thấy sản phẩm"
-                      subTitle="Xin lỗi, không có sản phẩm nào phù hợp với tìm kiếm của bạn."
+                      title="Không tìm thấy blog"
+                      subTitle="Xin lỗi, không có blog nào phù hợp với tìm kiếm của bạn."
                       extra={<Button type="primary" onClick={handleResetSearch}>Thử lại</Button>}
                     />
 
                   </div>
                 ) : (
-                  currentProducts.map((product) => (
-                    <div key={product._id} className="col-md-4 pb-3">
-                      <AdminProductCard product={product} handleRemove={handleRemove} />
+                  currentBlogs.map((blog) => (
+                    <div key={blog._id} className="col-md-4 pb-3">
+                      <AdminBlogCard blog={blog} handleRemove={handleRemove} />
                     </div>
                   ))
                 )}
@@ -121,8 +121,8 @@ const AllProducts = () => {
 
               <Pagination
                 current={currentPage}
-                total={filteredProducts.length}
-                pageSize={productsPerPage}
+                total={filteredBlogs.length}
+                pageSize={blogsPerPage}
                 onChange={handleChangePage}
                 showSizeChanger
                 onShowSizeChange={handlePageSizeChange}
@@ -141,4 +141,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default AllBlogs;
