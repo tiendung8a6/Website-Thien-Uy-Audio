@@ -5,15 +5,13 @@ const slugify = require("slugify");
 
 exports.create = async (req, res) => {
   try {
-    console.log(req.body);
-    req.body.slug = slugify(req.body.name);
-    const newCategory = await new Category(req.body).save();
-    res.json(newCategory);
+    const { name } = req.body;
+    // const category = await new Category({ name, slug: slugify(name) }).save();
+    // res.json(category);
+    res.json(await new Category({ name, slug: slugify(name) }).save());
   } catch (err) {
-    console.log(err);
-    res.status(400).json({
-      err: err.message,
-    });
+    // console.log(err);
+    res.status(400).send("Tạo danh mục thất bại");
   }
 };
 
@@ -31,11 +29,11 @@ exports.read = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const { name, images } = req.body; 
+  const { name } = req.body;
   try {
     const updated = await Category.findOneAndUpdate(
       { slug: req.params.slug },
-      { name, images, slug: slugify(name) }, 
+      { name, slug: slugify(name) },
       { new: true }
     );
     res.json(updated);
