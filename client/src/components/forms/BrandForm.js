@@ -26,7 +26,7 @@ const BrandForm = ({ handleSubmit, name, setName }) => (
     </Form.Item>
 
     <Form.Item
-      wrapperCol={{ offset: 3 , span: 16 }}
+      wrapperCol={{ offset: 3, span: 16 }}
     >
       <Button type="primary" htmlType="submit" className="ml-2">
         Lưu lại

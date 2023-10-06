@@ -50,30 +50,30 @@ const ProductUpdate = ({ match, history }) => {
     getProduct(slug).then((p) => {
       setValues({ ...values, ...p.data });
       getCategorySubs(p.data.category._id).then((res) => {
-        setSubOptions(res.data); 
+        setSubOptions(res.data);
       });
       let arr = [];
       p.data.subs.map((s) => {
         arr.push(s._id);
       });
       console.log("ARR", arr);
-      setArrayOfSubs((prev) => arr); 
+      setArrayOfSubs((prev) => arr);
     });
   };
-  
+
   const loadCategories = () =>
     getCategories().then((c) => {
       console.log("GET CATEGORIES IN UPDATE PRODUCT", c.data);
       setCategories(c.data);
     });
 
-    const loadColors = () =>
+  const loadColors = () =>
     getColors().then((cl) => {
       console.log("GET COLORS IN UPDATE PRODUCT", cl.data);
       setColors(cl.data);
     });
 
-    const loadBrands = () =>
+  const loadBrands = () =>
     getBrands().then((b) => {
       console.log("GET BRANDS IN UPDATE PRODUCT", b.data);
       setBrands(b.data);
@@ -124,7 +124,7 @@ const ProductUpdate = ({ match, history }) => {
     const selectedValue = e.target.value;
     setValues({ ...values, color: selectedValue });
   };
-  
+
   const handleBrandChange = (e) => {
     e.preventDefault();
     const selectedValue = e.target.value;

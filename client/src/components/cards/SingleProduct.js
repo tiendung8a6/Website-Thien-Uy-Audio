@@ -145,7 +145,7 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                   </RatingModal>,
                 ]}
               >
-                
+
                 <ProductListItems product={product} />
               </Card>
             </TableBody>

@@ -41,21 +41,21 @@ const CategoryForm = ({
       onFinishFailed={onFinishFailed}
     >
 
-    <Form.Item
-      label="Tên danh mục"
-      name="name"
-      rules={[{
-        required: true,
-        message: 'Vui lòng nhập tên danh mục!'
-      }]}>
-      <Input
-        type="text"
-        autoFocus
-        value={name}
-        onChange={(e) => handleChange('name', e.target.value)}
-        prefix={<ShoppingOutlined />}
-      />
-    </Form.Item>
+      <Form.Item
+        label="Tên danh mục"
+        name="name"
+        rules={[{
+          required: true,
+          message: 'Vui lòng nhập tên danh mục!'
+        }]}>
+        <Input
+          type="text"
+          autoFocus
+          value={name}
+          onChange={(e) => handleChange('name', e.target.value)}
+          prefix={<ShoppingOutlined />}
+        />
+      </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 3, span: 16 }}>
         <Button type="primary" htmlType="submit" className="ant-btn ant-btn-primary ant-btn-lg ant-btn-hover">
