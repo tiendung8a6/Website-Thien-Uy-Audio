@@ -34,12 +34,7 @@ const Home = () => {
   window.addEventListener("scroll", reveal);
   return (
     <>
-      <ScrollAnimation animateIn='wobble'
-        initiallyVisible={true}>
-        <h1>
-          initiallyVisible
-        </h1>
-      </ScrollAnimation>
+
       <Carousel></Carousel>
 
       <Banner2></Banner2>
@@ -49,6 +44,7 @@ const Home = () => {
         <div className="container reveal">
           <h4 className="text-center p-3  mb-5 display-4 jumbotron">
             Sản Phẩm Mới Nhất
+            
           </h4>
           <div className="text-container">
             <div className="text-box">

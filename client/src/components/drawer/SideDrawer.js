@@ -1,5 +1,6 @@
 import React from "react";
 import { Drawer, Button } from "antd";
+
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import laptop from "../../images/laptop.png";
@@ -17,8 +18,9 @@ const SideDrawer = () => {
 
   return (
     <Drawer
-      className="text-center"
-      title={`Cart / ${cart.length} Product`}
+      width={400}
+      className="text-center "
+      title={`Giỏ hàng / ${cart.length} Sản phẩm`}
       placement="right"
       closable={false}
       onClose={() => {
@@ -61,7 +63,7 @@ const SideDrawer = () => {
           }
           className="text-center btn btn-primary btn-raised btn-block"
         >
-          Go To Cart
+          Đi tới giỏ hàng
         </button>
       </Link>
     </Drawer>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Badge } from "antd";
+import Badge from '@mui/material/Badge';
 import {
   UserOutlined,
   UserAddOutlined,
@@ -30,11 +30,13 @@ const Header = () => {
   useEffect(() => {
     setLoading(true);
     getCategories().then((c) => {
-      const firstThreeCategories = c.data.slice(0, 3);
-      setCategories(firstThreeCategories.reverse()); // Đảo ngược thứ tự nếu cần
+      const firstThreeCategories = c.data.reverse();
+      console.log(firstThreeCategories.slice(0, 3));
+      setCategories(firstThreeCategories.slice(0, 3));
       setLoading(false);
     });
   }, []);
+
 
   const loadSubs = (category) => {
     getCategorySubs(category._id).then((res) => {
@@ -52,6 +54,7 @@ const Header = () => {
       payload: null,
     });
     history.push("/login");
+    window.location.reload();
   };
 
   const handleCategoryClick = (slug) => {
@@ -97,7 +100,7 @@ const Header = () => {
             <SearchNav />
             <Nav.Link as={Link} to="/cart" onClick={() => setCurrent("cart")} className="d-flex align-items-center" style={{ fontSize: '18px', marginRight: '10px' }}>
               <ShoppingCartOutlined />
-              <Badge count={cart.length} offset={[9, 0]}>
+              <Badge badgeContent={cart.length} color="primary"  >
                 <span style={{ fontSize: '18px' }}>Giỏ hàng</span>
               </Badge>
             </Nav.Link>

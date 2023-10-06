@@ -42,7 +42,7 @@ const ProductCardInCheckout = ({ p }) => {
     let count = e.target.value < 1 ? 1 : e.target.value;
 
     if (count > p.quantity) {
-      toast.error(`Max available quantity: ${p.quantity}`);
+      toast.error(`Số lượng có sẵn tối đa: ${p.quantity}`);
       return;
     }
 
@@ -103,7 +103,7 @@ const ProductCardInCheckout = ({ p }) => {
           </div>
         </td>
         <td>{p.title}</td>
-        <td>${p.price}</td>
+        <td>{new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(p.price)}</td>
         <td>{p.brand}</td>
         <td>
           <select

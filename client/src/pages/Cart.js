@@ -42,14 +42,14 @@ const Cart = ({ history }) => {
     <table className="table table-bordered">
       <thead className="thead-light">
         <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Title</th>
-          <th scope="col">Price</th>
-          <th scope="col">Brand</th>
-          <th scope="col">Color</th>
-          <th scope="col">Count</th>
-          <th scope="col">Shipping</th>
-          <th scope="col">Remove</th>
+          <th scope="col">Hình ảnh</th>
+          <th scope="col">Tên SP</th>
+          <th scope="col">Giá</th>
+          <th scope="col">Thương hiệu</th>
+          <th scope="col">Màu</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Giao hàng</th>
+          <th scope="col">Xóa SP</th>
         </tr>
       </thead>
 
@@ -63,18 +63,18 @@ const Cart = ({ history }) => {
     <div className="container-fluid pt-2">
       <div className="row">
         <div className="col-md-8">
-          <h4>Cart / {cart.length} Product</h4>
+          <h4>Giỏ hàng / {cart.length} Sản phẩm</h4>
 
           {!cart.length ? (
             <p>
-              No products in cart. <Link to="/shop">Continue Shopping.</Link>
+              Không có sản phẩm trong giỏ hàng. <Link to="/shop">Tiếp tục mua sắm.</Link>
             </p>
           ) : (
             showCartItems()
           )}
         </div>
         <div className="col-md-4">
-          <h4>Order Summary</h4>
+          <h4>T</h4>
           <hr />
           <p>Products</p>
           {cart.map((c, i) => (
@@ -85,7 +85,7 @@ const Cart = ({ history }) => {
             </div>
           ))}
           <hr />
-          Total: <b>${getTotal()}</b>
+          Tổng cộng: <b>{getTotal()}VNĐ</b>
           <hr />
           {user ? (
             <>
@@ -94,7 +94,7 @@ const Cart = ({ history }) => {
                 className="btn btn-sm btn-primary mt-2"
                 disabled={!cart.length}
               >
-                Proceed to Checkout
+                Tiến hành thanh toán
               </button>
               <br />
               <button
@@ -102,7 +102,7 @@ const Cart = ({ history }) => {
                 className="btn btn-sm btn-warning mt-2"
                 disabled={!cart.length}
               >
-                Pay Cash on Delivery
+                Thanh toán tiền mặt khi giao hàng
               </button>
             </>
           ) : (
@@ -113,7 +113,7 @@ const Cart = ({ history }) => {
                   state: { from: "cart" },
                 }}
               >
-                Login to Checkout
+                Đăng nhập để thanh toán
               </Link>
             </button>
           )}

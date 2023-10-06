@@ -50,22 +50,14 @@ const ProductUpdate = ({ match, history }) => {
     getProduct(slug).then((p) => {
       setValues({ ...values, ...p.data });
       getCategorySubs(p.data.category._id).then((res) => {
-<<<<<<< HEAD
         setSubOptions(res.data);
-=======
-        setSubOptions(res.data); 
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
       });
       let arr = [];
       p.data.subs.map((s) => {
         arr.push(s._id);
       });
       console.log("ARR", arr);
-<<<<<<< HEAD
       setArrayOfSubs((prev) => arr);
-=======
-      setArrayOfSubs((prev) => arr); 
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
     });
   };
   
@@ -75,21 +67,13 @@ const ProductUpdate = ({ match, history }) => {
       setCategories(c.data);
     });
 
-<<<<<<< HEAD
   const loadColors = () =>
-=======
-    const loadColors = () =>
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
     getColors().then((cl) => {
       console.log("GET COLORS IN UPDATE PRODUCT", cl.data);
       setColors(cl.data);
     });
 
-<<<<<<< HEAD
   const loadBrands = () =>
-=======
-    const loadBrands = () =>
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
     getBrands().then((b) => {
       console.log("GET BRANDS IN UPDATE PRODUCT", b.data);
       setBrands(b.data);
@@ -140,11 +124,6 @@ const ProductUpdate = ({ match, history }) => {
     const selectedValue = e.target.value;
     setValues({ ...values, color: selectedValue });
   };
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
   const handleBrandChange = (e) => {
     e.preventDefault();
     const selectedValue = e.target.value;

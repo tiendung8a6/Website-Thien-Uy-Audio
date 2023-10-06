@@ -31,11 +31,8 @@ const AdminBlogCard = ({ blog, handleRemove }) => {
     >
       <Meta
         title={title}
-<<<<<<< HEAD
         content={content}
       // content={`${content && content.substring(0, 40)}...`}
-=======
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
         description={`${description && description.substring(0, 40)}...`}
       />
     </Card>

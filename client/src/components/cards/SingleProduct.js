@@ -94,10 +94,10 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         <Paper style={{ height: '200px', marginTop: '10px' }}>
           <Tabs type="card" >
 
-            <TabPane tab="Description" key="1">
+            <TabPane tab="Mô tả SP" key="1">
               {description && description}
             </TabPane>
-            <TabPane tab="More" key="2">
+            <TabPane tab="Thông tin chi tiết" key="2">
               Liên hệ ngay: ................
             </TabPane>
 
@@ -127,11 +127,12 @@ const SingleProduct = ({ product, onStarClick, star }) => {
                     <a onClick={handleAddToCart} disabled={product.quantity < 1}>
                       <ShoppingCartOutlined className="text-danger" />
                       <br />
-                      {product.quantity < 1 ? "Out of Stock" : "Add To Cart"}
+                      {product.quantity < 1 ? "Hết hàng" : "Thêm vào giỏ hàng"}
                     </a>
                   </Tooltip>,
                   <a onClick={handleAddToWishlist}>
-                    <HeartOutlined className="text-info" /> <br /> Add to Wishlist
+                    <HeartOutlined className="text-info" /> <br /> Thêm vào ds yêu thích
+
                   </a>,
                   <RatingModal>
                     <StarRating

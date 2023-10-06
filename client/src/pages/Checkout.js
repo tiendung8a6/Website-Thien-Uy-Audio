@@ -193,7 +193,7 @@ const Checkout = ({ history }) => {
                 disabled={!addressSaved || !products.length}
                 onClick={createCashOrder}
               >
-                Place Order
+                Đặt hàng
               </button>
             ) : (
               <button
@@ -201,7 +201,7 @@ const Checkout = ({ history }) => {
                 disabled={!addressSaved || !products.length}
                 onClick={() => history.push("/payment")}
               >
-                Place Order
+                Đặt hàng
               </button>
             )}
           </div>
@@ -212,7 +212,8 @@ const Checkout = ({ history }) => {
               onClick={emptyCart}
               className="btn btn-primary"
             >
-              Empty Cart
+              {/* Empty Cart */}
+              Xóa tất cả trong giỏ hàng
             </button>
           </div>
         </div>
