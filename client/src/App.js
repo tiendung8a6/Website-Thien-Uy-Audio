@@ -80,6 +80,7 @@ const ProductCreate = lazy(() => import("./pages/admin/product/ProductCreate"));
 const AllProducts = lazy(() => import("./pages/admin/product/AllProducts"));
 const ProductUpdate = lazy(() => import("./pages/admin/product/ProductUpdate"));
 const Product = lazy(() => import("./pages/Product"));
+<<<<<<< HEAD
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogCreate = lazy(() => import("./pages/admin/blog/BlogCreate"));
@@ -88,6 +89,12 @@ const AllBloguser = lazy(() => import("./components/Blogs/AllBloguser"));
 
 const BlogUpdate = lazy(() => import("./pages/admin/blog/BlogUpdate"));
 
+=======
+const BlogCreate = lazy(() => import("./pages/admin/blog/BlogCreate"));
+const AllBlogs = lazy(() => import("./pages/admin/blog/AllBlogs"));
+const BlogUpdate = lazy(() => import("./pages/admin/blog/BlogUpdate"));
+const Blog = lazy(() => import("./pages/Blog"));
+>>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
 const CategoryHome = lazy(() => import("./pages/category/CategoryHome"));
 const SubHome = lazy(() => import("./pages/sub/SubHome"));
 const Shop = lazy(() => import("./pages/Shop"));
@@ -159,13 +166,20 @@ const App = () => {
         <AdminRoute exact path="/admin/category" component={CategoryCreate} />
         <AdminRoute exact path="/admin/category/:slug" component={CategoryUpdate} />
         <AdminRoute exact path="/admin/brand" component={BrandCreate} />
+<<<<<<< HEAD
         <AdminRoute exact path="/admin/brand/:slug" component={BrandUpdate} />
         <AdminRoute exact path="/admin/color" component={ColorCreate} />
         <AdminRoute exact path="/admin/color/:slug" component={ColorUpdate} />
+=======
+        <AdminRoute exact path="/admin/brand/:slug" component={BrandUpdate}/>
+        <AdminRoute exact path="/admin/color" component={ColorCreate} />
+        <AdminRoute exact path="/admin/color/:slug" component={ColorUpdate}/>
+>>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
         <AdminRoute exact path="/admin/sub" component={SubCreate} />
         <AdminRoute exact path="/admin/sub/:slug" component={SubUpdate} />
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
         <AdminRoute exact path="/admin/products" component={AllProducts} />
+<<<<<<< HEAD
         <AdminRoute exact path="/admin/product/:slug" component={ProductUpdate} />
         <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/blog/:slug" component={Blog} />
@@ -174,6 +188,16 @@ const App = () => {
         <AdminRoute exact path="/admin/blogs" component={AllBlogs} />
         <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate} />
         <Route exact path="/blog" component={AllBloguser} />
+=======
+        <AdminRoute exact path="/admin/product/:slug" component={ProductUpdate}/>
+        <Route exact path="/product/:slug" component={Product} />
+
+
+        <AdminRoute exact path="/admin/blog" component={BlogCreate} />
+        <AdminRoute exact path="/admin/blogs" component={AllBlogs} />
+        <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate}/>
+        <Route exact path="/blog/:slug" component={Blog} />
+>>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
         <Route exact path="/category/:slug" component={CategoryHome} />
         <Route exact path="/sub/:slug" component={SubHome} />
         <Route exact path="/shop" component={Shop} />

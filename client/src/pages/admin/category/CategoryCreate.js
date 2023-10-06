@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AdminNav from "../../../components/nav/AdminNav";
 import { toast } from "react-toastify";
+import FileUpload from "../../../components/forms/FileUpload";
 import { useSelector } from "react-redux";
 import {
   createCategory,
@@ -15,10 +16,15 @@ import { Table, Button, Space, Pagination, Popconfirm, notification } from 'antd
 import { message } from 'antd';
 import moment from 'moment';
 
-const CategoryCreate = () => {
-  const { user } = useSelector((state) => ({ ...state }));
+const initialState = {
+  name: "",
+  images: [],
+};
 
-  const [name, setName] = useState("");
+const CategoryCreate = () => {
+  const [values, setValues] = useState(initialState);
+  const { user } = useSelector((state) => ({ ...state }));
+  // const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -32,12 +38,16 @@ const CategoryCreate = () => {
   const loadCategories = () =>
     getCategories().then((c) => setCategories(c.data));
 
-  const handleSubmit = (values) => {
-    setLoading(true);
-    createCategory({ name: values.name }, user.token)
+  const handleSubmit = () => {
+    const updatedValues = {
+      ...values,
+    };
+
+    console.log(updatedValues);
+
+    createCategory(updatedValues, user.token)
       .then((res) => {
-        setLoading(false);
-        setName("");
+        console.log(res);
         message.success(`Danh mục "${res.data.name}" đã được tạo thành công!`, 1, () => {
           window.location.reload();
         });
@@ -54,6 +64,7 @@ const CategoryCreate = () => {
           });
       });
   };
+
 
   const handleConfirmDelete = async (slug) => {
     setLoading(true);
@@ -83,11 +94,15 @@ const CategoryCreate = () => {
   const calculateIndex = (index) => {
     return (currentPage - 1) * itemsPerPage + index + 1;
   };
+  const handleChange = (fieldName, value) => {
+    setValues({ ...values, [fieldName]: value });
+    // console.log(e.target.name, " ----- ", e.target.value);
+  };
 
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <AdminNav />
         </div>
         <div className="col">
@@ -97,10 +112,19 @@ const CategoryCreate = () => {
             <h4>Tạo danh mục</h4>
           )}
 
+          <div className="p-3">
+            <FileUpload
+              values={values}
+              setValues={setValues}
+              setLoading={setLoading}
+            />
+          </div>
+
           <CategoryForm
             handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
+            handleChange={handleChange}
+            setValues={setValues}
+            values={values}
           />
 
           <h4 className="text-center mb-8">~~ Danh sách danh mục ~~</h4>
@@ -116,6 +140,21 @@ const CategoryCreate = () => {
                 width: 30, // Đặt độ rộng của cột STT
                 render: (text, record, index) => (
                   <span>{calculateIndex(index)}</span>
+                ),
+              },
+              {
+                title: 'Hình ảnh',
+                dataIndex: 'images',
+                key: 'images',
+                width: 50, // Đặt độ rộng của cột hình ảnh
+                render: (images) => (
+                  <div>
+                    {images.map((image, index) => (
+                      <div key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+                        <img src={image.url} alt={image.public_id} style={{ width: '50px', height: '50px' }} />
+                      </div>
+                    ))}
+                  </div>
                 ),
               },
               {

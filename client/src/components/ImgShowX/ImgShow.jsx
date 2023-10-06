@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import './imgshowx.css'
+<<<<<<< HEAD
 
 const ImgShowX = () => {
     // const swiper = new Swiper('.swiper-container', {
@@ -17,6 +18,9 @@ const ImgShowX = () => {
     //         swiper.destroy();
     //     };
     // }, [swiper]);
+=======
+const ImgShowX = () => {
+>>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
     return (
         <>
 

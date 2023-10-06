@@ -5,6 +5,10 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@babel/core": "^7.22.17",
+<<<<<<< HEAD
+=======
+    "@bsmnt/scrollytelling": "^0.2.8",
+>>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
     "@ckeditor/ckeditor5-build-classic": "^39.0.2",
     "@ckeditor/ckeditor5-image": "^39.0.2",
     "@ckeditor/ckeditor5-react": "^6.1.0",

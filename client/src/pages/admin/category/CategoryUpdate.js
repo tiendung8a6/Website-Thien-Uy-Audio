@@ -3,13 +3,18 @@ import AdminNav from "../../../components/nav/AdminNav";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { getCategory, updateCategory } from "../../../functions/category";
-import CategoryForm from "../../../components/forms/CategoryForm";
+import CategoryUpdateForm from "../../../components/forms/CategoryUpdateForm";
 import { message, notification } from 'antd';
+import FileUpload from "../../../components/forms/FileUpload";
 
+const initialState = {
+  name: "",
+  images: [],
+};
 const CategoryUpdate = ({ history, match }) => {
+  const [values, setValues] = useState(initialState);
   const { user } = useSelector((state) => ({ ...state }));
-
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,14 +22,14 @@ const CategoryUpdate = ({ history, match }) => {
   }, []);
 
   const loadCategory = () =>
-    getCategory(match.params.slug).then((c) => setName(c.data.name));
+    getCategory(match.params.slug).then((c) => setValues({ ...values, ...c.data }));
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
-    updateCategory(match.params.slug, { name: values.name }, user.token)
+    updateCategory(match.params.slug, values, user.token)
       .then((res) => {
         setLoading(false);
-        setName("");
         message.success(`Danh mục "${res.data.name}" đã được cập nhật thành công!`, 1, () => {
           window.location.reload();
         });
@@ -41,11 +46,14 @@ const CategoryUpdate = ({ history, match }) => {
           });
       });
   };
-
+  const handleChange = (e) => {
+    e.preventDefault();
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-3">
           <AdminNav />
         </div>
         <div className="col">
@@ -55,10 +63,19 @@ const CategoryUpdate = ({ history, match }) => {
             <h4>Chỉnh sửa danh mục</h4>
           )}
 
-          <CategoryForm
+          <div className="p-3">
+            <FileUpload
+              values={values}
+              setValues={setValues}
+              setLoading={setLoading}
+            />
+          </div>
+
+          <CategoryUpdateForm
             handleSubmit={handleSubmit}
-            name={name}
-            setName={setName}
+            handleChange={handleChange}
+            setValues={setValues}
+            values={values}
           />
 
           <hr />
