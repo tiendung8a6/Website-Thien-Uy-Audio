@@ -10,11 +10,12 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
-
+  
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     if (user && user.token) history.push("/");
+    
   }, [user, history]);
 
   const onFinish = async (e) => {
@@ -40,23 +41,7 @@ const Register = ({ history }) => {
   // };
 
   const registerForm = () => (
-    // <form onSubmit={handleSubmit}>
-    //   <input
-    //     type="email"
-    //     className="form-control"
-    //     value={email}
-    //     onChange={(e) => setEmail(e.target.value)}
-    //     placeholder="Your email"
-    //     autoFocus
-    //   />
 
-
-
-    //   <br />
-    //   <button type="submit" className="btn btn-raised " >
-    //     Register
-    //   </button>
-    // </form>
 
     <Form
       name="normal_login"

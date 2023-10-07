@@ -1,56 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
 
-section {
+.section-homepage {
     /* min-height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-section:nth-child(1) {
+.section-homepage:nth-child(1) {
+    /* color: #e0ffff; */
+}
+
+.section-homepage:nth-child(2) {
+    color: #42455a;
+    /* background: #e0ffff; */
+}
+
+.section-homepage:nth-child(3) {
     color: #e0ffff;
 }
 
-section:nth-child(2) {
+.section-homepage:nth-child(4) {
     color: #42455a;
     background: #e0ffff;
 }
 
-section:nth-child(3) {
-    color: #e0ffff;
-}
-
-section:nth-child(4) {
-    color: #42455a;
-    background: #e0ffff;
-}
-
-section .container {
+.section-homepage .container {
     /* margin: 100px; */
 }
 
-section h1 {
+.section-homepage h1 {
     font-size: 3rem;
     /* margin: 10px; */
 }
 
-section h2 {
+.section-homepage h2 {
     font-size: 40px;
     text-align: center;
     text-transform: uppercase;
 }
 
-section .text-container {
+.section-homepage .text-container {
     /* display: flex; */
 }
 
-section .text-container .text-box {
+.section-homepage .text-container .text-box {
     /* margin: 20px;
     padding: 20px;
     background: #00c2cb; */
 }
 
-section .text-container .text-box h3 {
+.section-homepage .text-container .text-box h3 {
     font-size: 30px;
     text-align: center;
     text-transform: uppercase;
@@ -58,12 +58,12 @@ section .text-container .text-box h3 {
 }
 
 @media (max-width: 900px) {
-    section h1 {
+    .section-homepage h1 {
         font-size: 2rem;
         text-align: center;
     }
 
-    section .text-container {
+    .section-homepage .text-container {
         flex-direction: column;
     }
 }

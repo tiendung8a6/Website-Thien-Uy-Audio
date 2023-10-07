@@ -17,7 +17,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { getCategories, getCategorySubs } from "../../functions/category";
 import SearchNav from "./Search";
 import './header.css';
-
+import Logo from '../../images/Logo.png';
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const [categories, setCategories] = useState([]);
@@ -30,10 +30,13 @@ const Header = () => {
   useEffect(() => {
     setLoading(true);
     getCategories().then((c) => {
-      setCategories(c.data);
+      const firstThreeCategories = c.data.reverse();
+      console.log(firstThreeCategories.slice(0, 3));
+      setCategories(firstThreeCategories.slice(0, 3));
       setLoading(false);
     });
   }, []);
+
 
   const loadSubs = (category) => {
     getCategorySubs(category._id).then((res) => {
@@ -55,14 +58,24 @@ const Header = () => {
   };
 
   const handleCategoryClick = (slug) => {
-    history.push(`/category/${slug}`);
-    window.location.reload()
+    history.push(`/category/subs/${slug}`);
+    window.location.reload();
   };
 
+  const handlLoginReloadPage = () => {
+    history.push('/login');
+
+    window.location.reload();
+  }
+  const handlRegisterReloadPage = () => {
+    history.push('/register');
+
+    window.location.reload();
+  }
   return (
     <Navbar className="shadow-lg p-3 bg-body rounded p-3 mb-1" expand="lg">
       <Container style={{ fontSize: '18px', fontWeight: '900' }}>
-        <Navbar.Brand as={Link} to="/">Navbar with text</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/"><img src={Logo} style={{ width: '50px', height: 'auto', borderRadius: '50%' }}></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -97,18 +110,17 @@ const Header = () => {
             <SearchNav />
             <Nav.Link as={Link} to="/cart" onClick={() => setCurrent("cart")} className="d-flex align-items-center" style={{ fontSize: '18px', marginRight: '10px' }}>
               <ShoppingCartOutlined />
-
-              <Badge count={cart.length} offset={[9, 0]} >
-                <span style={{ fontSize: '18px', }}>Cart</span>
+              <Badge badgeContent={cart.length} color="primary"  >
+                <span style={{ fontSize: '18px' }}>Giỏ hàng</span>
               </Badge>
             </Nav.Link>
 
             {!user && (
               <>
-                <Nav.Link as={Link} to="/register" className="d-flex align-items-center  ">
+                <Nav.Link as={Link} onClick={handlRegisterReloadPage} className="d-flex align-items-center  ">
                   <UserAddOutlined /> Đăng kí
                 </Nav.Link>
-                <Nav.Link as={Link} to="/login" className="d-flex align-items-center ">
+                <Nav.Link as={Link} onClick={handlLoginReloadPage} className="d-flex align-items-center ">
                   <UserOutlined /> Login
                 </Nav.Link>
               </>

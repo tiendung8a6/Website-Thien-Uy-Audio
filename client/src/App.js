@@ -170,13 +170,14 @@ const App = () => {
         <AdminRoute exact path="/admin/product" component={ProductCreate} />
         <AdminRoute exact path="/admin/products" component={AllProducts} />
         <AdminRoute exact path="/admin/product/:slug" component={ProductUpdate} />
+        <AdminRoute exact path="/admin/product/:slug" component={ProductUpdate} />
         <Route exact path="/product/:slug" component={Product} />
         <Route exact path="/blog/:slug" component={Blog} />
 
         <AdminRoute exact path="/admin/blog" component={BlogCreate} />
         <AdminRoute exact path="/admin/blogs" component={AllBlogs} />
-        <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate}/>
-        <Route exact path="/blog/:slug" component={Blog} />
+        <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate} />
+        <Route exact path="/blog" component={AllBloguser} />
         <Route exact path="/category/:slug" component={CategoryHome} />
         <Route exact path="/category/subs/:slug" component={GetSubFormCategories} />
 

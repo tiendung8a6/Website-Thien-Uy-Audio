@@ -19,7 +19,7 @@ const ScrollAnimation = () => {
                 </div>
                 <div className="hero-inner" id="section-3">
                     <figure />
-                    <h2 className="hero__title">Chào mừng bạn đến với HÙNG UY AUDIO</h2>
+                    <h2 className="hero__title">Chào mừng bạn đến với <br></br> HÙNG UY AUDIO</h2>
 
 
                 </div>

@@ -74,18 +74,19 @@ const Cart = ({ history }) => {
           )}
         </div>
         <div className="col-md-4">
-          <h4>T</h4>
+          <h4 style={{ color: 'transparent' }}>T</h4>
           <hr />
-          <p>Products</p>
+          <p>Sản Phẩm</p>
           {cart.map((c, i) => (
             <div key={i}>
               <p>
-                {c.title} x {c.count} = ${c.price * c.count}
+                {c.title} x {c.count} = {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(c.price * c.count)}
               </p>
             </div>
           ))}
           <hr />
-          Tổng cộng: <b>{getTotal()}VNĐ</b>
+          {/* {getTotal()}VNĐ */}
+          Tổng cộng: <b> {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(getTotal())}</b>
           <hr />
           {user ? (
             <>
@@ -112,8 +113,9 @@ const Cart = ({ history }) => {
                   pathname: "/login",
                   state: { from: "cart" },
                 }}
+
               >
-                Đăng nhập để thanh toán
+                <span style={{ color: 'white' }}>Đăng nhập để thanh toán</span>
               </Link>
             </button>
           )}

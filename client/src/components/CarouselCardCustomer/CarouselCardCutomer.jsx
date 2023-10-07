@@ -5,47 +5,47 @@ const items = [
   {
     // copy = content
     img: "https://i.pinimg.com/736x/48/0d/59/480d5961b9fe34fb1df2a6cfac81bbcd.jpg",
-    name: "Chaeng",
-    day: "13/11/2022",
-    copy: "I love the style and quality of the clothing. The fabric is so soft and comfortable to wear.",
+    name: "Nguyễn Thị Hương",
+    day: "23/11/2023",
+    copy: "Đã lâu tôi mới tìm thấy một bộ Karaoke như vậy. Âm thanh 7.2 thực sự làm tăng phần sống động cho những bài hát. Chất lượng âm thanh vòm từ 7 loa là không thể tin được. Cảm ơn bạn vì sản phẩm tuyệt vời này!.",
 
   },
   {
 
     img: "https://i.pinimg.com/564x/98/e0/4b/98e04bebba74ba1ac2c0ca14979d5c8d.jpg",
-    name: "Rose",
-    day: "13/11/2022",
-    copy: "The clothes fit perfectly and the designs are trendy. I've received many compliments while wearing them",
+    name: "Trần Văn Nam",
+    day: "13/11/2023",
+    copy: "Karaoke gia đình của bạn là lựa chọn hoàn hảo. Micro chất lượng cao giúp giảm thiểu tiếng ồn, loa tái tạo âm thanh tốt nhất. Điều này thực sự làm nổi bật những buổi hát Karaoke tại nhà. Tôi rất hạnh phúc với sản phẩm này.",
   },
   {
 
     img: "https://i.pinimg.com/564x/73/bc/d0/73bcd06b3727bb0be68ee4b29ce2cca5.jpg",
-    name: "Jennie",
-    day: "22/11/2022",
+    name: "Phạm Thị Lan Anh",
+    day: "22/11/2023",
 
-    copy: "The clothing line is amazing! The attention to detail and unique patterns make these clothes stand out from the rest.",
+    copy: "Bộ dàn Karaoke đã làm thay đổi hoàn toàn không khí trong gia đình. Âm thanh chất lượng, đặc biệt là loa siêu trầm, giúp tôi và bạn bè thưởng thức những bản Karaoke yêu thích một cách hoàn hảo. Sản phẩm đáng đồng tiền!",
   },
   {
 
     img: "https://i.pinimg.com/564x/71/b1/ee/71b1ee1b52860350aa2e785f2d6ac79b.jpg",
-    name: "Jisoo",
-    day: "22/01/2022",
+    name: "Lê Đình Quân",
+    day: "22/01/2023",
 
-    copy: "I'm impressed with the durability of the clothes. They hold up well even after multiple washes.",
+    copy: "Sự lựa chọn tuyệt vời cho không gian giải trí gia đình. Âm thanh 7.2 thật sự làm tăng cường trải nghiệm của chúng tôi. Chất lượng âm thanh đỉnh cao và khả năng tái tạo âm từ nhiều hướng là điểm mạnh nổi bật. Rất đáng đầu tư!",
   },
   {
 
     img: "https://i.pinimg.com/564x/09/c6/27/09c62710757c72b37da2b53c9004b156.jpg",
-    name: "Lalisa",
+    name: "Ngọc Thanh Hằng",
     day: "18/01/2023",
 
-    copy: "These clothes are perfect for any occasion. Whether it's a casual outing or a formal event, they make me look and feel great.",
+    copy: "Bộ dàn Karaoke gia đình của bạn không chỉ là sản phẩm, mà là một trải nghiệm âm nhạc đích thực. Micro chất lượng, loa sống động, và thiết kế sang trọng. Mọi buổi hát Karaoke đều trở nên tuyệt vời hơn. Cảm ơn bạn!",
   },
   {
     img: "https://i.pinimg.com/564x/a9/37/44/a9374473e6019890be1f824f3f460ca3.jpg",
-    name: "Ethan",
+    name: "Trần Minh Tuấn",
     day: "30/1/2023",
-    copy: "The clothing brand offers a wide range of options for different body types. It's inclusive and makes everyone feel confident.",
+    copy: "Bộ dàn Karaoke gia đình của bạn làm cho không gian giải trí của chúng tôi trở nên thú vị hơn bao giờ hết. Amply mạnh mẽ, loa chất lượng, và chất âm sống động. Tôi rất hài lòng với sự đầu tư này",
   },
 ];
 
