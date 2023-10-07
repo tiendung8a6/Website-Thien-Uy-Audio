@@ -39,7 +39,7 @@ const AllBloguser = () => {
             })
             .catch((err) => {
                 setLoading(false);
-                console.log(err);
+                // console.log(err);
             });
     };
 

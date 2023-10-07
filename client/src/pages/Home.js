@@ -42,7 +42,7 @@ const Home = () => {
 
       <Banner2></Banner2>
 
-      <section >
+      <section className="section-homepage" >
         <div className="container reveal">
           <h4 className="text-center p-3  mb-5 display-4 jumbotron">
             Sản Phẩm Mới Nhất
@@ -57,7 +57,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ marginTop: '20px' }}>
+      <section  className="section-homepage" style={{ marginTop: '20px' }}>
         <div className="container reveal">
 
           <div className="text-container">
@@ -73,7 +73,7 @@ const Home = () => {
 
 
 
-      <section >
+      <section  className="section-homepage">
         <div className="container reveal">
           <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
             Sản Phẩm Bán Chạy
@@ -87,7 +87,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ marginTop: '5px', background: 'white', padding: '20px 0' }}>
+      <section  className="section-homepage" style={{ marginTop: '5px', background: 'white', padding: '20px 0' }}>
         <div className="container reveal">
           <h1 className="text-center   mb-5 display-4 jumbotron">
             Blog đang chú ý
@@ -102,7 +102,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ marginTop: '50px' }}>
+      <section  className="section-homepage" style={{ marginTop: '50px' }}>
         <div className="container reveal">
           <h4 className="text-center mb-5 display-4 jumbotron">
             Danh Mục Sản Phẩm
@@ -122,7 +122,7 @@ const Home = () => {
       </h4>
       <SubList /> */}
 
-      <section>
+      <section  className="section-homepage">
         <div className="container reveal">
           <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron">
             Phản hồi khách hàng
@@ -136,7 +136,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ background: '#18164c' }} >
+      <section  className="section-homepage" style={{ background: '#18164c' }} >
         <div className="container reveal" >
           <h4 className="text-center p-3 mt-5 mb-5 display-4 jumbotron " style={{ color: 'white' }}>
             Đối tác chiến lược
