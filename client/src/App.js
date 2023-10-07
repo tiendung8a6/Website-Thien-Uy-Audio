@@ -90,6 +90,9 @@ const BlogUpdate = lazy(() => import("./pages/admin/blog/BlogUpdate"));
 
 const CategoryHome = lazy(() => import("./pages/category/CategoryHome"));
 const SubHome = lazy(() => import("./pages/sub/SubHome"));
+const GetSubFormCategories = lazy(() => import("./pages/category/GetSubFormCategories"));
+
+
 const Shop = lazy(() => import("./pages/Shop"));
 const Cart = lazy(() => import("./pages/Cart"));
 const Checkout = lazy(() => import("./pages/Checkout"));
@@ -172,9 +175,11 @@ const App = () => {
 
         <AdminRoute exact path="/admin/blog" component={BlogCreate} />
         <AdminRoute exact path="/admin/blogs" component={AllBlogs} />
-        <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate} />
-        <Route exact path="/blog" component={AllBloguser} />
+        <AdminRoute exact path="/admin/blog/:slug" component={BlogUpdate}/>
+        <Route exact path="/blog/:slug" component={Blog} />
         <Route exact path="/category/:slug" component={CategoryHome} />
+        <Route exact path="/category/subs/:slug" component={GetSubFormCategories} />
+
         <Route exact path="/sub/:slug" component={SubHome} />
         <Route exact path="/shop" component={Shop} />
 

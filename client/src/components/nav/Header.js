@@ -30,12 +30,19 @@ const Header = () => {
   useEffect(() => {
     setLoading(true);
     getCategories().then((c) => {
-      const firstThreeCategories = c.data.reverse();
-      console.log(firstThreeCategories.slice(0, 3));
-      setCategories(firstThreeCategories.slice(0, 3));
+      setCategories(c.data);
       setLoading(false);
     });
   }, []);
+
+  const loadSubs = (category) => {
+    getCategorySubs(category._id).then((res) => {
+      const updatedCategories = categories.map((c) =>
+        c._id === category._id ? { ...c, subs: res.data } : c
+      );
+      setCategories(updatedCategories);
+    });
+  };
 
 
   const loadSubs = (category) => {
@@ -59,7 +66,7 @@ const Header = () => {
 
   const handleCategoryClick = (slug) => {
     history.push(`/category/${slug}`);
-    window.location.reload();
+    window.location.reload()
   };
 
   return (
@@ -100,8 +107,9 @@ const Header = () => {
             <SearchNav />
             <Nav.Link as={Link} to="/cart" onClick={() => setCurrent("cart")} className="d-flex align-items-center" style={{ fontSize: '18px', marginRight: '10px' }}>
               <ShoppingCartOutlined />
-              <Badge badgeContent={cart.length} color="primary"  >
-                <span style={{ fontSize: '18px' }}>Giỏ hàng</span>
+
+              <Badge count={cart.length} offset={[9, 0]} >
+                <span style={{ fontSize: '18px', }}>Cart</span>
               </Badge>
             </Nav.Link>
 

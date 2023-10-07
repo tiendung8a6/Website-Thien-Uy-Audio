@@ -150,8 +150,8 @@ const ProductCard = ({ product }) => {
 						description={
 							<Typography
 								sx={{
-									color: 'white', 
-									fontSize: '16px',
+									color: 'white', // Change this to your desired color
+									fontSize: '16px', // Add other styling properties as needed
 								}}
 							>
 								{description && `${description.substring(0, 20)}..... `}
