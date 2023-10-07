@@ -90,20 +90,20 @@ const Cart = ({ history }) => {
           <hr />
           {user ? (
             <>
-              <button
+              {/* <button
                 onClick={saveOrderToDb}
                 className="btn btn-sm btn-primary mt-2"
                 disabled={!cart.length}
               >
-                Tiến hành thanh toán
-              </button>
+                Thanh toán chuyển khoản online
+              </button> */}
               <br />
               <button
                 onClick={saveCashOrderToDb}
                 className="btn btn-sm btn-warning mt-2"
                 disabled={!cart.length}
               >
-                Thanh toán tiền mặt khi giao hàng
+                Thanh toán tiền mặt khi nhận hàng
               </button>
             </>
           ) : (

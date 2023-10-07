@@ -2,35 +2,34 @@ const User = require("../models/user");
 const Cart = require("../models/cart");
 const Product = require("../models/product");
 const Coupon = require("../models/coupon");
-const coupon = require("../models/coupon");
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 exports.createPaymentIntent = async (req, res) => {
-  // console.log(req.body);
   const { couponApplied } = req.body;
 
-  // later apply coupon
-  // later calculate price
-
-  // 1 find user
+  // Lấy thông tin người dùng
   const user = await User.findOne({ email: req.user.email }).exec();
-  // 2 get user cart total
+
+  // Lấy tổng giá trị giỏ hàng của người dùng
   const { cartTotal, totalAfterDiscount } = await Cart.findOne({
     orderdBy: user._id,
   }).exec();
-  // console.log("CART TOTAL", cartTotal, "AFTER DIS%", totalAfterDiscount);
 
   let finalAmount = 0;
 
+  // Kiểm tra xem có áp dụng mã giảm giá không và tính giá cuối cùng
   if (couponApplied && totalAfterDiscount) {
-    finalAmount = totalAfterDiscount * 100; // Chuyển sang đơn vị tiền tệ (đây là cent)
+    finalAmount = totalAfterDiscount;
   } else {
-    finalAmount = cartTotal * 100; // Chuyển sang đơn vị tiền tệ (đây là cent)
+    finalAmount = cartTotal;
   }
 
-  // create payment intent with order amount and currency
+  // Chuyển đổi giá thành tiền tệ VND (theo định dạng Stripe, VND có mã là 'vnd')
+  const vndAmount = finalAmount * 100; // Stripe yêu cầu số tiền phải được truyền dưới dạng cents
+
+  // Tạo payment intent với số tiền và tiền tệ là VND
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: finalAmount,
+    amount: vndAmount,
     currency: "vnd",
   });
 
@@ -38,6 +37,6 @@ exports.createPaymentIntent = async (req, res) => {
     clientSecret: paymentIntent.client_secret,
     cartTotal,
     totalAfterDiscount,
-    payable: finalAmount / 100, // Chuyển về đơn vị tiền tệ VND
+    payable: finalAmount, // Số tiền cần thanh toán của người dùng (đã được chuyển đổi về VND)
   });
 };

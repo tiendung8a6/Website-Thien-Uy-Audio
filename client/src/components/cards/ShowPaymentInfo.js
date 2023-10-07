@@ -7,9 +7,9 @@ const ShowPaymentInfo = ({ order, showStatus = true }) => (
       {" / "}
       <span>
         Amount:{" / "}
-        {(order.paymentIntent.amount /= 100).toLocaleString("en-US", {
+        {(order.paymentIntent.amount /= 100).toLocaleString("vi-VN", {
           style: "currency",
-          currency: "USD",
+          currency: "VND",
         })}
       </span>
       {" / "}
@@ -27,7 +27,7 @@ const ShowPaymentInfo = ({ order, showStatus = true }) => (
       <br />
       {showStatus && (
         <span className="badge bg-primary text-white">
-          STATUS: {order.orderStatus}
+          Trạng thái: {order.orderStatus}
         </span>
       )}
     </p>
