@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -24,7 +23,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /client/src/components/ImgBanner/
-=======
-node_modules
-.env
->>>>>>> f043826da833dc37df6e148de07d4a3dedf91f10
