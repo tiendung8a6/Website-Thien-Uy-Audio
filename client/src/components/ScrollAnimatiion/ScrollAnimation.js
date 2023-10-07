@@ -19,7 +19,7 @@ const ScrollAnimation = () => {
                 </div>
                 <div className="hero-inner" id="section-3">
                     <figure />
-                    <h2 className="hero__title">Chào mừng bạn đến với <br></br> HÙNG UY AUDIO</h2>
+                    <h2 className="hero__title">Chào mừng bạn đến với <br></br> Thiên UY AUDIO</h2>
 
 
                 </div>
@@ -27,7 +27,7 @@ const ScrollAnimation = () => {
             <section className="content">
                 <article className="content__inner">
                     <h1 className="content__title">Giới Thiệu về sản phẩm chúng tôi</h1>
-                    <h3 className="content__author">hunguyaudio.com</h3>
+                    <h3 className="content__author">Thienuyaudio.com</h3>
 
                     <blockquote cite="Bob Ross">1. Thế nào là âm thanh 5.1</blockquote>
                     <h5>Âm thanh 5.1 là hệ thống âm thanh đa kênh gồm 5 loa và 1 loa siêu trầm. Hệ thống này bao gồm:</h5>
