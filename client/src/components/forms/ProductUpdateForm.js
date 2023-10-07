@@ -38,7 +38,7 @@ const ProductUpdateForm = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Title</label>
+        <label>Tên sản phẩm</label>
         <input
           type="text"
           name="title"
@@ -49,7 +49,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Description</label>
+        <label>Mô tả cho sản phẩm</label>
         <input
           type="text"
           name="description"
@@ -60,7 +60,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Price</label>
+        <label>Giá tiền</label>
         <input
           type="number"
           name="price"
@@ -71,20 +71,20 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Shipping</label>
+        <label>Giao hàng</label>
         <select
-          value={shipping === "Yes" ? "Yes" : "No"}
+          value={shipping === "Có" ? "Có" : "Không"}
           name="shipping"
           className="form-control"
           onChange={handleChange}
         >
-          <option value="No">No</option>
-          <option value="Yes">Yes</option>
+          <option value="Không">Không</option>
+          <option value="Có">Có</option>
         </select>
       </div>
 
       <div className="form-group">
-        <label>Quantity</label>
+        <label>Số lượng</label>
         <input
           type="number"
           name="quantity"
@@ -95,7 +95,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Color</label>
+        <label>Màu sắc</label>
         <select
           name="color"
           className="form-control"
@@ -112,7 +112,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Brand</label>
+        <label>Thương hiệu</label>
         <select
           name="brand"
           className="form-control"
@@ -129,7 +129,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Category</label>
+        <label>Danh mục</label>
         <select
           name="category"
           className="form-control"
@@ -146,7 +146,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div>
-        <label>Sub Categories</label>
+        <label>Danh mục con</label>
         <Select
           mode="multiple"
           style={{ width: "100%" }}
@@ -164,7 +164,7 @@ const ProductUpdateForm = ({
       </div>
 
       <br />
-      <button className="btn btn-outline-info">Save</button>
+      <button className="btn btn-outline-info">Lưu</button>
     </form>
   );
 };

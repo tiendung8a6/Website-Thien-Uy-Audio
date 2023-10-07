@@ -46,7 +46,7 @@ const History = () => {
             <td>{p.color}</td>
             <td>{p.count}</td>
             <td>
-              {p.product.shipping === "Yes" ? (
+              {p.product.shipping === "Có" ? (
                 <CheckCircleOutlined style={{ color: "green" }} />
               ) : (
                 <CloseCircleOutlined style={{ color: "red" }} />

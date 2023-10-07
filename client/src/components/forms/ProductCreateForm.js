@@ -120,8 +120,8 @@ const ProductCreateForm = ({
       >
         <Select onChange={(value) => handleChange('shipping', value)} value={shipping} placeholder="Vui lòng chọn trạng thái">
           <Option value="" disabled > Vui lòng chọn</Option>
-          <Option value="No">Không</Option>
-          <Option value="Yes">Có</Option>
+          <Option value="Không">Không</Option>
+          <Option value="Có">Có</Option>
         </Select>
       </Form.Item>
 
