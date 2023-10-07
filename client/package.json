@@ -5,12 +5,12 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@babel/core": "^7.22.17",
-
     "@ckeditor/ckeditor5-build-classic": "^39.0.2",
     "@ckeditor/ckeditor5-image": "^39.0.2",
     "@ckeditor/ckeditor5-react": "^6.1.0",
     "@ckeditor/ckeditor5-upload": "^39.0.2",
     "@david.kucsai/react-pdf-table": "^0.3.0",
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-free": "^6.4.2",
