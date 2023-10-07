@@ -53,7 +53,7 @@
   },
   "scripts": {
     "dev": "react-scripts  start",
-    "build": "react-scripts --openssl-legacy-provider --max_old_space_size=4096 build",
+    "build": "react-scripts --openssl-legacy-provider --max-old-space-size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "serve -s build"
