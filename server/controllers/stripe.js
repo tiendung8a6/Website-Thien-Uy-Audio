@@ -23,21 +23,21 @@ exports.createPaymentIntent = async (req, res) => {
   let finalAmount = 0;
 
   if (couponApplied && totalAfterDiscount) {
-    finalAmount = totalAfterDiscount * 100;
+    finalAmount = totalAfterDiscount * 100; // Chuyển sang đơn vị tiền tệ (đây là cent)
   } else {
-    finalAmount = cartTotal * 100;
+    finalAmount = cartTotal * 100; // Chuyển sang đơn vị tiền tệ (đây là cent)
   }
 
   // create payment intent with order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: finalAmount,
-    currency: "usd",
+    currency: "vnd",
   });
 
   res.send({
     clientSecret: paymentIntent.client_secret,
     cartTotal,
     totalAfterDiscount,
-    payable: finalAmount,
+    payable: finalAmount / 100, // Chuyển về đơn vị tiền tệ VND
   });
 };
