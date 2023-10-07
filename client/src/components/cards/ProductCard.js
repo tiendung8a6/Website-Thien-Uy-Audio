@@ -33,7 +33,7 @@ import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 
 import { addToWishlist } from "../../functions/user";
-
+import Logo from "../../images/Logo.png";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import Alert from '@mui/material/Alert';
@@ -166,9 +166,11 @@ const ProductCard = ({ product }) => {
       <Card sx={{ width: 350 }} className='cardproduct p-auto' style={{ justifyContent: 'center', }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-              AD
-            </Avatar>
+            <Avatar
+              alt="Logo HUNGUY"
+              src={Logo}
+              sx={{ width: 45, height: 45 }}
+            />
           }
           action={
             <IconButton aria-label="settings">
@@ -179,7 +181,9 @@ const ProductCard = ({ product }) => {
 
         <CardMedia
           component="img"
-          height="full" // Adjust the height as needed
+          height="350" // Adjust the height as needed
+          width="350" // Adjust the height as needed
+
           src={images && images.length ? images[0].url : laptop}
           alt="Product Image"
           style={{ objectFit: "cover" }}
@@ -214,7 +218,7 @@ const ProductCard = ({ product }) => {
 
             <span className='d-flex justify-content-start startproductcard_hover'>
               {product && product.ratings && product.ratings.length > 0 ? showAverage(product) :
-                <p className='mb-4'> Chưa có  giá</p>}
+                <p className='' style={{ fontSize: '17px' }}> Chưa có  giá</p>}
             </span>
 
           </Typography>
@@ -230,7 +234,7 @@ const ProductCard = ({ product }) => {
             // // }}
             style={{ width: '100%', }}
           >
-            <BottomNavigationAction component={Link} to={`/product/${slug}`} label="Recents" icon={<VisibilityOutlinedIcon className='hover_ProductCardIcon'
+            <BottomNavigationAction component={Link} to={`/product/${slug}`} label="Xem" icon={<VisibilityOutlinedIcon className='hover_ProductCardIcon'
             />} />
 
             <BottomNavigationAction component={Link} onClick={handleAddToCart} label={product.quantity < 1 ? "Hết hàng" : "Còn hàng"} icon={<ShoppingCartOutlinedIcon className='hover_ProductCardIcon' />} />
