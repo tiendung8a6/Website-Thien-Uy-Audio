@@ -44,16 +44,6 @@ const Header = () => {
     });
   };
 
-
-  const loadSubs = (category) => {
-    getCategorySubs(category._id).then((res) => {
-      const updatedCategories = categories.map((c) =>
-        c._id === category._id ? { ...c, subs: res.data } : c
-      );
-      setCategories(updatedCategories);
-    });
-  };
-
   const logout = () => {
     firebase.auth().signOut();
     dispatch({
