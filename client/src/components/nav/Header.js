@@ -58,7 +58,7 @@ const Header = () => {
   };
 
   const handleCategoryClick = (slug) => {
-    history.push(`/category/${slug}`);
+    history.push(`/category/subs/${slug}`);
     window.location.reload();
   };
 

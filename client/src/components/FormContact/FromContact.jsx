@@ -9,6 +9,7 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import Footer from "../footer/Footer";
 const FormContact = () => {
     return (
         <>
@@ -110,7 +111,7 @@ const FormContact = () => {
                 </Grid>
 
             </Grid>
-
+            <Footer></Footer>
         </>
 
     );
