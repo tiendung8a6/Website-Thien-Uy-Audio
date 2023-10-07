@@ -18,6 +18,8 @@ import { getCategories, getCategorySubs } from "../../functions/category";
 import SearchNav from "./Search";
 import './header.css';
 import Logo from '../../images/Logo.png';
+import Avatar from '@mui/material/Avatar';
+
 const Header = () => {
   const [current, setCurrent] = useState("home");
   const [categories, setCategories] = useState([]);
@@ -75,7 +77,14 @@ const Header = () => {
   return (
     <Navbar className="shadow-lg p-3 bg-body rounded p-3 mb-1" expand="lg">
       <Container style={{ fontSize: '18px', fontWeight: '900' }}>
-        <Navbar.Brand as={Link} to="/"><img src={Logo} style={{ width: '50px', height: 'auto', borderRadius: '50%' }}></img></Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          {/* <img  style={{ width: '50px', height: 'auto', borderRadius: '50%' }}></img> */}
+          <Avatar
+            alt="Logo HUNGUY"
+            src={Logo}
+            sx={{ width: 45, height: 45 }}
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
         <Navbar.Collapse id="responsive-navbar-nav">
