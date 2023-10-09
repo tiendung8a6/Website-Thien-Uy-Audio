@@ -146,10 +146,11 @@ const Checkout = ({ history }) => {
           payload: false,
         });
         // mepty cart from backend
-        emptyUserCart(user.token);
+        emptyUserCart(user.token); 
         // redirect
         setTimeout(() => {
           history.push("/user/history");
+          window.location.reload();
         }, 1000);
       }
     });
@@ -181,7 +182,7 @@ const Checkout = ({ history }) => {
 
         {totalAfterDiscount > 0 && (
           <p className="bg-success p-2">
-           Mã giảm giá được áp dụng: Tổng số tiền phải trả là: {totalAfterDiscount} VND
+            Mã giảm giá được áp dụng: Tổng số tiền phải trả là: {totalAfterDiscount} VND
           </p>
         )}
 

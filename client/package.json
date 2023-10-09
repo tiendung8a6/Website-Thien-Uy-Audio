@@ -52,7 +52,7 @@
     "typewriter-effect": "^2.21.0"
   },
   "scripts": {
-    "dev": "react-scripts  start",
+    "dev": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
