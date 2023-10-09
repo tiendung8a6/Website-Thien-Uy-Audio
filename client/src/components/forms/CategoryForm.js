@@ -6,7 +6,7 @@ const CategoryForm = ({ handleSubmit, name, setName }) => (
   <Form
     name="basic"
     labelCol={{ span: 3 }}
-    wrapperCol={{ span: 500}}
+    wrapperCol={{ span: 500 }}
     style={{ maxWidth: 4000 }}
     onFinish={handleSubmit}>
     <Form.Item

@@ -46,7 +46,7 @@ const History = () => {
             <td>{p.color}</td>
             <td>{p.count}</td>
             <td>
-              {p.product.shipping === "Yes" ? (
+              {p.product.shipping === "Có" ? (
                 <CheckCircleOutlined style={{ color: "green" }} />
               ) : (
                 <CloseCircleOutlined style={{ color: "red" }} />
@@ -87,7 +87,7 @@ const History = () => {
         </div>
         <div className="col text-center">
           <h4>
-            {orders.length > 0 ? "User purchase orders" : "No purchase orders"}
+            {orders.length > 0 ? "Đơn đặt hàng của người dùng" : "Không có đơn đặt hàng"}
           </h4>
           {showEachOrders()}
         </div>

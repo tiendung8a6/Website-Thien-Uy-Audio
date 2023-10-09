@@ -57,7 +57,7 @@ const Product = ({ match }) => {
       <div className="row">
         <div className="col text-center pt-5 pb-5">
           <hr />
-          <h4>Related Products</h4>
+          <h4>Sản phẩm liên quan </h4>
           <hr />
         </div>
       </div>
@@ -70,7 +70,7 @@ const Product = ({ match }) => {
             </div>
           ))
         ) : (
-          <div className="text-center col">No Products Found</div>
+          <div className="text-center col">Không Tim thấy sản phẩm liên qua</div>
         )}
       </div>
     </div>

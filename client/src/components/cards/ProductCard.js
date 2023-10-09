@@ -10,6 +10,8 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red, blue } from '@mui/material/colors';
+import Laptop from "../../images/laptop.png";
+
 
 // import FavoriteIcon from '@mui/icons-material/Favorite';
 // import ShareIcon from '@mui/icons-material/Share';
@@ -31,7 +33,7 @@ import _ from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 
 import { addToWishlist } from "../../functions/user";
-
+import Logo from "../../images/Logo.png";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import Alert from '@mui/material/Alert';
@@ -43,7 +45,11 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import './ProductCard.css'
 
+import Slider from "react-slick";
 const { Meta } = Card;
 
 const ExpandMore = styled((props) => {
@@ -139,7 +145,7 @@ const ProductCard = ({ product }) => {
   const { images, title, description, slug, price } = product;
 
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }} >
 
       {errorMessage && (
         <div style={{ position: 'relative' }}>
@@ -157,42 +163,62 @@ const ProductCard = ({ product }) => {
       )}
 
 
-      <Card sx={{ Width: 300 }}>
+      <Card sx={{ width: 350 }} className='cardproduct p-auto' style={{ justifyContent: 'center', }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-              AD
-            </Avatar>
+            <Avatar
+              alt="Logo HUNGUY"
+              src={Logo}
+              sx={{ width: 45, height: 45 }}
+            />
           }
           action={
             <IconButton aria-label="settings">
               <MoreVertIcon />
             </IconButton>
           }
-
-
-        // title={product && product.ratings && product.ratings.length > 0 ? showAverage(product) : <span className='d-flex justify-content-center'> Chưa có  giá</span>}
-
         />
+
         <CardMedia
           component="img"
-          height="150" // Adjust the height as needed
+          height="350" // Adjust the height as needed
+          width="350" // Adjust the height as needed
+
           src={images && images.length ? images[0].url : laptop}
           alt="Product Image"
           style={{ objectFit: "cover" }}
           className="p-1"
         />
+        {/* <Card>
+          {images && images.length ? (
+            <Carousel showArrows={true} autoPlay infiniteLoop showThumbs={false} className='carousel-style'>
+              {images && images.map((i) => <img src={i.url} key={i.public_id} width={300} height={300} />)}
+            </Carousel>
+          ) : (
+            <CardMedia
+              component="img"
+              height="200"
+              src={images && images.length ? laptop : laptop}
+              alt="Product Image"
+              style={{ objectFit: "cover" }}
+              className="p-1"
+            />
+          )}
+        </Card> */}
+
+
+
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            <span style={{ color: '#87CEEB', fontSize: '16px' }}>{`${title}`}</span>
+            <span style={{ color: '#87CEEB', fontSize: '18px', fontWeight: "700" }}>{`${title}`}</span>
 
             <br />
             {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(price)}
             {/* {`${price}`}vnđ */}
 
-            <span className='d-flex justify-content-start'>
+            <span className='d-flex justify-content-start startproductcard_hover'>
               {product && product.ratings && product.ratings.length > 0 ? showAverage(product) :
-                <p className='mb-4'> Chưa có  giá</p>}
+                <p className='' style={{ fontSize: '17px' }}> Chưa có  giá</p>}
             </span>
 
           </Typography>
@@ -208,12 +234,13 @@ const ProductCard = ({ product }) => {
             // // }}
             style={{ width: '100%', }}
           >
-            <BottomNavigationAction component={Link} to={`/product/${slug}`} label="Recents" icon={<VisibilityOutlinedIcon />} />
+            <BottomNavigationAction component={Link} to={`/product/${slug}`} label="Xem" icon={<VisibilityOutlinedIcon className='hover_ProductCardIcon'
+            />} />
 
-            <BottomNavigationAction component={Link} onClick={handleAddToCart} label={product.quantity < 1 ? "Hết hàng" : "Còn hàng"} icon={<ShoppingCartOutlinedIcon />} />
-            <BottomNavigationAction component={Link} onClick={handleAddToWishlist} label="Lưu" icon={<HeartOutlined />} />
+            <BottomNavigationAction component={Link} onClick={handleAddToCart} label={product.quantity < 1 ? "Hết hàng" : "Còn hàng"} icon={<ShoppingCartOutlinedIcon className='hover_ProductCardIcon' />} />
+            <BottomNavigationAction component={Link} onClick={handleAddToWishlist} label="Lưu" icon={<HeartOutlined className='hover_ProductCardIcon' />} />
             <BottomNavigationAction component={Link} onClick={handleExpandClick}
-              expand={expanded} aria-expanded={expanded} naria-label="show more" label="Thêm" icon={<ExpandCircleDownIcon fontSize="medium" />} />
+              expand={expanded} aria-expanded={expanded} naria-label="show more" label="Thêm" icon={<ExpandCircleDownIcon className='hover_ProductCardIcon' fontSize="medium" />} />
           </BottomNavigation>
 
 
@@ -231,9 +258,9 @@ const ProductCard = ({ product }) => {
 
           </CardContent>
         </Collapse>
-      </Card>
+      </Card >
       <br></br>
-    </>
+    </div>
   );
 };
 

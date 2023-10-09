@@ -21,6 +21,9 @@ const blogSchema = new mongoose.Schema(
     content: {
       type: String,
     },
+    description: { //Mô tả ngắn gọn cho blog
+      type: String,
+    },
   },
   { timestamps: true }
 );

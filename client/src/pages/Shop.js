@@ -278,19 +278,19 @@ const Shop = () => {
       <Checkbox
         className="pb-2 pl-4 pr-4"
         onChange={handleShippingchange}
-        value="Yes"
-        checked={shipping === "Yes"}
+        value="Có"
+        checked={shipping === "Có"}
       >
-        Yes
+        Có
       </Checkbox>
 
       <Checkbox
         className="pb-2 pl-4 pr-4"
         onChange={handleShippingchange}
-        value="No"
-        checked={shipping === "No"}
+        value="Không"
+        checked={shipping === "Không"}
       >
-        No
+        Không
       </Checkbox>
     </>
   );

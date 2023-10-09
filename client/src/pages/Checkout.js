@@ -49,7 +49,7 @@ const Checkout = ({ history }) => {
       setTotal(0);
       setTotalAfterDiscount(0);
       setCoupon("");
-      toast.success("Cart is emapty. Contniue shopping.");
+      toast.success("Giỏ hàng trống. Tiếp tục mua sắm.");
     });
   };
 
@@ -58,7 +58,7 @@ const Checkout = ({ history }) => {
     saveUserAddress(user.token, address).then((res) => {
       if (res.data.ok) {
         setAddressSaved(true);
-        toast.success("Address saved");
+        toast.success("Lưu thành công địa chỉ.");
       }
     });
   };
@@ -91,7 +91,7 @@ const Checkout = ({ history }) => {
     <>
       <ReactQuill theme="snow" value={address} onChange={setAddress} />
       <button className="btn btn-primary mt-2" onClick={saveAddressToDb}>
-        Save
+        Lưu địa chỉ
       </button>
     </>
   );
@@ -118,7 +118,7 @@ const Checkout = ({ history }) => {
         className="form-control"
       />
       <button onClick={applyDiscountCoupon} className="btn btn-primary mt-2">
-        Apply
+        Xác nhận mã giảm giá
       </button>
     </>
   );
@@ -146,10 +146,11 @@ const Checkout = ({ history }) => {
           payload: false,
         });
         // mepty cart from backend
-        emptyUserCart(user.token);
+        emptyUserCart(user.token); 
         // redirect
         setTimeout(() => {
           history.push("/user/history");
+          window.location.reload();
         }, 1000);
       }
     });
@@ -158,12 +159,12 @@ const Checkout = ({ history }) => {
   return (
     <div className="row">
       <div className="col-md-6">
-        <h4>Delivery Address</h4>
+        <h4>Địa chỉ nhận hàng</h4>
         <br />
         <br />
         {showAddress()}
         <hr />
-        <h4>Got Coupon?</h4>
+        <h4>Nhập mã giảm giá</h4>
         <br />
         {showApplyCoupon()}
         <br />
@@ -171,17 +172,17 @@ const Checkout = ({ history }) => {
       </div>
 
       <div className="col-md-6">
-        <h4>Order Summary</h4>
+        <h4>Tổng sản phẩm đặt hàng </h4>
         <hr />
-        <p>Products {products.length}</p>
+        <p>Số lượng sản phẩm: {products.length}</p>
         <hr />
         {showProductSummary()}
         <hr />
-        <p>Cart Total: {total}</p>
+        <p>Tổng giá tiền: {total}</p>
 
         {totalAfterDiscount > 0 && (
           <p className="bg-success p-2">
-            Discount Applied: Total Payable: ${totalAfterDiscount}
+            Mã giảm giá được áp dụng: Tổng số tiền phải trả là: {totalAfterDiscount} VND
           </p>
         )}
 
@@ -193,7 +194,7 @@ const Checkout = ({ history }) => {
                 disabled={!addressSaved || !products.length}
                 onClick={createCashOrder}
               >
-                Place Order
+                Đặt hàng
               </button>
             ) : (
               <button
@@ -201,7 +202,7 @@ const Checkout = ({ history }) => {
                 disabled={!addressSaved || !products.length}
                 onClick={() => history.push("/payment")}
               >
-                Place Order
+                Đặt hàng
               </button>
             )}
           </div>
@@ -212,7 +213,8 @@ const Checkout = ({ history }) => {
               onClick={emptyCart}
               className="btn btn-primary"
             >
-              Empty Cart
+              {/* Empty Cart */}
+              Xóa tất cả trong giỏ hàng
             </button>
           </div>
         </div>

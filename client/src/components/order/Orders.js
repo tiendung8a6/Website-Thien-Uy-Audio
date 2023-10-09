@@ -27,7 +27,7 @@ const Orders = ({ orders, handleStatusChange }) => {
             <td>{p.color}</td>
             <td>{p.count}</td>
             <td>
-              {p.product.shipping === "Yes" ? (
+              {p.product.shipping === "Có" ? (
                 <CheckCircleOutlined style={{ color: "green" }} />
               ) : (
                 <CloseCircleOutlined style={{ color: "red" }} />
@@ -47,7 +47,7 @@ const Orders = ({ orders, handleStatusChange }) => {
             <ShowPaymentInfo order={order} showStatus={false} />
 
             <div className="row">
-              <div className="col-md-4">Delivery Status</div>
+              <div className="col-md-4">Trạng thái giao hàng</div>
               <div className="col-md-8">
                 <select
                   onChange={(e) =>
@@ -57,12 +57,12 @@ const Orders = ({ orders, handleStatusChange }) => {
                   defaultValue={order.orderStatus}
                   name="status"
                 >
-                  <option value="Not Processed">Not Processed</option>
-                  <option value="Cash On Delivery">Cash On Delivery</option>
-                  <option value="Processing">Processing</option>
-                  <option value="Dispatched">Dispatched</option>
-                  <option value="Cancelled">Cancelled</option>
-                  <option value="Completed">Completed</option>
+                  <option value="Không được xử lý">Không được xử lý</option>
+                  <option value="Thanh toán khi giao hàng">Thanh toán khi giao hàng</option>
+                  <option value="Đang xử lý"> Đang xử lý</option>
+                  <option value="Đã gửi đi">Đã gửi đi</option>
+                  <option value="Hủy">Hủy</option>
+                  <option value="Hoàn thành">Hoàn thành</option>
                 </select>
               </div>
             </div>

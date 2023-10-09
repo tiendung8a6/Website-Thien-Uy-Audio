@@ -76,7 +76,7 @@ const ProductUpdate = ({ match, history }) => {
     updateProduct(slug, values, user.token)
       .then((res) => {
         setLoading(false);
-        toast.success(`"${res.data.title}" is updated`);
+        toast.success(`Blog "${res.data.title}" đã được cập nhật thành công`);
         history.push("/admin/products");
       })
       .catch((err) => {

@@ -216,13 +216,13 @@ exports.createCashOrder = async (req, res) => {
     paymentIntent: {
       id: uniqueid(),
       amount: finalAmount,
-      currency: "usd",
-      status: "Cash On Delivery",
+      currency: "vnd",
+      status: "Thanh toán khi giao hàng",
       created: Date.now(),
       payment_method_types: ["cash"],
     },
     orderdBy: user._id,
-    orderStatus: "Cash On Delivery",
+    orderStatus: "Thanh toán khi giao hàng",
   }).save();
 
   // decrement quantity, increment sold

@@ -8,7 +8,6 @@ import { message, notification } from 'antd';
 
 const CategoryUpdate = ({ history, match }) => {
   const { user } = useSelector((state) => ({ ...state }));
-
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 

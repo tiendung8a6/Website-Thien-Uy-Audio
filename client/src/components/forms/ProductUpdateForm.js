@@ -9,7 +9,11 @@ const ProductUpdateForm = ({
   setValues,
   values,
   handleCategoryChange,
+  handleColorChange,
+  handleBrandChange,
   categories,
+  colors,
+  brands,
   subOptions,
   arrayOfSubs,
   setArrayOfSubs,
@@ -25,8 +29,8 @@ const ProductUpdateForm = ({
     shipping,
     quantity,
     images,
-    colors,
-    brands,
+    // colors,
+    // brands,
     color,
     brand,
   } = values;
@@ -34,7 +38,7 @@ const ProductUpdateForm = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Title</label>
+        <label>Tên sản phẩm</label>
         <input
           type="text"
           name="title"
@@ -45,7 +49,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Description</label>
+        <label>Mô tả cho sản phẩm</label>
         <input
           type="text"
           name="description"
@@ -56,7 +60,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Price</label>
+        <label>Giá tiền</label>
         <input
           type="number"
           name="price"
@@ -67,20 +71,20 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Shipping</label>
+        <label>Giao hàng</label>
         <select
-          value={shipping === "Yes" ? "Yes" : "No"}
+          value={shipping === "Có" ? "Có" : "Không"}
           name="shipping"
           className="form-control"
           onChange={handleChange}
         >
-          <option value="No">No</option>
-          <option value="Yes">Yes</option>
+          <option value="Không">Không</option>
+          <option value="Có">Có</option>
         </select>
       </div>
 
       <div className="form-group">
-        <label>Quantity</label>
+        <label>Số lượng</label>
         <input
           type="number"
           name="quantity"
@@ -91,39 +95,41 @@ const ProductUpdateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Color</label>
+        <label>Màu sắc</label>
         <select
-          value={color}
           name="color"
           className="form-control"
-          onChange={handleChange}
+          onChange={handleColorChange}
+          value={values.color}
         >
-          {colors.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
+          {colors.length > 0 &&
+            colors.map((cl) => (
+              <option key={cl.name} value={cl.name}>
+                {cl.name}
+              </option>
+            ))}
         </select>
       </div>
 
       <div className="form-group">
-        <label>Brand</label>
+        <label>Thương hiệu</label>
         <select
-          value={brand}
           name="brand"
           className="form-control"
-          onChange={handleChange}
+          onChange={handleBrandChange}
+          value={values.brand}
         >
-          {brands.map((b) => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
+          {brands.length > 0 &&
+            brands.map((b) => (
+              <option key={b.name} value={b.name}>
+                {b.name}
+              </option>
+            ))}
         </select>
       </div>
 
       <div className="form-group">
-        <label>Category</label>
+        <label>Danh mục</label>
         <select
           name="category"
           className="form-control"
@@ -140,7 +146,7 @@ const ProductUpdateForm = ({
       </div>
 
       <div>
-        <label>Sub Categories</label>
+        <label>Danh mục con</label>
         <Select
           mode="multiple"
           style={{ width: "100%" }}
@@ -158,7 +164,7 @@ const ProductUpdateForm = ({
       </div>
 
       <br />
-      <button className="btn btn-outline-info">Save</button>
+      <button className="btn btn-outline-info">Lưu</button>
     </form>
   );
 };
