@@ -135,9 +135,9 @@ const App = () => {
     <Suspense
       fallback={
         <div className="col text-center p-5">
-          __ React Redux EC
+         
           <LoadingOutlined />
-          MMERCE __
+          Vui Lòng Chờ Chúng Tui Trong Giây Lát 
         </div>
       }
     >
@@ -183,8 +183,7 @@ const App = () => {
 
         <Route exact path="/sub/:slug" component={SubHome} />
         <Route exact path="/shop" component={Shop} />
-
-
+        
         <Route exact path="/cart" component={Cart} />
         <UserRoute exact path="/checkout" component={Checkout} />
         <AdminRoute exact path="/admin/coupon" component={CreateCouponPage} />

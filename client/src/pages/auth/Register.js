@@ -84,7 +84,7 @@ const Register = ({ history }) => {
       <div className="container py-5 h-100"  >
         <div className="row d-flex justify-content-center align-items-center h-100 "   >
           <div className="col-xl-10 ">
-            <div className="card rounded-3 text-black form-main-register">
+            <div className="rounded-3 text-black form-main-register">
               <div className="row g-0">
 
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2 left-register">

@@ -85,27 +85,16 @@ const SingleProduct = ({ product, onStarClick, star }) => {
         <Paper >
           {images && images.length ? (
             <Carousel showArrows={true} autoPlay infiniteLoop>
-              {images && images.map((i) => <img src={i.url} key={i.public_id} />)}
+              {images && images.map((i) => <img src={i.url} key={i.public_id} style={{ height: '100%', backgroundSize: 'cover', }} />)}
             </Carousel>
           ) : (
             <Card cover={<img src={Laptop} className="mb-3 card-image" />}></Card>
           )}
         </Paper>
-        <Paper style={{ height: '200px', marginTop: '10px' }}>
-          <Tabs type="card" >
-
-            <TabPane tab="Mô tả SP" key="1">
-              {description && description}
-            </TabPane>
-            <TabPane tab="Thông tin chi tiết" key="2">
-              Liên hệ ngay: ................
-            </TabPane>
-
-          </Tabs>
-        </Paper >
+        {/* absolutes */}
       </div>
 
-      <Paper className="col-md-5" elevation={3}>
+      <Paper className="col-md-5" elevation={3} style={{ marginBottom: '20px' }}>
         <TableContainer >
           <Table sx={{ minWidth: 500 }} aria-label="simple table">
             <TableHead>
@@ -118,10 +107,10 @@ const SingleProduct = ({ product, onStarClick, star }) => {
               {product && product.ratings && product.ratings.length > 0 ? (
                 showAverage(product)
               ) : (
-                <div className="text-center pt-1 pb-3">Chưa có đánh giá</div>
+                <div className="text-center pt-1 pb-1">Chưa có đánh giá</div>
               )}
 
-              <Card style={{ marginBottom: '10px' }}
+              <Card style={{ marginBottom: '' }}
                 actions={[
                   <Tooltip placement="top" title={tooltip}>
                     <a onClick={handleAddToCart} disabled={product.quantity < 1}>
@@ -157,6 +146,41 @@ const SingleProduct = ({ product, onStarClick, star }) => {
 
 
       </Paper>
+
+
+      <Tabs type="card" style={{ marginTop: '10px' }}>
+        {/* <TabPane tab="Thông tin liên hệ " key="1" style={{ padding: '10px' }}>
+          Liên hệ ngay:<br />
+
+          <ul>
+            <li><a href="tel:079 2826 567" target="_blank">079 2826 567</a><br /></li>
+            <li><a href="https://www.google.com/maps/place/L%C3%B4+1,+Ph%C6%B0%E1%BB%9Dng+27,+B%C3%ACnh+Th%E1%BA%A1nh,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.8186847,106.7134828,17z/data=!3m1!4b1!4m6!3m5!1s0x3175289b0ccf1e47:0x245a22fc48e9a457!8m2!3d10.8186794!4d106.7160577!16s%2Fg%2F12jvylqkp?hl=vi-VN&entry=ttu" target="_blank">Cư xá Thanh Đa Lô 1 Phường 27 Bình Thạnh  </a> <br /></li>
+            <li><a href="mailto:thienuyaudio@gmail.com" target="_blank">Email </a> <br /></li>
+            <li><a href="https://www.facebook.com/thietkedankaraoke" target="_blank">Fanpage </a><br /></li>
+
+
+
+          </ul>
+        </TabPane> */}
+        <TabPane tab="Mô tả SP" key="1">
+
+          <Paper elevation={2} style={{ overflow: 'scroll', padding: '30px' }}>
+            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            <style>
+              {`
+                img {
+                  height: 400px;
+                  width: auto;
+
+                }
+              `}
+            </style>
+          </Paper>
+        </TabPane>
+
+
+      </Tabs>
+
     </>
   );
 };

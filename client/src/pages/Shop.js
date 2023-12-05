@@ -6,7 +6,7 @@ import {
 import { getCategories } from "../functions/category";
 import { getSubs } from "../functions/sub";
 import { useSelector, useDispatch } from "react-redux";
-import ProductCard from "../components/cards/ProductCard";
+import ProductCardv2 from "../components/cards/ProductCardv2/ProductCardv2";
 import { Menu, Slider, Checkbox, Radio } from "antd";
 import {
   DollarOutlined,
@@ -190,7 +190,7 @@ const Shop = () => {
         key={s._id}
         onClick={() => handleSub(s)}
         className="p-1 m-1 badge badge-secondary"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", color: "black" }}
       >
         {s.name}
       </div>
@@ -314,7 +314,7 @@ const Shop = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-3 pt-2">
-          <h4>Search/Filter</h4>
+          <h4>Lọc sản phẩm</h4>
           <hr />
 
           <Menu
@@ -326,18 +326,19 @@ const Shop = () => {
               key="1"
               title={
                 <span className="h6">
-                  <DollarOutlined /> Price
+                  <DollarOutlined /> Giá
                 </span>
               }
             >
               <div>
                 <Slider
                   className="ml-4 mr-4"
-                  tipFormatter={(v) => `$${v}`}
+                  tipFormatter={(v) => `${new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(v)}`}
+
                   range
                   value={price}
                   onChange={handleSlider}
-                  max="4999"
+                  max="800000000"
                 />
               </div>
             </SubMenu>
@@ -347,7 +348,7 @@ const Shop = () => {
               key="2"
               title={
                 <span className="h6">
-                  <DownSquareOutlined /> Categories
+                  <DownSquareOutlined /> Danh mục
                 </span>
               }
             >
@@ -359,7 +360,7 @@ const Shop = () => {
               key="3"
               title={
                 <span className="h6">
-                  <StarOutlined /> Rating
+                  <StarOutlined /> Đánh giá
                 </span>
               }
             >
@@ -371,17 +372,17 @@ const Shop = () => {
               key="4"
               title={
                 <span className="h6">
-                  <DownSquareOutlined /> Sub Categories
+                  <DownSquareOutlined /> Danh mục con
                 </span>
               }
             >
-              <div style={{ maringTop: "-10px" }} className="pl-4 pr-4">
+              <div style={{ maringTop: "-10px", color: 'black' }} className="pl-4 pr-4">
                 {showSubs()}
               </div>
             </SubMenu>
 
             {/* brands */}
-            <SubMenu
+            {/* <SubMenu
               key="5"
               title={
                 <span className="h6">
@@ -392,10 +393,10 @@ const Shop = () => {
               <div style={{ maringTop: "-10px" }} className="pr-5">
                 {showBrands()}
               </div>
-            </SubMenu>
+            </SubMenu> */}
 
             {/* colors */}
-            <SubMenu
+            {/* <SubMenu
               key="6"
               title={
                 <span className="h6">
@@ -406,7 +407,7 @@ const Shop = () => {
               <div style={{ maringTop: "-10px" }} className="pr-5">
                 {showColors()}
               </div>
-            </SubMenu>
+            </SubMenu> */}
 
             {/* shipping */}
             <SubMenu
@@ -428,15 +429,15 @@ const Shop = () => {
           {loading ? (
             <h4 className="text-danger">Loading...</h4>
           ) : (
-            <h4 className="text-danger">Products</h4>
+            <h4 className="text-danger">Tất cả sản phẩm</h4>
           )}
 
-          {products.length < 1 && <p>No products found</p>}
+          {products.length < 1 && <p>Không tìm thấy sản phẩm</p>}
 
           <div className="row pb-5">
             {products.map((p) => (
               <div key={p._id} className="col-md-4 mt-3">
-                <ProductCard product={p} />
+                <ProductCardv2 product={p} />
               </div>
             ))}
           </div>

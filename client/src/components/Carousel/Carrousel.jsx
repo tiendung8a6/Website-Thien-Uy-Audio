@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import Jumbotron from "../../components/cards/Jumbotron"
 import { Link } from "react-router-dom";
 import Banner1 from "../ImgBanner/Banner1.png"
-// import Banner1Svg from "../ImgBanner/Banner1.svg"
 import './carousel.css'
 import Banner2 from "../ImgBanner/Banner2.png"
 // import Banner3 from "../ImgBanner/Banner3.png"

@@ -11,8 +11,8 @@ import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import { useHistory } from "react-router-dom";
 
 const actions = [
-    { link: "/shop", icon: <FacebookOutlinedIcon />, name: 'Facebook' },
-    { link: "/", icon: <SaveIcon />, name: 'Zalo' },
+    { link: "https://www.facebook.com/thietkedankaraoke", icon: <FacebookOutlinedIcon />, name: 'Facebook', },
+    { link: "/shop", icon: <SaveIcon />, name: 'Sản phẩm' },
     { link: "/", icon: <AttachEmailOutlinedIcon />, name: 'Email' },
     { link: "/", icon: <LocalPhoneOutlinedIcon />, name: 'Phone' },
 ];
@@ -24,7 +24,9 @@ export default function SpeedDialTooltipOpen() {
     const history = useHistory();
 
     const handleActionClick = (action) => {
-        history.push(action.link); // Programmatically navigate to the specified route
+        // history.push(action.link);
+        window.location.replace(action.link);
+
         handleClose();
         window.location.reload();
     };
@@ -48,6 +50,8 @@ export default function SpeedDialTooltipOpen() {
                         tooltipTitle={action.name}
                         tooltipOpen
                         onClick={() => handleActionClick(action)}
+                        components={<a></a>}
+                        
                     />
                 ))}
             </SpeedDial>

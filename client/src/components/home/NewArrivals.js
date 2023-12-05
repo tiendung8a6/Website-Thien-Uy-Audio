@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getProducts, getProductsCount } from "../../functions/product";
 import ProductCardv2 from "../cards/ProductCardv2/ProductCardv2";
 import LoadingCard from "../cards/LoadingCard";
-import { Pagination } from "antd";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-// import Pagination from '@mui/material/Pagination';
-// import Stack from '@mui/material/Stack';
+const ITEMS_PER_PAGE = 4;
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
@@ -23,7 +23,6 @@ const NewArrivals = () => {
 
   const loadAllProducts = () => {
     setLoading(true);
-    // sort, order, limit
     getProducts("createdAt", "desc", page).then((res) => {
       setProducts(res.data);
       setLoading(false);
@@ -38,7 +37,7 @@ const NewArrivals = () => {
         ) : (
           <div className="row">
             {products.map((product) => (
-              <div key={product._id} className="col-md-4" >
+              <div key={product._id} className="col-md-3" >
                 <ProductCardv2 product={product} />
               </div>
             ))}
@@ -49,12 +48,10 @@ const NewArrivals = () => {
       <div className="row">
         <nav className="col-md-4 offset-md-4 d-flex justify-content-center pt-5 p-3">
           <Pagination
-            simple
-            current={page}
-            total={(productsCount / 3) * 10}
-            onChange={(value) => setPage(value)}
+            count={Math.ceil(productsCount / ITEMS_PER_PAGE)}
+            page={page}
+            onChange={(event, value) => setPage(value)}
           />
-
         </nav>
       </div>
     </>

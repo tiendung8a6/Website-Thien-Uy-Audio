@@ -20,6 +20,8 @@
   :root {
     --up: 1;
   }
+
+
 }
 
 .carouselwrapper {
@@ -31,7 +33,8 @@
 .CarouselCardCustomer {
   width: var(--carouselWidth);
   /* margin: 0 0 0 var(--carouselLeftMargin); */
-  margin-left: -60px;
+  /* margin-left: ; */
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   list-style: none;

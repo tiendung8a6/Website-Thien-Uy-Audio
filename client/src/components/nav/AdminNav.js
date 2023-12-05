@@ -34,7 +34,7 @@ const AdminNav = () => {
     setOpen(!open);
   };
   const navItems = [
-    { text: "Trang chủ", path: "/admin/dashboard", icon: <DashboardIcon /> },
+
     { text: "Thêm sản phẩm", path: "/admin/product", icon: <AddBoxIcon /> },
     { text: "Danh sách sản phẩm", path: "/admin/products", icon: <ListIcon /> },
     { text: "Quản lý danh mục", path: "/admin/category", icon: <CategoryIcon /> },
@@ -45,6 +45,7 @@ const AdminNav = () => {
     { text: "Tạo blog", path: "/admin/blog", icon: <FiberNewSharpIcon /> },
     { text: "Danh sách blog", path: "/admin/blogs", icon: <NewspaperSharpIcon /> },
     { text: "Đổi mật khẩu", path: "/user/password", icon: <PasswordIcon /> },
+    { text: "Trang chủ", path: "/admin/dashboard", icon: <DashboardIcon /> },
 
   ];
 

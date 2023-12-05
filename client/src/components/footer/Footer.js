@@ -4,127 +4,92 @@ import { Link } from "react-router-dom";
 import React from "react";
 const Footer = () => {
     return (
+        <div style={{ fontSize: '18px', fontWeight: '800', backgroundColor: '#312fc1', color: 'white' }}>
+            <footer className="text-center text-lg-start  " >
+                <hr />
+                {/* Section: Links  */}
+                <section className="text-white">
+                    <div className="container text-center text-md-start mt-5 ">
+                        {/* Grid row */}
+                        <div className="row mt-3">
+                            {/* Grid column */}
+                            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                                {/* Content */}
+                                <h6 className="text-uppercase  fw-bold mb-4" style={{ color: 'yellow' }}>
+                                    Thiên UY AUDIO
+                                </h6>
+                                <p>
+                                    Thiên UY AUDIO  chuyên cung cấp các sản phẩm âm thanh, máy chiếu và loa chính hãng với giá cả cạnh tranh. Chúng tôi có đội ngũ nhân viên tư vấn nhiệt tình, sẵn sàng hỗ trợ khách hàng lựa chọn sản phẩm phù hợp với nhu cầu.
+                                </p>
+                            </div>
+                            {/* Grid column */}
+                            {/* Grid column */}
+                            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                                {/* Links */}
+                                <h6 className="text-uppercase fw-bold mb-4 " style={{ color: 'yellow' }}>
+                                    Sản Phẩm
+                                </h6>
+                                <p>
+                                    <Link href="/category/may-chieu" className="text-white">Máy chiếu</Link>
+                                </p>
+                                <p>
+                                    <Link href="/category/thiet-bi-karaoke" className="text-reset">Thiết bị karaoke</Link>
+                                </p>
+                                <p>
+                                    <Link href="/category/cinema" className="text-reset">Cinema</Link>
+                                </p>
 
-        <footer className="text-center text-lg-start bg-white text-muted">
-            <hr />
-            {/* Section: Links  */}
-            <section className>
-                <div className="container text-center text-md-start mt-5">
-                    {/* Grid row */}
-                    <div className="row mt-3">
-                        {/* Grid column */}
-                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                            {/* Content */}
-                            <h6 className="text-uppercase fw-bold mb-4">
-                                <i className="fas fa-gem me-3 text-secondary" />Thiên UY AUDIO
-                            </h6>
-                            <p>
-                                Here you can use rows and columns to organize your footer content. Lorem ipsum
-                                dolor sit amet, consectetur adipisicing elit.
-                            </p>
+                            </div>
+                            {/* Grid column */}
+                            {/* Grid column */}
+                            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                {/* Links */}
+                                <h6 className="text-uppercase fw-bold mb-4" style={{ color: 'yellow' }}>
+                                    Liên kết hưu ích
+                                </h6>
+                                <p>
+                                    <a href="/sendcontact" className="text-reset">Liên hệ</a>
+                                </p>
+                                <p>
+                                    <a href="/blog" className="text-reset">Blog</a>
+                                </p>
+                                <p>
+                                    <a href="/cart" className="text-reset">Giỏ hàng</a>
+                                </p>
+
+                            </div>
+                            {/* Grid column */}
+                            {/* Grid column */}
+                            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                                {/* Links */}
+                                <h6 className="text-uppercase fw-bold mb-4" style={{ color: 'yellow' }}>Liên hệ</h6>
+                                <p><i className="fas fa-home me-3 " /> Lô 1 Cư xá Thanh Đa</p>
+                                <p>
+                                    <i className="fas fa-envelope me-3 " />
+                                    thienuyaudio@gmail.com
+                                </p>
+                                <p><i className="fas fa-phone me-3 " /> 079 2826 567 </p>
+
+                            </div>
+                            {/* Grid column */}
                         </div>
-                        {/* Grid column */}
-                        {/* Grid column */}
-                        <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                            {/* Links */}
-                            <h6 className="text-uppercase fw-bold mb-4">
-                                Products
-                            </h6>
-                            <p>
-                                <a href="#!" className="text-reset">Angular</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-reset">React</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-reset">Vue</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-reset">Laravel</a>
-                            </p>
-                        </div>
-                        {/* Grid column */}
-                        {/* Grid column */}
-                        <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            {/* Links */}
-                            <h6 className="text-uppercase fw-bold mb-4">
-                                Useful links
-                            </h6>
-                            <p>
-                                <a href="#!" className="text-reset">Pricing</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-reset">Settings</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-reset">Orders</a>
-                            </p>
-                            <p>
-                                <a href="#!" className="text-reset">Help</a>
-                            </p>
-                        </div>
-                        {/* Grid column */}
-                        {/* Grid column */}
-                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                            {/* Links */}
-                            <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-                            <p><i className="fas fa-home me-3 text-secondary" /> New York, NY 10012, US</p>
-                            <p>
-                                <i className="fas fa-envelope me-3 text-secondary" />
-                                info@example.com
-                            </p>
-                            <p><i className="fas fa-phone me-3 text-secondary" /> + 01 234 567 88</p>
-                            <p><i className="fas fa-print me-3 text-secondary" /> + 01 234 567 89</p>
-                        </div>
-                        {/* Grid column */}
+                        {/* Grid row */}
                     </div>
-                    {/* Grid row */}
-                </div>
-            </section>
-            {/* Section: Links  */}
-            {/* Section: Social media */}
+                </section>
+                {/* Section: Links  */}
 
-            <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                {/* Left */}
-                <div className="mt-4 d-none d-lg-block">
-                    <span>Get connected with us on social networks:</span>
-                </div>
-                {/* Left */}
-                {/* Right */}
-                <div>
-                    {/* Socialmedia */}
-                    <div className="mt-2">
-                        {/* Section: Social media */}
-                        <section className="">
-                            {/* Facebook */}
-                            <Link className="btn text-white btn-floating m-1" style={{ backgroundColor: '#3b5998' }} to="/shop" role="button"><i className="fab fa-facebook-f" /></Link>
-                            {/* Twitter */}
-                            <Link className="btn text-white btn-floating m-1" style={{ backgroundColor: '#55acee' }} to="#!" role="button"><i className="fab fa-twitter" /></Link>
-                            {/* Google */}
-                            <Link className="btn text-white btn-floating m-1" style={{ backgroundColor: '#dd4b39' }} to="#!" role="button"><i className="fab fa-google" /></Link>
-                            {/* Instagram */}
-                            <Link className="btn text-white btn-floating m-1" style={{ backgroundColor: '#ac2bac' }} to="#!" role="button"><i className="fab fa-instagram" /></Link>
-                            {/* Linkedin */}
-                            <Link className="btn text-white btn-floating m-1" style={{ backgroundColor: '#0082ca' }} to="#!" role="button"><i className="fab fa-linkedin-in" /></Link>
-                            {/* Github */}
-                            <Link className="btn text-white btn-floating m-1" style={{ backgroundColor: '#333333' }} to="#!" role="button"><i className="fab fa-github" /></Link>
-                        </section>
-                        {/* Section: Social media */}
-                    </div>
-                </div>
-                {/* Right */}
-            </section>
-            {/* Section: Social media */}
 
-            {/* Grid container */}
+                {/* Grid container */}
 
-            {/* Copyright */}
-            <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.025)' }}>
-                © 2023 Copyright:
-                <a className="text-reset fw-bold" href="https://facebook.com/"> MOKA Team</a>
-            </div>
-            {/* Copyright */}
-        </footer>
+                {/* Copyright */}
+                <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.025)' }}>
+                    © 2023 Copyright:
+                    <a className="text-reset fw-bold" href="https://facebook.com/"> MOKA Team</a>
+                </div>
+                {/* Copyright */}
+            </footer>
+        </div>
+
 
 
     );

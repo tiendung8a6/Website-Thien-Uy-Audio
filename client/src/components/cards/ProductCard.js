@@ -252,7 +252,7 @@ const ProductCard = ({ product }) => {
             <Typography paragraph>Mô tả sản phẩn:</Typography>
 
             <Typography paragraph>
-              {description}
+              <Typography paragraph style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }} dangerouslySetInnerHTML={{ __html: description }} />
             </Typography>
 
 

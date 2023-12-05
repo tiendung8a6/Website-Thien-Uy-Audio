@@ -52,11 +52,11 @@ export default function SimpleSlider() {
     const imageLogoBard = [
         {
             image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
-            name: 'Sam Sung',
+            name: 'Panasonic',
         },
         {
             image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',
-            name: 'Sam Sung',
+            name: 'LG',
         },
         {
             image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/360_197_1.png?$FB_TYPE_B_PNG$',

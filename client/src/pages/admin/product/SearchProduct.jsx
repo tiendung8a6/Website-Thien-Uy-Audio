@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminNav from "../../../components/nav/AdminNav";
 import { getProductsByCount } from "../../../functions/product";
-import ProductCard from "../../../components/cards/ProductCard";
+import ProductCardv2 from "../../../components/cards/ProductCardv2/ProductCardv2";
 import { removeProduct } from "../../../functions/product";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -109,7 +109,7 @@ const SearchProduct = () => {
                                 ) : (
                                     currentProducts.map((product) => (
                                         <div key={product._id} className="col-md-6 pb-3"> {/* Thay đổi col-md-4 thành col-md-6 */}
-                                            <ProductCard product={product} handleRemove={handleRemove} />
+                                            <ProductCardv2 product={product} handleRemove={handleRemove} />
                                         </div>
                                     ))
                                 )}
