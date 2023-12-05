@@ -30,24 +30,27 @@ const Banner2 = () => {
                                     <div className="carousel-item active">
                                         <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
                                         <div className="carousel-caption ">
-                                            <h5>First slide label</h5>
-                                            <p>Some representative placeholder content for the first slide.</p>
-                                            <Link to="#" > <ButtonHome>Mua Ngay</ButtonHome></Link>
+                                            <h5>Thiên Uy audio</h5>
+                                            <p>Chất lượng - Giá tốt - Bền bỉ</p>
+                                            <a href="https://www.facebook.com/thietkedankaraoke" > <ButtonHome>Tư vấn trực tiếp </ButtonHome></a>
 
                                         </div>
                                     </div>
                                     <div className="carousel-item">
                                         <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
                                         <div className="carousel-caption ">
-                                            <h5>Second slide label</h5>
-                                            <p>Some representative placeholder content for the second slide.</p>
+                                            <h5>Thiên Uy audio</h5>
+                                            <p>Chất lượng đồng hành với thời gian</p>
+                                            <Link to="/shop" > <ButtonHome>Mua ngay</ButtonHome></Link>
+
                                         </div>
                                     </div>
                                     <div className="carousel-item">
                                         <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
                                         <div className="carousel-caption ">
-                                            <h5>Third slide label</h5>
-                                            <p>Some representative placeholder content for the third slide.</p>
+                                            <h5>Thiên Uy audio</h5>
+                                            <p>Giá cả tốt nhất thị trường</p>
+                                            <Link hreff="/shop" > <ButtonHome>Mua ngay</ButtonHome></Link>
                                         </div>
                                     </div>
                                 </div>

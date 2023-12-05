@@ -130,7 +130,7 @@ const ProductCard = ({ product }) => {
 					<div className="card__img" elevation={3}>
 
 						<img
-							src="https://kibath.vn/wp-content/uploads/2023/07/guong-hinh-vuong-bo-4-goc-2.jpg"
+							src={images && images.length ? images[0].url : laptop}
 							// style={{ height: "150px", objectFit: "cover" }}
 							className="p-1 imgProductcardv2"
 						/>
@@ -143,11 +143,11 @@ const ProductCard = ({ product }) => {
 						{product && product.ratings && product.ratings.length > 0 ? (
 							showAverage(product)
 						) : (
-							<div className="text-center pt-1 pb-3">No rating yet</div>
+							<div className="text-center pt-1 pb-3">Chưa có đánh giá</div>
 						)}
 					</div>
 
-					<Meta className="card_description"
+					{/* <Meta className="card_description"
 						description={
 							<Typography
 								sx={{
@@ -160,7 +160,7 @@ const ProductCard = ({ product }) => {
 								<Link to={`/product/${slug}`} style={{ color: 'white' }}> xem thêm</Link>
 							</Typography>
 						}
-					/>
+					/> */}
 					<div className="card__action BottomCard">
 						{/* <button className="button_productcardv2">Buy now</button>
 						<button className="button_productcardv2">Add cart</button> */}

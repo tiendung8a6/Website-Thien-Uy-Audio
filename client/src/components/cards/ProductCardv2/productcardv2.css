@@ -10,20 +10,22 @@
 
 .card {
 	overflow: hidden;
-	margin: 120px auto;
-	width: 320px;
-	height: 430px;
-	background-color: #272d40;
-	/* border-radius: 15px; */
+	margin: 15px 15px;
+	width: 250px;
+	height: 400px;
+	background-color: #fff;
+	border: non;
+	border-radius: 15px;
 	padding: 40px 20px;
-	color: white;
+	color: black;
 	position: relative;
 	font-size: 18px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .card__img {
 
-	width: 90%;
+	width: 100%;
 	transition: 0.5s;
 	display: flex;
 	justify-content: center;
@@ -32,7 +34,7 @@
 
 .imgProductcardv2 {
 	width: 100%;
-	height: 100%;
+	height: 200px;
 	object-fit: cover;
 	object-position: center;
 
@@ -56,7 +58,8 @@
 }
 
 .card__title {
-	color: var(--primary-color);
+	color: rgb(36, 2, 228);
+	font-weight: 600;
 	margin-top: 8px;
 	transition: 0.5s;
 	text-align: center;
@@ -65,7 +68,7 @@
 .card__price {
 	margin-top: 8px;
 
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 26px;
 	transition: 0.5s;
 	text-align: center;
@@ -76,6 +79,8 @@
 	text-align: center;
 	/* align-items: start; */
 	text-align: center;
+	font-size: 25px;
+	scale: 0.7;
 }
 
 .card:hover .card__price {
@@ -101,18 +106,19 @@
 	margin-top: -50px;
 }
 
-.card:hover .card_description {
+/* .card:hover .card_description {
 	margin-top: -30px;
 
-}
+} */
 
 /* .BottomCard {
 	display: none;
-}
+} */
 
 .card:hover .BottomCard {
 	display: block;
-} */
+	margin-top: -30px;
+}
 
 .card:hover .card__size,
 .card:hover .card__color,
@@ -133,7 +139,7 @@
 .card__color h6 {
 	font-weight: unset;
 	margin-right: 12px;
-	color: white;
+	color: black;
 }
 
 .card__size span {
@@ -172,7 +178,7 @@
 	background-color: var(--primary-color);
 	border-radius: 5px;
 	cursor: pointer;
-	color: white;
+	color: black;
 	margin-right: 7px;
 	font-weight: 600;
 	transition: 0.25s;
@@ -199,7 +205,7 @@
 }
 
 .hover_ProductCardIconv2 {
-	color: white;
+	color: black;
 }
 
 .hover_ProductCardIconv2:hover {

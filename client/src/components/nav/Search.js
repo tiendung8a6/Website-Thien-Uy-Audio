@@ -44,7 +44,7 @@ export default function SearchNav() {
 
     return (
         <React.Fragment>
-            <Button onClick={handleClickOpen} >
+            <Button onClick={handleClickOpen} style={{ color: 'black', fontWeight: '900' }}>
                 <SearchIcon />Tìm kiếm
             </Button>
             <Dialog

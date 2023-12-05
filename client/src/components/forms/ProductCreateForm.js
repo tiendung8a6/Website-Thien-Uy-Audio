@@ -1,11 +1,15 @@
 import React from "react";
 import { Button, Form, Input, Select } from 'antd';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/uploadadapter';
 
 const { Option } = Select;
 
 const ProductCreateForm = ({
   handleSubmit,
   handleChange,
+
   setValues,
   values,
   handleCatagoryChange,
@@ -29,6 +33,9 @@ const ProductCreateForm = ({
     brands,
     color,
     brand,
+    status,
+    Guarantee,
+    Origin,
   } = values;
   const onFinish = async () => {
     await handleSubmit();
@@ -38,6 +45,16 @@ const ProductCreateForm = ({
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  const handleEditorChange = (event, editor) => {
+    const data = editor.getData();
+    handleChange('description', data);
+
+  };
+  // const editorConfiguration = {
+  //   plugins: [UploadAdapter],
+  //   // other CKEditor configuration options
+  // };
   return (
     <Form
       name="basic"
@@ -72,8 +89,58 @@ const ProductCreateForm = ({
         />
       </Form.Item>
 
+      <Form.Item
+        label="Tình trạng sản phẩm"
+        name="status"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập Tình trạng sản phẩm!",
+          },
+        ]}
+      >
+        <Input
+          value={status}
+          onChange={(e) => handleChange('status', e.target.value)}
+        />
+      </Form.Item>
 
       <Form.Item
+        label=" Bảo hành"
+        name="Guarantee"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập Bảo hành!",
+          },
+        ]}
+      >
+        <Input
+          value={Guarantee}
+          onChange={(e) => handleChange('Guarantee', e.target.value)}
+        />
+      </Form.Item>
+
+      <Form.Item
+        label=" Nơi sản xuất"
+        name="Origin"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập Bảo hành!",
+          },
+        ]}
+      >
+        <Input
+          value={Origin}
+          onChange={(e) => handleChange('Origin', e.target.value)}
+        />
+      </Form.Item>
+
+
+
+
+      {/* <Form.Item
         label="Mô tả cho sản phẩm"
         name="description"
         rules={[
@@ -86,6 +153,24 @@ const ProductCreateForm = ({
         <Input
           value={description}
           onChange={(e) => handleChange('description', e.target.value)}
+        />
+      </Form.Item> */}
+
+      <Form.Item
+        label="Mô tả cho sản phẩm"
+        name="description"
+        rules={[
+          {
+            required: true,
+            message: "Vui lòng nhập mô tả cho sản phẩm!",
+          },
+        ]}
+      >
+        <CKEditor
+          editor={ClassicEditor}
+          // config={editorConfiguration}
+          data={description}
+          onChange={handleEditorChange}
         />
       </Form.Item>
 

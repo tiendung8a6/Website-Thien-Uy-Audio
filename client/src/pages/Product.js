@@ -3,7 +3,7 @@ import { getProduct, productStar } from "../functions/product";
 import SingleProduct from "../components/cards/SingleProduct";
 import { useSelector } from "react-redux";
 import { getRelated } from "../functions/product";
-import ProductCard from "../components/cards/ProductCard";
+import ProductCardv2 from "../components/cards/ProductCardv2/ProductCardv2";
 
 const Product = ({ match }) => {
   const [product, setProduct] = useState({});
@@ -66,7 +66,7 @@ const Product = ({ match }) => {
         {related.length ? (
           related.map((r) => (
             <div key={r._id} className="col-md-4">
-              <ProductCard product={r} />
+              <ProductCardv2 product={r} />
             </div>
           ))
         ) : (

@@ -18,23 +18,73 @@ const ProductListItems = ({ product }) => {
     brand,
     quantity,
     sold,
+    status,
+    Guarantee,
+    Origin,
   } = product;
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="simple table">
+    <div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 500, height: 50 }} aria-label="simple table" >
 
-        <TableBody>
-          <TableRow >
+          <TableRow colSpan={2}>
             <TableCell component="th" scope="row">
               Giá
             </TableCell>
-            <TableCell align="right"> {price} VNĐ</TableCell>
+            <TableCell align="right"> {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(price)} </TableCell>
           </TableRow>
 
+          <TableRow >
+            <TableCell component="th" scope="row">
+              Tình trạng sản phẩm
+            </TableCell>
+            <TableCell align="right"> {status} </TableCell>
+          </TableRow>
+
+          <TableRow >
+            <TableCell component="th" scope="row">
+              Xuất sứ
+            </TableCell>
+            <TableCell align="right"> {Origin} </TableCell>
+          </TableRow>
+        </Table>
+      </TableContainer>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 500, height: 50 }} aria-label="simple table" >
 
 
-          {category && (
+          <TableHead style={{ width: '500px' }}>
+            <TableRow>
+              <TableCell>Thương hiệu</TableCell>
+              <TableCell>Bảo hành</TableCell>
+              <TableCell >Giao Hàng</TableCell>
+              {/* <TableCell >Màu sắc</TableCell> */}
+              <TableCell >Số lượng</TableCell>
+
+            </TableRow>
+          </TableHead>
+          <TableBody>
+
+            <TableRow >
+              <TableCell component="th" scope="row">
+                {brand}
+              </TableCell>
+
+              <TableCell component="th" scope="row">
+                {Guarantee}
+              </TableCell>
+
+              <TableCell component="th" scope="row">
+                {shipping}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {quantity}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+          {/* {category && (
             // <li className="list-group-item">
             //   Category{" "}
             //   <Link
@@ -50,9 +100,9 @@ const ProductListItems = ({ product }) => {
               </TableCell>
               <TableCell align="right"><Link to={`/category/${category.slug}`}>{category.name} </Link></TableCell>
             </TableRow>
-          )}
+          )} */}
 
-          {subs && (
+          {/* {subs && (
 
             <TableRow >
               <TableCell component="th" scope="row">
@@ -70,52 +120,61 @@ const ProductListItems = ({ product }) => {
                 ))}
               </TableCell>
             </TableRow>
-          )}
+          )} */}
+
+          {/* <TableRow >
+          <TableCell component="th" scope="row">
+            Thương hiệu
+          </TableCell>
+          <TableCell align="right">{brand}</TableCell>
+
+        </TableRow> */}
+          {/* <TableRow >
+          <TableCell component="th" scope="row">
+            Bảo hành
+          </TableCell>
+          <TableCell align="right"> {Guarantee} </TableCell>
+        </TableRow> */}
+
+          {/* <TableRow >
+          <TableCell component="th" scope="row">
+            Giao Hàng
+          </TableCell>
+          <TableCell align="right">{shipping}</TableCell>
+
+        </TableRow> */}
+
+          {/* <TableRow >
+          <TableCell component="th" scope="row">
+            Màu sắc
+          </TableCell>
+          <TableCell align="right">{color}</TableCell>
+
+        </TableRow> */}
 
 
-          <TableRow >
-            <TableCell component="th" scope="row">
-              Giao Hàng
-            </TableCell>
-            <TableCell align="right">{shipping}</TableCell>
 
-          </TableRow>
+          {/* <TableRow >
+          <TableCell component="th" scope="row">
+            Số lượng
+          </TableCell>
+          <TableCell align="right">{quantity}</TableCell>
 
-          <TableRow >
-            <TableCell component="th" scope="row">
-              Màu sắc
-            </TableCell>
-            <TableCell align="right">{color}</TableCell>
+        </TableRow> */}
 
-          </TableRow>
-
-          <TableRow >
-            <TableCell component="th" scope="row">
-              Thương hiệu
-            </TableCell>
-            <TableCell align="right">{brand}</TableCell>
-
-          </TableRow>
-
-          <TableRow >
-            <TableCell component="th" scope="row">
-              Số lượng
-            </TableCell>
-            <TableCell align="right">{quantity}</TableCell>
-
-          </TableRow>
-
-          <TableRow >
+          {/* <TableRow >
             <TableCell component="th" scope="row">
               Đã bán ra
             </TableCell>
             <TableCell align="right">{sold}</TableCell>
 
-          </TableRow>
+          </TableRow> */}
 
-        </TableBody>
-      </Table>
-    </TableContainer>
+
+        </Table>
+      </TableContainer>
+
+    </div>
     // <ul className="list-group">
     //   <li className="list-group-item">
     //     Price{" "}
@@ -186,7 +245,10 @@ const ProductListItems = ({ product }) => {
     //     </span>
     //   </li>
     // </ul>
+
+
   );
+
 };
 
 export default ProductListItems;

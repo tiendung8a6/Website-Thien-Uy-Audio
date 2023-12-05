@@ -146,7 +146,7 @@ const Checkout = ({ history }) => {
           payload: false,
         });
         // mepty cart from backend
-        emptyUserCart(user.token); 
+        emptyUserCart(user.token);
         // redirect
         setTimeout(() => {
           history.push("/user/history");
