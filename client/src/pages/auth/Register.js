@@ -10,12 +10,12 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
-  
+
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
     if (user && user.token) history.push("/");
-    
+
   }, [user, history]);
 
   const onFinish = async (e) => {
@@ -84,7 +84,7 @@ const Register = ({ history }) => {
       <div className="container py-5 h-100"  >
         <div className="row d-flex justify-content-center align-items-center h-100 "   >
           <div className="col-xl-10 ">
-            <div className="rounded-3 text-black form-main-register">
+            <div className=" rounded-3 text-black form-main-register">
               <div className="row g-0">
 
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2 left-register">

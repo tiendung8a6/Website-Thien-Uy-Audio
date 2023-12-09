@@ -4,6 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ButtonHome from './ButtonHome/ButtonHome.jsx';
+import BannerBody1 from '../ImgBanner/bannerbody.jpg'
+import BannerBody2 from '../ImgBanner/bannerbody2.jpg'
+
 import './Banner2.css'
 
 const Banner2 = () => {
@@ -28,29 +31,29 @@ const Banner2 = () => {
                                 </div>
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
-                                        <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
-                                        <div className="carousel-caption ">
+                                        <img src={BannerBody1} className="d-block w-100" alt="..." />
+                                        {/* <div className="carousel-caption ">
                                             <h5>Thiên Uy audio</h5>
                                             <p>Chất lượng - Giá tốt - Bền bỉ</p>
                                             <a href="https://www.facebook.com/thietkedankaraoke" > <ButtonHome>Tư vấn trực tiếp </ButtonHome></a>
 
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="carousel-item">
-                                        <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
-                                        <div className="carousel-caption ">
+                                        <img src={BannerBody2} className="d-block w-100" alt="..." />
+                                        {/* <div className="carousel-caption ">
                                             <h5>Thiên Uy audio</h5>
                                             <p>Chất lượng đồng hành với thời gian</p>
                                             <Link to="/shop" > <ButtonHome>Mua ngay</ButtonHome></Link>
 
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="carousel-item">
-                                        <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
+                                        <img src={BannerBody2} className="d-block w-100" alt="..." />
                                         <div className="carousel-caption ">
-                                            <h5>Thiên Uy audio</h5>
+                                            {/* <h5>Thiên Uy audio</h5>
                                             <p>Giá cả tốt nhất thị trường</p>
-                                            <Link hreff="/shop" > <ButtonHome>Mua ngay</ButtonHome></Link>
+                                            <Link hreff="/shop" > <ButtonHome>Mua ngay</ButtonHome></Link> */}
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +77,7 @@ const Banner2 = () => {
                             <div id="carouselExample" className="carousel slide">
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
-                                        <img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className="d-block w-100" alt="..." />
+                                        <img src={BannerBody2} className="d-block w-100" alt="..." />
                                     </div>
                                     <div className="carousel-caption " style={{ backgroundcolor: 'rgba(66, 161, 165, 0.1)' }}>
                                         <Link to="#" > <ButtonHome>Mua Ngay</ButtonHome></Link>
@@ -84,21 +87,21 @@ const Banner2 = () => {
 
                         </Col> */}
                         <Col style={{ paddingTop: '15px' }}>
-                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
+                            <Link to="/shop" ><img src={BannerBody2} className=" d-block w-100" alt="..." /> </Link>
 
                         </Col>
 
                         <Col style={{ paddingTop: '15px' }}>
-                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
+                            <Link to="/shop" ><img src={BannerBody2} className=" d-block w-100" alt="..." /> </Link>
 
                         </Col>
 
                         <Col style={{ paddingTop: '15px' }}>
-                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
+                            <Link to="/shop" ><img src={BannerBody1} className=" d-block w-100" alt="..." /> </Link>
                         </Col>
 
                         <Col style={{ paddingTop: '15px' }}>
-                            <Link to="/shop" ><img src="https://demo-digitic.myshopify.com/cdn/shop/files/main-banner-2_830x550.jpg?v=1655455867;" className=" d-block w-100" alt="..." /> </Link>
+                            <Link to="/shop" ><img src={BannerBody1} className=" d-block w-100" alt="..." /> </Link>
                         </Col>
 
                     </Row>

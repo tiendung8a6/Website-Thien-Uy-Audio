@@ -58,7 +58,7 @@ const ForgotPassword = ({ history }) => {
         <div className="container py-5 h-100"  >
           <div className="row d-flex justify-content-center align-items-center h-100 "   >
             <div className="col-xl-10 ">
-              <div className="rounded-3 text-black form-main-register">
+              <div className=" rounded-3 text-black form-main-register">
                 <div className="row g-0">
 
                   <div className="col-lg-6 d-flex align-items-center gradient-custom-2 left-register">
@@ -70,7 +70,7 @@ const ForgotPassword = ({ history }) => {
                     </div>
                   </div>
                   <div className="col-lg-6">
-                    <div className="p-md-5 mx-md-4">
+                    <div className=" p-md-5 mx-md-4">
                       <div className="text-center">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style={{ width: 185 }} alt="logo" />
                         <h4 className="mt-1 mb-5 pb-1">Quên Mật Khẩu</h4>
